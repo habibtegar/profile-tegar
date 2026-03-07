@@ -486,3 +486,163 @@ body {
         font-size: 1rem;
     }
 }
+
+/* =============================================
+   TAMBAHKAN KE DALAM skill.css ANDA
+   Programming Languages Section
+============================================= */
+
+/* Grid wrapper */
+.lang-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Setiap kartu bahasa */
+.lang-card {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 217, 255, 0.12);
+    border-radius: 14px;
+    padding: 1rem 1.4rem;
+    transition: all 0.3s ease;
+}
+
+.lang-card:hover {
+    border-color: rgba(0, 217, 255, 0.4);
+    background: rgba(0, 217, 255, 0.05);
+    transform: translateX(6px);
+    box-shadow: 0 4px 20px rgba(0, 217, 255, 0.1);
+}
+
+/* Icon lingkaran */
+.lang-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.html-icon {
+    background: rgba(228, 77, 38, 0.15);
+    color: #e44d26;
+    border: 1px solid rgba(228, 77, 38, 0.3);
+}
+
+.css-icon {
+    background: rgba(38, 77, 228, 0.15);
+    color: #264de4;
+    border: 1px solid rgba(38, 77, 228, 0.3);
+}
+
+.php-icon {
+    background: rgba(119, 123, 180, 0.15);
+    color: #777bb4;
+    border: 1px solid rgba(119, 123, 180, 0.3);
+}
+
+/* Info samping icon */
+.lang-info {
+    flex: 1;
+}
+
+.lang-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.lang-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.lang-percent {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+/* Progress bar */
+.lang-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 0.4rem;
+}
+
+.lang-fill {
+    height: 100%;
+    border-radius: 50px;
+    animation: fillBar 1.5s ease-out forwards;
+    width: 0;
+}
+
+.html-fill {
+    background: linear-gradient(90deg, #e44d26, #f16529);
+    animation-delay: 0.1s;
+    --target-width: 85%;
+}
+
+.css-fill {
+    background: linear-gradient(90deg, #264de4, #2965f1);
+    animation-delay: 0.3s;
+    --target-width: 70%;
+}
+
+.php-fill {
+    background: linear-gradient(90deg, #777bb4, #8892be);
+    animation-delay: 0.5s;
+    --target-width: 55%;
+}
+
+@keyframes fillBar {
+    from { width: 0; }
+    to   { width: var(--target-width); }
+}
+
+/* Deskripsi singkat */
+.lang-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+}
+
+/* =============================================
+   Responsive
+============================================= */
+@media (max-width: 480px) {
+    .lang-card {
+        padding: 0.8rem 1rem;
+        gap: 1rem;
+    }
+
+    .lang-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.6rem;
+    }
+
+    .lang-name {
+        font-size: 0.9rem;
+    }
+
+    .lang-percent {
+        font-size: 0.8rem;
+    }
+
+    .lang-desc {
+        font-size: 0.7rem;
+    }
+}
