@@ -95,11 +95,12 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    gap: 5px;
+    gap: 4px;
     z-index: 200;
-    background: none;
+    background: transparent;
+    background-color: transparent;
     border: none;
-    padding: 5px;
+    padding: 0;
 }
 
 .hamburger span {
