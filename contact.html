@@ -10,6 +10,11 @@
 <body>
     <nav class="navbar">
         <a href="index.html" class="logo">Garzyy</a>
+        <button class="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <ul>
             <li><a href="index.html">home</a></li>
             <li><a href="about.html">about</a></li>
@@ -74,31 +79,32 @@
             <!-- Contact Form -->
             <div class="contact-form">
                 <h3>Send Me a Message</h3>
-                <form action="#" method="POST">
+                <!-- Hapus action dan method, pakai id untuk JS -->
+                <form id="contactForm">
                     <div class="input-group">
                         <div class="input-box">
-                            <input type="text" placeholder="Full Name" required>
+                            <input type="text" id="fullName" placeholder="Full Name" required>
                             <i class='bx bxs-user'></i>
                         </div>
                         <div class="input-box">
-                            <input type="email" placeholder="Email Address" required>
+                            <input type="email" id="email" placeholder="Email Address" required>
                             <i class='bx bxs-envelope'></i>
                         </div>
                     </div>
 
                     <div class="input-group">
                         <div class="input-box">
-                            <input type="tel" placeholder="Phone Number">
+                            <input type="tel" id="phone" placeholder="Phone Number">
                             <i class='bx bxs-phone'></i>
                         </div>
                         <div class="input-box">
-                            <input type="text" placeholder="Subject">
+                            <input type="text" id="subject" placeholder="Subject">
                             <i class='bx bxs-message-detail'></i>
                         </div>
                     </div>
 
                     <div class="input-box-full">
-                        <textarea placeholder="Your Message" rows="6" required></textarea>
+                        <textarea id="message" placeholder="Your Message" rows="6" required></textarea>
                         <i class='bx bxs-message-dots'></i>
                     </div>
 
@@ -109,5 +115,38 @@
     </section>
 
     <script src="script.js"></script>
+
+    <script>
+        // =============================================
+        // KIRIM PESAN KE WHATSAPP
+        // Ganti nomor di bawah jika perlu
+        // =============================================
+        const WA_NUMBER = "6281271447069"; // Format: 62 + nomor tanpa 0 di depan
+
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Cegah reload halaman
+
+            // Ambil nilai dari form
+            const name    = document.getElementById("fullName").value.trim();
+            const email   = document.getElementById("email").value.trim();
+            const phone   = document.getElementById("phone").value.trim();
+            const subject = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            // Susun teks pesan WhatsApp
+            let waText = `Halo Habib Tegar Ramadhan! Saya ingin menghubungi Anda melalui portofolio Anda. Berikut adalah detail pesan saya:\n\n`;
+            waText += `*Nama:* ${name}\n`;
+            waText += `*Email:* ${email}\n`;
+            if (phone) waText += `*No. HP:* ${phone}\n`;
+            if (subject) waText += `*Subjek:* ${subject}\n`;
+            waText += `\n*Pesan:*\n${message}`;
+
+            // Encode dan buka WhatsApp
+            const encodedText = encodeURIComponent(waText);
+            const waURL = `https://wa.me/${WA_NUMBER}?text=${encodedText}`;
+
+            window.open(waURL, "_blank");
+        });
+    </script>
 </body>
 </html>
