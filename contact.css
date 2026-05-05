@@ -489,17 +489,17 @@ body {
     }
     
     .contact {
-        padding: 9rem 5% 3rem;
+        padding: 7rem 4% 2.5rem;
     }
     
     .heading {
         font-size: 3rem;
-        margin-bottom: 4rem;
+        margin-bottom: 2.5rem;
     }
     
     .contact-container {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2rem;
     }
     
     .contact-info h3,
@@ -524,27 +524,29 @@ body {
     }
     
     .contact {
-        padding: 8rem 5% 2rem;
+        padding: 6rem 3% 2rem;
     }
     
     .heading {
         font-size: 2.5rem;
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
     }
     
     .contact-info h3,
     .contact-form h3 {
         font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.2rem;
     }
     
     .contact-info > p {
         font-size: 1rem;
+        margin-bottom: 1.5rem;
     }
     
     .info-box {
         padding: 1.2rem;
         gap: 1rem;
+        margin-bottom: 1rem;
     }
     
     .info-box i {
@@ -581,5 +583,127 @@ body {
     .btn {
         padding: 1rem 2.5rem;
         font-size: 1rem;
+    }
+}
+
+/* ---- Landscape Mobile ---- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .contact {
+        padding: 5rem 4% 2rem;
+        min-height: auto;
+    }
+
+    .heading {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .contact-info > p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .info-box {
+        padding: 0.8rem;
+        gap: 0.8rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .info-box i {
+        font-size: 1.3rem;
+    }
+
+    .info-box h4 {
+        font-size: 0.9rem;
+    }
+
+    .info-box p {
+        font-size: 0.8rem;
+    }
+
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .input-box input,
+    .input-box-full textarea {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .contact {
+        padding: 4.5rem 3% 1.5rem;
+    }
+    
+    .heading {
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .contact-info h3,
+    .contact-form h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .contact-info > p {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .info-box {
+        padding: 1rem;
+        gap: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .info-box i {
+        font-size: 1.5rem;
+    }
+    
+    .info-box h4 {
+        font-size: 1rem;
+    }
+    
+    .info-box p {
+        font-size: 0.85rem;
+    }
+    
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .input-box input,
+    .input-box-full textarea {
+        padding: 0.9rem 1rem;
+        padding-right: 2.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.9rem;
     }
 }

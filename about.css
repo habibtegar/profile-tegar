@@ -112,10 +112,12 @@ body {
 .hamburger.open span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
+
 .hamburger.open span:nth-child(2) {
     opacity: 0;
     transform: scaleX(0);
 }
+
 .hamburger.open span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
@@ -134,24 +136,41 @@ body {
 
 .bar {
     flex: 1;
-    background: linear-gradient(180deg, 
-        transparent 0%, 
-        rgba(0, 217, 255, 0.05) 50%, 
-        transparent 100%);
+    background: linear-gradient(180deg,
+            transparent 0%,
+            rgba(0, 217, 255, 0.05) 50%,
+            transparent 100%);
     animation: barAnimation 3s ease-in-out infinite;
 }
 
-.bar:nth-child(1) { animation-delay: 0s; }
-.bar:nth-child(2) { animation-delay: 0.2s; }
-.bar:nth-child(3) { animation-delay: 0.4s; }
-.bar:nth-child(4) { animation-delay: 0.6s; }
-.bar:nth-child(5) { animation-delay: 0.8s; }
+.bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bar:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.bar:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.bar:nth-child(5) {
+    animation-delay: 0.8s;
+}
 
 @keyframes barAnimation {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(100%);
         opacity: 0;
     }
+
     50% {
         transform: translateY(0);
         opacity: 1;
@@ -184,10 +203,13 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.5;
     }
+
     50% {
         transform: translate(-50%, -50%) scale(1.2);
         opacity: 0.8;
@@ -206,6 +228,7 @@ body {
         transform: translateX(-100px);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
@@ -223,9 +246,12 @@ body {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-20px);
     }
@@ -242,6 +268,7 @@ body {
         transform: translateX(100px);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
@@ -390,17 +417,17 @@ body {
     .navbar {
         padding: 1.5rem 5%;
     }
-    
+
     .about {
         padding: 8rem 5% 0;
         gap: 3rem;
     }
-    
+
     .about-img {
         width: 350px;
         height: 350px;
     }
-    
+
     .heading {
         font-size: 3rem;
     }
@@ -435,45 +462,48 @@ body {
     .navbar ul li a {
         font-size: 1.3rem;
     }
-    
+
     .about {
         flex-direction: column;
         text-align: center;
-        padding-top: 8rem;
+        padding: 6rem 4% 3rem;
     }
-    
+
     .about-content {
         max-width: 100%;
     }
-    
+
     .heading {
         font-size: 2.5rem;
     }
-    
+
     .about-content h3 {
         font-size: 1.5rem;
+        margin-bottom: 1.2rem;
     }
-    
+
     .about-content p {
         font-size: 1rem;
         text-align: center;
+        margin-bottom: 1.2rem;
     }
-    
+
     .skills-list {
         justify-content: center;
+        margin-bottom: 1.5rem;
     }
-    
+
     .btn {
         display: block;
         text-align: center;
         width: fit-content;
-        margin: 0 auto 2rem;
+        margin: 0 auto 1.5rem;
     }
-    
+
     .sci {
         justify-content: center;
     }
-    
+
     .about-img {
         width: 280px;
         height: 280px;
@@ -484,35 +514,130 @@ body {
     .logo {
         font-size: 1.5rem;
     }
-    
+
     .navbar ul {
         gap: 1rem;
         font-size: 0.9rem;
     }
-    
+
+    .about {
+        padding: 5rem 3% 2rem;
+    }
+
+    .heading {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-content p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .skills-list {
+        gap: 0.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .skill-item {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .skill-item i {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .about-img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* ---- Landscape Mobile ---- */
+@media (max-height: 500px) and (orientation:portrait) {
+    .about {
+        flex-direction: row;
+        padding: 5rem 4% 2rem;
+        gap: 2rem;
+        min-height: auto;
+    }
+
+    .about-img {
+        width: 160px;
+        height: 160px;
+    }
+
     .heading {
         font-size: 2rem;
     }
-    
+
     .about-content h3 {
         font-size: 1.2rem;
+        margin-bottom: 0.8rem;
     }
-    
+
+    .about-content p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
     .skills-list {
-        gap: 1rem;
+        gap: 0.6rem;
+        margin-bottom: 1rem;
     }
-    
+
     .skill-item {
-        padding: 0.6rem 1.2rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .about {
+        padding: 4.5rem 3% 2rem;
+    }
+
+    .heading {
+        font-size: 1.7rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.05rem;
+    }
+
+    .about-content p {
         font-size: 0.9rem;
     }
-    
-    .btn {
-        padding: 0.8rem 2rem;
+
+    .skills-list {
+        gap: 0.6rem;
     }
-    
+
+    .skill-item {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
     .about-img {
-        width: 250px;
-        height: 250px;
+        width: 180px;
+        height: 180px;
     }
 }

@@ -446,8 +446,8 @@ body {
     .home {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 8rem 5% 4rem;
-        gap: 3rem;
+        padding: 6rem 4% 3rem;
+        gap: 2rem;
     }
 
     .home-content {
@@ -485,7 +485,12 @@ body {
 /* ---- Mobile L (600px) ---- */
 @media (max-width: 600px) {
     .navbar {
-        padding: 1.2rem 5%;
+        padding: 1.2rem 4%;
+    }
+
+    .home {
+        padding: 5rem 3% 2rem;
+        gap: 1.5rem;
     }
 
     .home-content h1 {
@@ -494,6 +499,10 @@ body {
 
     .home-content h2 {
         font-size: 1.3rem;
+    }
+
+    .home-content p {
+        margin-bottom: 2rem;
     }
 
     .home-img {
@@ -563,6 +572,45 @@ body {
     }
 }
 
+/* ---- Landscape Mobile (HP diputar) ---- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .home {
+        flex-direction: row;
+        padding: 5rem 4% 2rem;
+        gap: 2rem;
+        min-height: auto;
+    }
+
+    .home-content h1 {
+        font-size: 2rem;
+    }
+
+    .home-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .home-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .home-img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .sci a {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
 /* ---- Touch devices: disable hover animations ---- */
 @media (hover: none) {
     .sci a:hover,
@@ -576,3 +624,4 @@ body {
         width: 0;
     }
 }
+

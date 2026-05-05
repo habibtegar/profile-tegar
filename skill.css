@@ -453,13 +453,13 @@ body {
     
     .skills-section {
         flex-direction: column;
-        padding: 9rem 5% 3rem;
-        gap: 3rem;
+        padding: 7rem 4% 2.5rem;
+        gap: 2.5rem;
     }
     
     .skills-title {
         font-size: 2.2rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.8rem;
     }
     
     .info {
@@ -497,17 +497,17 @@ body {
     }
     
     .skills-section {
-        padding: 8rem 5% 2rem;
-        gap: 2.5rem;
+        padding: 6rem 3% 2rem;
+        gap: 2rem;
     }
     
     .skills-title {
         font-size: 2rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .skill-bar-box {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .info {
@@ -523,7 +523,7 @@ body {
     }
     
     .circular-grid {
-        gap: 1.5rem;
+        gap: 1rem;
     }
     
     .outer-circle {
@@ -539,6 +539,91 @@ body {
     
     .circle-box > span {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .skills-section {
+        padding: 5rem 3% 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .skills-title {
+        font-size: 1.7rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .skill-bar-box {
+        margin-bottom: 1.2rem;
+    }
+    
+    .info {
+        font-size: 0.9rem;
+    }
+    
+    .bar {
+        height: 10px;
+    }
+    
+    .circular-grid {
+        gap: 0.8rem;
+    }
+    
+    .outer-circle {
+        width: 85px;
+        height: 85px;
+    }
+    
+    .inner-circle {
+        width: 65px;
+        height: 65px;
+        font-size: 1rem;
+    }
+    
+    .circle-box > span {
+        font-size: 0.9rem;
+    }
+}
+
+/* ---- Landscape Mobile ---- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .skills-section {
+        flex-direction: row;
+        padding: 5rem 4% 2rem;
+        gap: 2rem;
+        min-height: auto;
+    }
+
+    .skills-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .skill-bar-box {
+        margin-bottom: 1.2rem;
+    }
+
+    .info {
+        font-size: 0.9rem;
+    }
+
+    .bar {
+        height: 10px;
+    }
+
+    .circular-grid {
+        gap: 1rem;
+    }
+
+    .outer-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .inner-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 0.9rem;
     }
 }
 
