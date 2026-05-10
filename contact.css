@@ -217,6 +217,9 @@ body {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
     animation: slideUp 1s ease-out 0.3s backwards;
 }
 

@@ -241,8 +241,11 @@ body {
     transition: all 0.3s ease;
     background: var(--second-bg-color);
     cursor: pointer;
-    height: 400px;
+    /* responsive height */
+    aspect-ratio: 4 / 3;
+    height: auto;
 }
+
 
 .portfolio-box:hover {
     transform: translateY(-10px);
@@ -382,8 +385,10 @@ body {
     }
     
     .portfolio-box {
-        height: 350px;
+        aspect-ratio: 4 / 3;
+        height: auto;
     }
+
     
     .portfolio-layer h4 {
         font-size: 1.8rem;
@@ -418,8 +423,10 @@ body {
     }
     
     .portfolio-box {
-        height: 260px;
+        aspect-ratio: 4 / 3;
+        height: auto;
     }
+
     
     .portfolio-layer {
         padding: 1.2rem;

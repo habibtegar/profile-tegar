@@ -218,8 +218,9 @@ body {
 
 /* About Image */
 .about-img {
-    width: 400px;
-    height: 400px;
+    width: min(400px, 80vw);
+    height: min(400px, 80vw);
+
     animation: slideFromLeft 1s ease-out;
 }
 
