@@ -1,151 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Habib Tegar</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Habib Tegar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/contact.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">Garzyy</a>
-        <button class="hamburger" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="about.html">about</a></li>
-            <li><a href="projek.html">project</a></li>
-            <li><a href="skill.html">skills</a></li>
-            <li class="active"><a href="contact.html">contact</a></li>
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo"><span class="logo-bracket">&lt;</span>Garzyy<span class="logo-bracket">/&gt;</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="projek.html" class="nav-link">Projects</a></li>
+            <li><a href="skill.html" class="nav-link">Skills</a></li>
+            <li><a href="contact.html" class="nav-link active">Contact</a></li>
         </ul>
+        <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
-    <div class="bars-animation">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
+    <section class="contact-section" id="contact">
+        <div class="glow glow-1" aria-hidden="true"></div>
+        <div class="glow glow-2" aria-hidden="true"></div>
 
-    <section class="contact" id="contact">
-        <h2 class="heading">Contact <span>Me</span></h2>
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">// get in touch</span>
+            <h1 class="section-title">Contact <span class="gradient-text">Me</span></h1>
+            <p class="section-subtitle">Terbuka untuk kolaborasi, freelance, atau sekadar ngobrol!</p>
+        </div>
 
-        <div class="contact-container">
-            <!-- Contact Info -->
-            <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <p>Saya terbuka untuk peluang kolaborasi, proyek freelance, atau sekadar ngobrol tentang teknologi dan pengembangan web. Jangan ragu untuk menghubungi saya!</p>
-                
-                <div class="info-box">
-                    <i class='bx bxs-phone'></i>
-                    <div>
-                        <h4>Phone</h4>
-                        <p>+62 812 7144 7069</p>
+        <div class="contact-grid">
+            <!-- Info Column -->
+            <div class="contact-info-col" data-aos="fade-right">
+                <div class="contact-info-card glass-card">
+                    <h3 class="contact-info-title">Let's <span class="gradient-text">Talk</span></h3>
+                    <p class="contact-info-desc">Jangan ragu untuk menghubungi saya. Saya siap mendiskusikan proyek, ide, atau peluang kolaborasi baru!</p>
+
+                    <div class="info-items">
+                        <div class="info-item">
+                            <div class="info-icon"><i class='bx bxs-phone'></i></div>
+                            <div class="info-text">
+                                <span class="info-label">Phone</span>
+                                <a href="tel:+6281271447069" class="info-value">+62 812 7144 7069</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class='bx bxs-envelope'></i></div>
+                            <div class="info-text">
+                                <span class="info-label">Email</span>
+                                <a href="mailto:habibtegarramadhan@gmail.com" class="info-value">habibtegarramadhan@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class='bx bxs-map'></i></div>
+                            <div class="info-text">
+                                <span class="info-label">Location</span>
+                                <span class="info-value">Ciomas, Bogor, Indonesia</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="info-box">
-                    <i class='bx bxs-envelope'></i>
-                    <div>
-                        <h4>Email</h4>
-                        <p>habibtegarramadhan@gmail.com</p>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <i class='bx bxs-location-plus'></i>
-                    <div>
-                        <h4>Location</h4>
-                        <p>Ciomas, Bogor, Indonesia</p>
-                    </div>
-                </div>
-
-                <div class="social-links">
-                    <h4>Follow Me</h4>
-                    <div class="social-icons">
-                        <a href="https://username.github.io/profile-Garrzyy/" target="_blank"><i class='bx bxl-github'></i></a>
-                        <a href="https://www.instagram.com/hbibtegar_" target="_blank"><i class='bx bxl-instagram'></i></a>
-                        <a href="https://www.tiktok.com/@garrzyy_" target="_blank"><i class='bx bxl-tiktok'></i></a>
-                        <a href="https://discord.com/users/1358819591249203414" target="_blank"><i class='bx bxl-discord'></i></a>
+                    <div class="contact-social">
+                        <h4 class="social-heading">Follow Me</h4>
+                        <div class="social-row">
+                            <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                            <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                            <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+                            <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <h3>Send Me a Message</h3>
-                <!-- Hapus action dan method, pakai id untuk JS -->
-                <form id="contactForm">
-                    <div class="input-group">
-                        <div class="input-box">
-                            <input type="text" id="fullName" placeholder="Full Name" required>
-                            <i class='bx bxs-user'></i>
+            <!-- Form Column -->
+            <div class="contact-form-col" data-aos="fade-left">
+                <div class="contact-form-card glass-card">
+                    <h3 class="form-title">Send a <span class="gradient-text">Message</span></h3>
+                    <form id="contactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" id="fullName" placeholder="Habib Tegar" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-envelope'></i>
+                                    <input type="email" id="email" placeholder="email@example.com" required />
+                                </div>
+                            </div>
                         </div>
-                        <div class="input-box">
-                            <input type="email" id="email" placeholder="Email Address" required>
-                            <i class='bx bxs-envelope'></i>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-phone'></i>
+                                    <input type="tel" id="phone" placeholder="+62 8xx xxxx xxxx" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-message-detail'></i>
+                                    <input type="text" id="subject" placeholder="Project Collaboration" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="input-group">
-                        <div class="input-box">
-                            <input type="tel" id="phone" placeholder="Phone Number">
-                            <i class='bx bxs-phone'></i>
+                        <div class="form-group full-width">
+                            <label for="message">Message</label>
+                            <div class="input-wrap textarea-wrap">
+                                <i class='bx bxs-message-dots'></i>
+                                <textarea id="message" placeholder="Tell me about your project..." rows="5" required></textarea>
+                            </div>
                         </div>
-                        <div class="input-box">
-                            <input type="text" id="subject" placeholder="Subject">
-                            <i class='bx bxs-message-detail'></i>
-                        </div>
-                    </div>
-
-                    <div class="input-box-full">
-                        <textarea id="message" placeholder="Your Message" rows="6" required></textarea>
-                        <i class='bx bxs-message-dots'></i>
-                    </div>
-
-                    <button type="submit" class="btn">Send WhatsApp <i class='bx bxs-send'></i></button>
-                </form>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                            <i class='bx bxl-whatsapp'></i>
+                            <span>Send via WhatsApp</span>
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <script src="script.js"></script>
-
+    <script src="js/main.js"></script>
     <script>
-        // =============================================
-        // KIRIM PESAN KE WHATSAPP
-        // Ganti nomor di bawah jika perlu
-        // =============================================
-        const WA_NUMBER = "6281271447069"; // Format: 62 + nomor tanpa 0 di depan
-
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault(); // Cegah reload halaman
-
-            // Ambil nilai dari form
+        const WA_NUMBER = "6281271447069";
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
             const name    = document.getElementById("fullName").value.trim();
             const email   = document.getElementById("email").value.trim();
             const phone   = document.getElementById("phone").value.trim();
             const subject = document.getElementById("subject").value.trim();
             const message = document.getElementById("message").value.trim();
-
-            // Susun teks pesan WhatsApp
-            let waText = `Halo Habib! Saya ingin menghubungi Anda melalui portofolio Anda. Berikut adalah detail pesan saya:\n\n`;
+            let waText = `Halo Habib! Saya ingin menghubungi Anda melalui portfolio Anda.\n\n`;
             waText += `*Nama:* ${name}\n`;
             waText += `*Email:* ${email}\n`;
-            if (phone) waText += `*No. HP:* ${phone}\n`;
+            if (phone)   waText += `*No. HP:* ${phone}\n`;
             if (subject) waText += `*Subjek:* ${subject}\n`;
             waText += `\n*Pesan:*\n${message}`;
-
-            // Encode dan buka WhatsApp
-            const encodedText = encodeURIComponent(waText);
-            const waURL = `https://wa.me/${WA_NUMBER}?text=${encodedText}`;
-
-            window.open(waURL, "_blank");
+            const btn = document.getElementById("submitBtn");
+            btn.classList.add("loading");
+            setTimeout(() => {
+                window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`, "_blank");
+                btn.classList.remove("loading");
+            }, 600);
         });
     </script>
 </body>

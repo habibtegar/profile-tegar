@@ -1,0 +1,206 @@
+/* ============================================
+   PROJECTS PAGE CSS — Fully Responsive
+   ============================================ */
+
+.projects-section {
+    position: relative;
+    min-height: 100vh;
+    padding: var(--section-pad-y-top) var(--section-pad-x) var(--section-pad-y-bot);
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* ===== PROJECTS GRID ===== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1.25rem, 3vw, 2rem);
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== PROJECT CARD ===== */
+.project-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition),
+                box-shadow var(--transition),
+                border-color var(--transition);
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 217, 255, 0.15);
+    border-color: rgba(0, 217, 255, 0.4);
+}
+
+/* Project Image */
+.project-image {
+    position: relative;
+    height: clamp(160px, 22vw, 220px);
+    overflow: hidden;
+    background: var(--bg-3);
+    flex-shrink: 0;
+}
+.project-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.project-card:hover .project-image img { transform: scale(1.08); }
+
+/* Overlay on hover */
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 11, 20, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition);
+    backdrop-filter: blur(4px);
+}
+.project-card:hover .project-overlay { opacity: 1; }
+
+/* Touch: always show overlay on mobile */
+@media (hover: none) {
+    .project-overlay {
+        opacity: 1;
+        background: rgba(6, 11, 20, 0.6);
+    }
+}
+
+.project-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 1rem;
+}
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    background: rgba(0, 217, 255, 0.15);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-size: clamp(0.75rem, 2vw, 0.82rem);
+    font-weight: 600;
+    transition: var(--transition);
+    min-height: 40px;
+    -webkit-tap-highlight-color: transparent;
+}
+.project-link-btn:hover,
+.project-link-btn:active {
+    background: var(--cyan);
+    color: var(--bg);
+    transform: scale(1.05);
+}
+
+/* Status badge */
+.project-status {
+    position: absolute;
+    top: 10px; right: 10px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 50px;
+    font-size: clamp(0.6rem, 1.5vw, 0.68rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.project-status.live {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+}
+.project-status.wip {
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+}
+
+/* Project Body */
+.project-body {
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    flex: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+.project-tag {
+    padding: 0.2rem 0.65rem;
+    border-radius: 50px;
+    font-size: clamp(0.65rem, 1.5vw, 0.7rem);
+    font-weight: 600;
+    background: rgba(0, 217, 255, 0.08);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    color: var(--cyan);
+    letter-spacing: 0.04em;
+}
+
+.project-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+}
+
+.project-desc {
+    font-size: clamp(0.8rem, 1.8vw, 0.85rem);
+    line-height: 1.7;
+    color: var(--white-mute);
+    flex: 1;
+}
+
+.project-footer {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: auto;
+}
+
+/* =====================================================
+   RESPONSIVE — PROJECTS
+   ===================================================== */
+
+/* ---- Tablet (≤ 1024px) ---- */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    }
+}
+
+/* ---- Mobile (≤ 640px) ---- */
+@media (max-width: 640px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .project-image { height: clamp(150px, 45vw, 200px); }
+}
+
+/* ---- Small mobile (≤ 400px) ---- */
+@media (max-width: 400px) {
+    .project-footer {
+        flex-direction: column;
+    }
+    .project-footer .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

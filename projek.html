@@ -2,70 +2,180 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Projects - Habib Tegar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Projects by Habib Tegar Ramadhan - Frontend Developer portfolio." />
+    <title>Projects | Habib Tegar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="projek.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/projects.css" />
 </head>
-
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">Garzyy</a>
-        <button class="hamburger" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>Garzyy<span class="logo-bracket">/&gt;</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
         </button>
-        <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="about.html">about</a></li>
-            <li class="active"><a href="projek.html">project</a></li>
-            <li><a href="skill.html">skills</a></li>
-            <li><a href="contact.html">contact</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+            <li><a href="about.html" class="nav-link" data-page="about">About</a></li>
+            <li><a href="projek.html" class="nav-link active" data-page="project">Projects</a></li>
+            <li><a href="skill.html" class="nav-link" data-page="skills">Skills</a></li>
+            <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
         </ul>
+        <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
-    <div class="bars-animation">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
+    <section class="projects-section" id="projects">
+        <div class="glow glow-1" aria-hidden="true"></div>
+        <div class="glow glow-2" aria-hidden="true"></div>
 
-    <section class="portfolio" id="portfolio">
-        <h2 class="heading">My <span>Projects</span></h2>
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">// my work</span>
+            <h1 class="section-title">Featured <span class="gradient-text">Projects</span></h1>
+            <p class="section-subtitle">Beberapa proyek yang telah saya kerjakan</p>
+        </div>
 
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <img src="webeskul.png" alt="Website Pendaftaran Ekskul">
-                <div class="portfolio-layer">
-                    <h4>Pendaftaran Ekskul</h4>
-                    <p>Website pendaftaran ekskul menggunakan HTML, CSS.</p>
-                    <a href="https://habibtegar.github.io/Aplikasi_Pendaftaran_Eskul/" target="_blank"><i class='bx bx-link-external'></i></a>
+        <div class="projects-grid" id="firebase-projects-grid">
+            <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="project-image">
+                    <img src="img/Portofolio.png" alt="Portofolio" loading="lazy" />
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://habibtegar.github.io/portofolio" target="_blank" rel="noopener" class="project-link-btn" aria-label="Live Demo">
+                                <i class='bx bx-link-external'></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="https://github.com/example" target="_blank" rel="noopener" class="project-link-btn" aria-label="GitHub">
+                                <i class='bx bxl-github'></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-status live">Live</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-tags">
+                        <span class="project-tag">Portofolio</span>
+                    </div>
+                    <h3 class="project-title">Portofolio</h3>
+                    <p class="project-desc">Project portofolio.</p>
+                    <div class="project-footer">
+                        <a href="#" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+                            <i class='bx bx-globe'></i> Live Demo
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                            <i class='bx bxl-github'></i> GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="portfolio-box">
-                <img src="peminjamanbuku.jpeg" alt="Aplikasi Peminjaman Buku"> 
-                <div class="portfolio-layer">
-                    <h4>Peminjaman Buku</h4>
-                    <p>Aplikasi Peminjaman buku menggunakan HTML, CSS.</p>
-                    <a href="peminjamanbuku.jpeg" target="_blank"><i class='bx bx-link-external '></i></a>
+            <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-image">
+                    <img src="img/webeskul.png" alt="Web Eskul" loading="lazy" />
+                    <div class="project-overlay">
+                        <div class="project-links"></div>
+                    </div>
+                    <div class="project-status wip">Preview</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-tags">
+                        <span class="project-tag">Web</span>
+                    </div>
+                    <h3 class="project-title">Web Eskul</h3>
+                    <p class="project-desc">Website eskul.</p>
+                    <div class="project-footer">
+                        <a href="https://example.com" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+                            <i class='bx bx-globe'></i> Live Demo
+                        </a>
+                        <a href="https://github.com/example" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                            <i class='bx bxl-github'></i> GitHub
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-image">
+                    <img src="img/peminjamanbuku.jpeg" alt="Peminjaman Buku" loading="lazy" />
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://example.com" target="_blank" rel="noopener" class="project-link-btn" aria-label="Live Demo">
+                                <i class='bx bx-link-external'></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="https://github.com/example" target="_blank" rel="noopener" class="project-link-btn" aria-label="GitHub">
+                                <i class='bx bxl-github'></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-status wip">Preview</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-tags">
+                        <span class="project-tag">Library</span>
+                    </div>
+                    <h3 class="project-title">Peminjaman Buku</h3>
+                    <p class="project-desc">Sistem peminjaman buku.</p>
+                    <div class="project-footer">
+                        <a href="https://example.com" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+                            <i class='bx bx-globe'></i> Live Demo
+                        </a>
+                        <a href="https://github.com/example" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                            <i class='bx bxl-github'></i> GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="portfolio-box">
-                <img src="Portofolio.png" alt="Portfolio Website">
-                <div class="portfolio-layer">
-                    <h4>Portofolio</h4>
-                    <p>Membuat Portofolio menggunakan AI dan web development.</p>
-                    <a href="https://habibtegar.github.io/portofolio" target="_blank"><i class='bx bx-link-external'></i></a>
+
+            <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-image">
+                    <img src="img/Screenshot 2026-05-11 222323.png" alt="Screenshot Project" loading="lazy" />
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://example.com" target="_blank" rel="noopener" class="project-link-btn" aria-label="Live Demo">
+                                <i class='bx bx-link-external'></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="https://github.com/example" target="_blank" rel="noopener" class="project-link-btn" aria-label="GitHub">
+                                <i class='bx bxl-github'></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-status wip">Preview</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-tags">
+                        <span class="project-tag">Project</span>
+                    </div>
+                    <h3 class="project-title">Screenshot Project</h3>
+                    <p class="project-desc">Project tambahan dari file screenshot.</p>
+                    <div class="project-footer">
+                        <a href="https://example.com" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+                            <i class='bx bx-globe'></i> Live Demo
+                        </a>
+                        <a href="https://github.com/example" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                            <i class='bx bxl-github'></i> GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
+
     </section>
 
-    <!-- Add JavaScript -->
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
+

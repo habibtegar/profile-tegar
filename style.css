@@ -181,13 +181,12 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 9%;
+    padding: 80px 9% 0; /* anti-navbar (fixed) */
     gap: 5rem;
     position: relative;
-    .home {
-    padding-top: 120px; /* penting banget */
 }
-}
+
+
 
 .home::before {
     content: '';
@@ -474,9 +473,10 @@ section {
     .home {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 6rem 4% 3rem;
+        padding: 5.2rem 4% 3rem;
         gap: 2rem;
     }
+
 
     .home-content {
         max-width: 100%;

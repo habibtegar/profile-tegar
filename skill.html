@@ -1,134 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills - Habib Tegar</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills | Habib Tegar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="skill.css">
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/skills.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">Garzyy</a>
-        <button class="hamburger" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="about.html">about</a></li>
-            <li><a href="projek.html">project</a></li>
-            <li class="active"><a href="skill.html">skills</a></li>
-            <li><a href="contact.html">contact</a></li>
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo"><span class="logo-bracket">&lt;</span>Garzyy<span class="logo-bracket">/&gt;</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="projek.html" class="nav-link">Projects</a></li>
+            <li><a href="skill.html" class="nav-link active">Skills</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
+        <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
-    <div class="bars-animation">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
+    <section class="skills-section" id="skills">
+        <div class="glow glow-1" aria-hidden="true"></div>
+        <div class="glow glow-2" aria-hidden="true"></div>
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">// what i know</span>
+            <h1 class="section-title">My <span class="gradient-text">Skills</span></h1>
+            <p class="section-subtitle">Teknologi dan tools yang saya kuasai</p>
+        </div>
 
-    <section class="skills-section">
-
-        <!-- Technical Skills -->
-        <div class="skills-container">
-            <h2 class="skills-title">Technical Skills</h2>
-
-            <div class="skill-bar-box">
-                <div class="info">
-                    <span><i class='bx bxs-game'></i> Gaming</span>
-                    <span>80%</span>
+        <div class="tech-grid" data-aos="fade-up">
+            <div class="tech-card glass-card">
+                <div class="tech-icon html-color"><i class='bx bxl-html5'></i></div>
+                <span class="tech-name">HTML5</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill html-bg" data-width="80"></div></div>
+                    <span class="tech-percent">80%</span>
                 </div>
-                <div class="bar"><span class="gaming"></span></div>
             </div>
-
-            <div class="skill-bar-box">
-                <div class="info">
-                    <span><i class='bx bxs-edit'></i> Typing</span>
-                    <span>60%</span>
+            <div class="tech-card glass-card">
+                <div class="tech-icon css-color"><i class='bx bxl-css3'></i></div>
+                <span class="tech-name">CSS3</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill css-bg" data-width="65"></div></div>
+                    <span class="tech-percent">65%</span>
                 </div>
-                <div class="bar"><span class="typing"></span></div>
             </div>
-
-            <div class="skill-bar-box">
-                <div class="info">
-                    <span><i class='bx bx-code-alt'></i> Programming</span>
-                    <span>45%</span>
+            <div class="tech-card glass-card">
+                <div class="tech-icon js-color"><i class='bx bxl-javascript'></i></div>
+                <span class="tech-name">JavaScript</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill js-bg" data-width="45"></div></div>
+                    <span class="tech-percent">45%</span>
                 </div>
-                <div class="bar"><span class="programming"></span></div>
             </div>
-
-            <div class="skill-bar-box">
-                <div class="info">
-                    <span><i class='bx bxl-figma'></i> UI/UX Design</span>
-                    <span>25%</span>
+            <div class="tech-card glass-card">
+                <div class="tech-icon php-color"><i class='bx bxl-php'></i></div>
+                <span class="tech-name">PHP</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill php-bg" data-width="55"></div></div>
+                    <span class="tech-percent">55%</span>
                 </div>
-                <div class="bar"><span class="uiux"></span></div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon mysql-color"><i class='bx bx-data'></i></div>
+                <span class="tech-name">MySQL</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill mysql-bg" data-width="50"></div></div>
+                    <span class="tech-percent">50%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon bs-color"><i class='bx bxl-bootstrap'></i></div>
+                <span class="tech-name">Bootstrap</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill bs-bg" data-width="60"></div></div>
+                    <span class="tech-percent">60%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon tw-color"><i class='bx bxl-tailwind-css'></i></div>
+                <span class="tech-name">Tailwind</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill tw-bg" data-width="40"></div></div>
+                    <span class="tech-percent">40%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon git-color"><i class='bx bxl-git'></i></div>
+                <span class="tech-name">Git</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill git-bg" data-width="40"></div></div>
+                    <span class="tech-percent">40%</span>
+                </div>
             </div>
         </div>
 
-        <!-- Programming Languages -->
-        <div class="skills-container">
-            <h2 class="skills-title">Programming Languages</h2>
-
-            <div class="lang-grid">
-                <div class="lang-card">
-                    <div class="lang-icon html-icon">
-                        <i class='bx bxl-html5'></i>
-                    </div>
-                    <div class="lang-info">
-                        <div class="lang-header">
-                            <span class="lang-name">HTML</span>
-                            <span class="lang-percent">85%</span>
-                        </div>
-                        <div class="lang-bar">
-                            <div class="lang-fill html-fill"></div>
-                        </div>
-                        <p class="lang-desc">HyperText Markup Language</p>
-                    </div>
+        <div class="other-skills" data-aos="fade-up">
+            <h2 class="subsection-title">General <span class="gradient-text">Skills</span></h2>
+            <div class="skills-bars-grid">
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bxs-game'></i> Gaming</span><span class="skill-pct">80%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="80" style="--bar-color:#00d9ff;"></div></div>
                 </div>
-
-                <div class="lang-card">
-                    <div class="lang-icon css-icon">
-                        <i class='bx bxl-css3'></i>
-                    </div>
-                    <div class="lang-info">
-                        <div class="lang-header">
-                            <span class="lang-name">CSS</span>
-                            <span class="lang-percent">70%</span>
-                        </div>
-                        <div class="lang-bar">
-                            <div class="lang-fill css-fill"></div>
-                        </div>
-                        <p class="lang-desc">Cascading Style Sheets</p>
-                    </div>
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bxs-keyboard'></i> Typing Speed</span><span class="skill-pct">60%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="60" style="--bar-color:#a78bfa;"></div></div>
                 </div>
-
-                <div class="lang-card">
-                    <div class="lang-icon php-icon">
-                        <i class='bx bxl-php'></i>
-                    </div>
-                    <div class="lang-info">
-                        <div class="lang-header">
-                            <span class="lang-name">PHP</span>
-                            <span class="lang-percent">55%</span>
-                        </div>
-                        <div class="lang-bar">
-                            <div class="lang-fill php-fill"></div>
-                        </div>
-                        <p class="lang-desc">PHP: Hypertext Preprocessor</p>
-                    </div>
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bx-code-alt'></i> Programming</span><span class="skill-pct">55%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="55" style="--bar-color:#34d399;"></div></div>
+                </div>
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bxl-figma'></i> UI/UX Design</span><span class="skill-pct">30%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="30" style="--bar-color:#f472b6;"></div></div>
                 </div>
             </div>
         </div>
     </section>
-
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
-
