@@ -252,15 +252,32 @@
 /* =============================
    6. COUNTER ANIMATION (About stats)
    ============================= */
-(function initCounters() {
+(async function initCounters() {
     const counters = document.querySelectorAll('[data-count]');
     if (!counters.length) return;
+
+    // Dynamically update the projects count if the element exists
+    try {
+        const projectCounter = document.getElementById('projects-done-count');
+        if (projectCounter && typeof projectsData !== 'undefined') {
+            projectCounter.setAttribute('data-count', projectsData.length);
+        }
+    } catch (e) {
+        console.error("Failed to update projects count:", e);
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el     = entry.target;
-                const target = parseInt(el.dataset.count);
+                const target = parseInt(el.getAttribute('data-count')) || 0;
+                
+                if (target === 0) {
+                    el.textContent = '0+';
+                    observer.unobserve(el);
+                    return;
+                }
+
                 const step   = Math.max(1, Math.ceil(1500 / (target * 10)));
                 let current  = 0;
 

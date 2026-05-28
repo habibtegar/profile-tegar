@@ -1,4 +1,4 @@
-import { projectsData } from './projects-data.js';
+// projectsData is now loaded globally from projects-data.js
 
 const projectsGrid = document.getElementById('firebase-projects-grid');
 

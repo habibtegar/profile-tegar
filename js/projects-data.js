@@ -1,10 +1,10 @@
-export const projectsData = [
+const projectsData = [
   {
     title: "Portofolio",
     desc: "Project portofolio.",
     tags: ["Portofolio"],
-    demoLink: "",
-    githubLink: "",
+    demoLink: "https://habibtegar.github.io/portofolio/",
+    githubLink: "https://github.com/habibtegar",
     status: "live",
     imageUrl: "img/Portofolio.png",
     createdAt: "2025-01-01"
@@ -13,8 +13,8 @@ export const projectsData = [
     title: "Web Eskul",
     desc: "Website eskul.",
     tags: ["Web"],
-    demoLink: "",
-    githubLink: "",
+    demoLink: "https://habibtegar.github.io/Aplikasi_Pendaftaran_Eskul/",
+    githubLink: "https://github.com/habibtegar",
     status: "wip",
     imageUrl: "img/webeskul.png",
     createdAt: "2025-02-01"
@@ -23,18 +23,18 @@ export const projectsData = [
     title: "Peminjaman Buku",
     desc: "Sistem peminjaman buku.",
     tags: ["Library"],
-    demoLink: "",
-    githubLink: "",
+    demoLink: "https://habibtegar.github.io/Aplikasi_Pendaftaran_Eskul/",
+    githubLink: "https://github.com/habibtegar",
     status: "wip",
     imageUrl: "img/peminjamanbuku.jpeg",
     createdAt: "2025-03-01"
   },
   {
-    title: "Screenshot Project",
-    desc: "Project tambahan dari file screenshot.",
+    title: "Smart School",
+    desc: "Projek Smart School untuk SD Negeri Laladon 3.",
     tags: ["Project"],
-    demoLink: "",
-    githubLink: "",
+    demoLink: "https://sdnlaladon3.biz.id/",
+    githubLink: "https://github.com/habibtegar",
     status: "wip",
     imageUrl: "img/Screenshot 2026-05-11 222323.png",
     createdAt: "2025-04-01"
