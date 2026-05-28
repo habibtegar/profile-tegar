@@ -36,7 +36,7 @@ const projectsData = [
     demoLink: "https://sdnlaladon3.biz.id/",
     githubLink: "https://github.com/habibtegar",
     status: "wip",
-    imageUrl: "img/Screenshot 2026-05-11 222323.png",
+    imageUrl: "img/smartschool.png",
     createdAt: "2025-04-01"
   }
 ];
