@@ -5,19 +5,9 @@ const projectsData = [
     tags: ["Portofolio"],
     demoLink: "https://habibtegar.github.io/portofolio/",
     githubLink: "https://github.com/habibtegar",
-    status: "live",
+    status: "wip",
     imageUrl: "img/Portofolio.png",
     createdAt: "2025-01-01"
-  },
-  {
-    title: "Web Eskul",
-    desc: "Website eskul.",
-    tags: ["Web"],
-    demoLink: "https://habibtegar.github.io/Aplikasi_Pendaftaran_Eskul/",
-    githubLink: "https://github.com/habibtegar",
-    status: "wip",
-    imageUrl: "img/webeskul.png",
-    createdAt: "2025-02-01"
   },
   {
     title: "Peminjaman Buku",
