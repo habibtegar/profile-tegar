@@ -269,6 +269,6 @@
         width: min(180px, 70vw);
         height: min(180px, 70vw);
     }
-    .about-img-ring { inset: -12px; }
+    .about-img-ring { display: none; }
     .skill-badge { font-size: 0.7rem; padding: 0.3rem 0.7rem; }
 }
