@@ -33,23 +33,7 @@ function renderProjects(projects) {
       .map((tag) => `<span class="project-tag">${tag}</span>`)
       .join('');
 
-    let linksHtml = '';
-    if (project.demoLink) {
-      linksHtml += `
-        <a href="${project.demoLink}" target="_blank" rel="noopener" class="project-link-btn" aria-label="Live Demo">
-          <i class='bx bx-link-external'></i>
-          <span>Live Demo</span>
-        </a>
-      `;
-    }
-    if (project.githubLink) {
-      linksHtml += `
-        <a href="${project.githubLink}" target="_blank" rel="noopener" class="project-link-btn" aria-label="GitHub">
-          <i class='bx bxl-github'></i>
-          <span>GitHub</span>
-        </a>
-      `;
-    }
+
 
     let footerHtml = '';
     if (project.demoLink) {
@@ -75,9 +59,7 @@ function renderProjects(projects) {
       <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="${delay}">
         <div class="project-image">
           <img src="${imageUrl}" alt="${project.title}" loading="lazy" onerror="this.src='img/placeholder.png'" />
-          <div class="project-overlay">
-            <div class="project-links">${linksHtml}</div>
-          </div>
+
           <div class="project-status ${statusClass}">${statusText}</div>
         </div>
         <div class="project-body">
