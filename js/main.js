@@ -1,11 +1,10 @@
 /**
  * main.js — Habib Tegar Portfolio 2025
- * Handles: Navbar, Hamburger, Particles, Typing, AOS, Counter, Skill Bars
- * Mobile-first improvements: body scroll lock, touch support, resize handling
+ * Single Page — Handles: Navbar, Hamburger, Scroll Spy, Particles, Typing, AOS, Counter, Skill Bars
  */
 
 /* =============================
-   1. NAVBAR — scroll & hamburger
+   1. NAVBAR — scroll, hamburger & scroll-spy
    ============================= */
 (function initNavbar() {
     const navbar    = document.getElementById('navbar');
@@ -28,7 +27,6 @@
         navLinks.classList.add('open');
         if (overlay) overlay.classList.add('show');
         hamburger.setAttribute('aria-expanded', 'true');
-        // Lock body scroll so background doesn't scroll behind the menu
         document.body.style.overflow = 'hidden';
     }
 
@@ -48,14 +46,24 @@
     });
 
     /* --- Close on overlay click --- */
-    if (overlay) {
-        overlay.addEventListener('click', closeMenu);
-    }
+    if (overlay) overlay.addEventListener('click', closeMenu);
 
-    /* --- Close on nav link click (navigate away) --- */
+    /* --- Close on nav link click (smooth scroll to section) --- */
     navLinks.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            closeMenu();
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    closeMenu();
+                    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
+                    const top  = target.getBoundingClientRect().top + window.scrollY - navH;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            } else {
+                closeMenu();
+            }
         });
     });
 
@@ -66,19 +74,43 @@
 
     /* --- Close menu on window resize (if wider than breakpoint) --- */
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            closeMenu();
-        }
+        if (window.innerWidth > 768) closeMenu();
     }, { passive: true });
 
-    /* --- Prevent nav-links panel click from closing (stop propagation) --- */
-    navLinks.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
+    /* --- Prevent nav-links panel click from closing --- */
+    navLinks.addEventListener('click', (e) => e.stopPropagation());
 })();
 
 /* =============================
-   2. PARTICLE CANVAS BACKGROUND
+   2. SCROLL SPY — highlight active nav link
+   ============================= */
+(function initScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const links    = document.querySelectorAll('.nav-link[data-section]');
+    if (!sections.length || !links.length) return;
+
+    function onScroll() {
+        const navH    = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
+        const scrollY = window.scrollY + navH + 80;
+
+        let current = '';
+        sections.forEach(section => {
+            if (scrollY >= section.offsetTop) {
+                current = section.id;
+            }
+        });
+
+        links.forEach(link => {
+            link.classList.toggle('active', link.dataset.section === current);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run on load
+})();
+
+/* =============================
+   3. PARTICLE CANVAS BACKGROUND
    ============================= */
 (function initParticles() {
     const canvas = document.getElementById('particleCanvas');
@@ -107,7 +139,6 @@
 
     function init() {
         resize();
-        // Fewer particles on mobile for performance
         const isMobile = window.innerWidth < 768;
         const count = isMobile
             ? Math.min(Math.floor(window.innerWidth / 20), 50)
@@ -135,7 +166,6 @@
             ctx.fill();
         });
 
-        // Draw connecting lines — skip on very small screens for perf
         if (window.innerWidth >= 480) {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
@@ -168,7 +198,7 @@
 })();
 
 /* =============================
-   3. TYPING ANIMATION
+   4. TYPING ANIMATION
    ============================= */
 (function initTyping() {
     const el = document.getElementById('typedText');
@@ -205,7 +235,7 @@
 })();
 
 /* =============================
-   4. SCROLL REVEAL (AOS-like)
+   5. SCROLL REVEAL (AOS-like)
    ============================= */
 (function initScrollReveal() {
     const elements = document.querySelectorAll('[data-aos]');
@@ -229,7 +259,7 @@
 })();
 
 /* =============================
-   5. SKILL BAR ANIMATION
+   6. SKILL BAR ANIMATION
    ============================= */
 (function initSkillBars() {
     const fills = document.querySelectorAll('.tech-bar-fill, .skill-fill');
@@ -250,13 +280,12 @@
 })();
 
 /* =============================
-   6. COUNTER ANIMATION (About stats)
+   7. COUNTER ANIMATION (About stats)
    ============================= */
 (async function initCounters() {
     const counters = document.querySelectorAll('[data-count]');
     if (!counters.length) return;
 
-    // Dynamically update the projects count if the element exists
     try {
         const projectCounter = document.getElementById('projects-done-count');
         if (projectCounter && typeof projectsData !== 'undefined') {
@@ -271,7 +300,7 @@
             if (entry.isIntersecting) {
                 const el     = entry.target;
                 const target = parseInt(el.getAttribute('data-count')) || 0;
-                
+
                 if (target === 0) {
                     el.textContent = '0+';
                     observer.unobserve(el);

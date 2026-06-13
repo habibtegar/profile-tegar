@@ -505,3 +505,29 @@ ul   { list-style: none; }
     :root { --nav-h: 56px; }
     .logo { font-size: 1.15rem; }
 }
+
+/* ===================================================
+   SINGLE PAGE — Section anchor offset (scroll-margin)
+   =================================================== */
+section[id] {
+    scroll-margin-top: var(--nav-h);
+}
+
+/* ===================================================
+   SITE FOOTER
+   =================================================== */
+.site-footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem var(--section-pad-x);
+    border-top: 1px solid rgba(0, 217, 255, 0.08);
+    font-size: 0.85rem;
+    color: var(--white-mute);
+    background: rgba(6, 11, 20, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.site-footer .gradient-text {
+    font-weight: 600;
+}

@@ -127,6 +127,7 @@
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
+    color: var(--white);
 }
 .about-desc {
     font-size: clamp(0.85rem, 2vw, 0.93rem);

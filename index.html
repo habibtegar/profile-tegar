@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Habib Tegar Ramadhan - Frontend Developer & Web Developer. Portfolio showcasing modern web projects." />
+    <meta name="description" content="Habib Tegar Ramadhan - Frontend Developer &amp; Web Developer. Portfolio showcasing modern web projects." />
     <title>Habib Tegar | Frontend Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,6 +11,11 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="stylesheet" href="css/projects.css" />
+    <link rel="stylesheet" href="css/skills.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/music-player.css" />
 </head>
 <body>
     <!-- ===== CANVAS PARTICLE BG ===== -->
@@ -18,7 +23,7 @@
 
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
-        <a href="index.html" class="logo">
+        <a href="#home" class="logo">
             <span class="logo-bracket">&lt;</span>Garzyy<span class="logo-bracket">/&gt;</span>
         </a>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -27,16 +32,18 @@
             <span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="nav-link active" data-page="home">Home</a></li>
-            <li><a href="about.html" class="nav-link" data-page="about">About</a></li>
-            <li><a href="projek.html" class="nav-link" data-page="project">Projects</a></li>
-            <li><a href="skill.html" class="nav-link" data-page="skills">Skills</a></li>
-            <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+            <li><a href="#home"     class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#about"    class="nav-link" data-section="about">About</a></li>
+            <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+            <li><a href="#skills"   class="nav-link" data-section="skills">Skills</a></li>
+            <li><a href="#contact"  class="nav-link" data-section="contact">Contact</a></li>
         </ul>
         <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
-    <!-- ===== HERO SECTION ===== -->
+    <!-- ===================================================
+         SECTION 1: HOME / HERO
+         =================================================== -->
     <section class="hero" id="home">
         <!-- Background glows -->
         <div class="glow glow-1" aria-hidden="true"></div>
@@ -63,11 +70,11 @@
             </p>
 
             <div class="hero-actions">
-                <a href="about.html" class="btn btn-primary">
+                <a href="#about" class="btn btn-primary">
                     <span>About Me</span>
                     <i class='bx bx-right-arrow-alt'></i>
                 </a>
-                <a href="contact.html" class="btn btn-outline">
+                <a href="#contact" class="btn btn-outline">
                     <span>Hire Me</span>
                     <i class='bx bx-send'></i>
                 </a>
@@ -115,6 +122,364 @@
         <span>Scroll Down</span>
     </div>
 
+    <!-- ===================================================
+         SECTION 2: ABOUT
+         =================================================== -->
+    <section class="about-section" id="about">
+        <div class="glow glow-1" aria-hidden="true"></div>
+        <div class="glow glow-2" aria-hidden="true"></div>
+
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">// who am i</span>
+            <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+            <p class="section-subtitle">Pengembang frontend yang bersemangat menciptakan pengalaman digital modern.</p>
+        </div>
+
+        <div class="about-grid">
+            <!-- Image Column -->
+            <div class="about-image-col" data-aos="fade-right">
+                <div class="about-img-wrapper">
+                    <div class="about-img-ring" aria-hidden="true"></div>
+                    <img src="tegar.jpeg" alt="Habib Tegar Ramadhan" class="about-photo" />
+                    <div class="about-img-glow" aria-hidden="true"></div>
+                </div>
+                <!-- Stats Cards -->
+                <div class="stats-row">
+                    <div class="stat-card glass-card">
+                        <span class="stat-number gradient-text" id="projects-done-count" data-count="4">0</span>
+                        <span class="stat-label">Projects Done</span>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <span class="stat-number gradient-text" data-count="3">0</span>
+                        <span class="stat-label">Tech Stack</span>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <span class="stat-number gradient-text" data-count="1">0</span>
+                        <span class="stat-label">Years Coding</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Column -->
+            <div class="about-content-col" data-aos="fade-left">
+                <div class="about-info glass-card">
+                    <div class="about-role-badge">
+                        <i class='bx bx-code-alt'></i>
+                        Frontend Developer
+                    </div>
+                    <h3 class="about-name">Habib Tegar <span class="gradient-text">Ramadhan</span></h3>
+                    <p class="about-desc">
+                        Saya adalah siswa jurusan PPLG di SMKN 1 CIOMAS yang memiliki passion besar dalam dunia web development. Fokus utama saya adalah menciptakan antarmuka pengguna yang interaktif, responsif, dan estetis.
+                    </p>
+                    <p class="about-desc">
+                        Saya gemar mempelajari teknologi baru dan selalu berusaha mengikuti tren desain modern untuk menghasilkan karya yang berkualitas.
+                    </p>
+
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class='bx bxs-user'></i>
+                            <div>
+                                <span class="detail-label">Full Name</span>
+                                <span class="detail-value">Habib Tegar Ramadhan</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class='bx bxs-school'></i>
+                            <div>
+                                <span class="detail-label">School</span>
+                                <span class="detail-value">SMKN 1 CIOMAS</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class='bx bxs-map'></i>
+                            <div>
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Ciomas, Bogor, Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class='bx bxs-envelope'></i>
+                            <div>
+                                <span class="detail-label">Email</span>
+                                <span class="detail-value">habibtegarramadhan@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Badges -->
+                    <div class="skills-badges">
+                        <span class="skill-badge"><i class='bx bxl-html5'></i> HTML</span>
+                        <span class="skill-badge"><i class='bx bxl-css3'></i> CSS</span>
+                        <span class="skill-badge"><i class='bx bxl-php'></i> PHP</span>
+                        <span class="skill-badge"><i class='bx bx-data'></i> MySQL</span>
+                        <span class="skill-badge"><i class='bx bxl-bootstrap'></i> Bootstrap</span>
+                    </div>
+
+                    <div class="about-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View Projects</span>
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                        <div class="about-social">
+                            <a href="https://github.com/habibtegar" target="_blank" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                            <a href="https://www.instagram.com/hbibtegar_" target="_blank" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                            <a href="https://www.tiktok.com/@garrzyy_" target="_blank" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+                            <a href="https://discord.com/users/1358819591249203414" target="_blank" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SECTION 3: PROJECTS
+         =================================================== -->
+    <section class="projects-section" id="projects">
+        <div class="glow glow-1" aria-hidden="true"></div>
+        <div class="glow glow-2" aria-hidden="true"></div>
+
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">// my work</span>
+            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+            <p class="section-subtitle">Beberapa proyek yang telah saya kerjakan</p>
+        </div>
+
+        <div class="projects-grid" id="firebase-projects-grid">
+            <!-- Projects will be dynamically loaded here from js/projects-data.js -->
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SECTION 4: SKILLS
+         =================================================== -->
+    <section class="skills-section" id="skills">
+        <div class="glow glow-1" aria-hidden="true"></div>
+        <div class="glow glow-2" aria-hidden="true"></div>
+
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">// what i know</span>
+            <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+            <p class="section-subtitle">Teknologi dan tools yang saya kuasai</p>
+        </div>
+
+        <div class="tech-grid" data-aos="fade-up">
+            <div class="tech-card glass-card">
+                <div class="tech-icon html-color"><i class='bx bxl-html5'></i></div>
+                <span class="tech-name">HTML5</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill html-bg" data-width="80"></div></div>
+                    <span class="tech-percent">80%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon css-color"><i class='bx bxl-css3'></i></div>
+                <span class="tech-name">CSS3</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill css-bg" data-width="65"></div></div>
+                    <span class="tech-percent">65%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon php-color"><i class='bx bxl-php'></i></div>
+                <span class="tech-name">PHP</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill php-bg" data-width="55"></div></div>
+                    <span class="tech-percent">55%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon mysql-color"><i class='bx bx-data'></i></div>
+                <span class="tech-name">MySQL</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill mysql-bg" data-width="50"></div></div>
+                    <span class="tech-percent">50%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon bs-color"><i class='bx bxl-bootstrap'></i></div>
+                <span class="tech-name">Bootstrap</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill bs-bg" data-width="60"></div></div>
+                    <span class="tech-percent">60%</span>
+                </div>
+            </div>
+            <div class="tech-card glass-card">
+                <div class="tech-icon git-color"><i class='bx bxl-git'></i></div>
+                <span class="tech-name">Git</span>
+                <div class="tech-bar-wrap">
+                    <div class="tech-bar"><div class="tech-bar-fill git-bg" data-width="40"></div></div>
+                    <span class="tech-percent">40%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="other-skills" data-aos="fade-up">
+            <h3 class="subsection-title">General <span class="gradient-text">Skills</span></h3>
+            <div class="skills-bars-grid">
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bxs-game'></i> Gaming</span><span class="skill-pct">80%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="80" style="--bar-color:#00d9ff;"></div></div>
+                </div>
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bxs-keyboard'></i> Typing Speed</span><span class="skill-pct">60%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="60" style="--bar-color:#a78bfa;"></div></div>
+                </div>
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bx-code-alt'></i> Programming</span><span class="skill-pct">55%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="55" style="--bar-color:#34d399;"></div></div>
+                </div>
+                <div class="skill-bar-item glass-card">
+                    <div class="skill-bar-header"><span><i class='bx bxl-figma'></i> UI/UX Design</span><span class="skill-pct">30%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="30" style="--bar-color:#f472b6;"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SECTION 5: CONTACT
+         =================================================== -->
+    <section class="contact-section" id="contact">
+        <div class="glow glow-1" aria-hidden="true"></div>
+        <div class="glow glow-2" aria-hidden="true"></div>
+
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">// get in touch</span>
+            <h2 class="section-title">Contact <span class="gradient-text">Me</span></h2>
+            <p class="section-subtitle">Terbuka untuk kolaborasi, freelance, atau sekadar ngobrol!</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Info Column -->
+            <div class="contact-info-col" data-aos="fade-right">
+                <div class="contact-info-card glass-card">
+                    <h3 class="contact-info-title">Let's <span class="gradient-text">Talk</span></h3>
+                    <p class="contact-info-desc">Jangan ragu untuk menghubungi saya. Saya siap mendiskusikan proyek, ide, atau peluang kolaborasi baru!</p>
+
+                    <div class="info-items">
+                        <div class="info-item">
+                            <div class="info-icon"><i class='bx bxs-phone'></i></div>
+                            <div class="info-text">
+                                <span class="info-label">Phone</span>
+                                <a href="tel:+6281271447069" class="info-value">+62 812 7144 7069</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class='bx bxs-envelope'></i></div>
+                            <div class="info-text">
+                                <span class="info-label">Email</span>
+                                <a href="mailto:habibtegarramadhan@gmail.com" class="info-value">habibtegarramadhan@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class='bx bxs-map'></i></div>
+                            <div class="info-text">
+                                <span class="info-label">Location</span>
+                                <span class="info-value">Ciomas, Bogor, Indonesia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <h4 class="social-heading">Follow Me</h4>
+                        <div class="social-row">
+                            <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                            <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                            <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+                            <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Column -->
+            <div class="contact-form-col" data-aos="fade-left">
+                <div class="contact-form-card glass-card">
+                    <h3 class="form-title">Send a <span class="gradient-text">Message</span></h3>
+                    <form id="contactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" id="fullName" placeholder="Habib Tegar" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-envelope'></i>
+                                    <input type="email" id="email" placeholder="email@example.com" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-phone'></i>
+                                    <input type="tel" id="phone" placeholder="+62 8xx xxxx xxxx" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-message-detail'></i>
+                                    <input type="text" id="subject" placeholder="Project Collaboration" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="message">Message</label>
+                            <div class="input-wrap textarea-wrap">
+                                <i class='bx bxs-message-dots'></i>
+                                <textarea id="message" placeholder="Tell me about your project..." rows="5" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                            <i class='bx bxl-whatsapp'></i>
+                            <span>Send via WhatsApp</span>
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <p>&copy; 2025 <span class="gradient-text">Habib Tegar Ramadhan</span>. All rights reserved.</p>
+    </footer>
+
+    <script src="js/projects-data.js"></script>
+    <script src="js/projects-local.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/music-player.js"></script>
+    <script>
+        /* ===== CONTACT FORM — WhatsApp ===== */
+        const WA_NUMBER = "6281271447069";
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name    = document.getElementById("fullName").value.trim();
+            const email   = document.getElementById("email").value.trim();
+            const phone   = document.getElementById("phone").value.trim();
+            const subject = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+            let waText = `Halo Habib! Saya ingin menghubungi Anda melalui portfolio Anda.\n\n`;
+            waText += `*Nama:* ${name}\n`;
+            waText += `*Email:* ${email}\n`;
+            if (phone)   waText += `*No. HP:* ${phone}\n`;
+            if (subject) waText += `*Subjek:* ${subject}\n`;
+            waText += `\n*Pesan:*\n${message}`;
+            const btn = document.getElementById("submitBtn");
+            btn.classList.add("loading");
+            setTimeout(() => {
+                window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`, "_blank");
+                btn.classList.remove("loading");
+            }, 600);
+        });
+    </script>
 </body>
 </html>
