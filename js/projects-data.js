@@ -10,13 +10,13 @@ const projectsData = [
     createdAt: "2025-01-01"
   },
   {
-    title: "Peminjaman Buku",
-    desc: "Sistem peminjaman buku.",
+    title: "Pendaftaran Ekstrakulikuler",
+    desc: "Sistem pendaftaran ekstrakulikuler .",
     tags: ["Library"],
     demoLink: "https://habibtegar.github.io/Aplikasi_Pendaftaran_Eskul/",
     githubLink: "https://github.com/habibtegar",
     status: "wip",
-    imageUrl: "img/peminjamanbuku.jpeg",
+    imageUrl: "img/webeskul.png",
     createdAt: "2025-03-01"
   },
   {
