@@ -1,7 +1,7 @@
 const projectsData = [
   {
     title: "Portofolio",
-    desc: "Project portofolio.",
+    desc: "Project portofolio menggunakan gemini ai.",
     tags: ["Portofolio"],
     demoLink: "https://habibtegar.github.io/portofolio/",
     githubLink: "https://github.com/habibtegar",
@@ -21,7 +21,7 @@ const projectsData = [
   },
   {
     title: "Smart School",
-    desc: "Projek Smart School untuk SD Negeri Laladon 3.",
+    desc: "Projek uji level kelompok Smart School untuk SD Negeri Laladon 3.",
     tags: ["Project"],
     demoLink: "https://sdnlaladon3.biz.id/",
     githubLink: "https://github.com/habibtegar",
