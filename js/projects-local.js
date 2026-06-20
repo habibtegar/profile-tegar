@@ -39,14 +39,14 @@ function renderProjects(projects) {
     if (project.demoLink) {
       footerHtml += `
         <a href="${project.demoLink}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
-          <i class='bx bx-globe'></i> Live Demo
+          <i class='bx bx-globe'></i> Website
         </a>
       `;
     }
     if (project.githubLink) {
       footerHtml += `
         <a href="${project.githubLink}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
-          <i class='bx bxl-github'></i> GitHub
+          <i class='bx bxl-github'></i> Github
         </a>
       `;
     }
