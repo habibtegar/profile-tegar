@@ -11,12 +11,12 @@ const projectsData = [
   },
   {
     title: "Pendaftaran Ekstrakulikuler",
-    desc: "Sistem pendaftaran ekstrakulikuler .",
+    desc: "Sistem pendaftaran ekstrakulikuler menggunakan html, css dan js .",
     tags: ["Library"],
     demoLink: "https://aplikasi-pendaftaran-eskul.vercel.app/",
     githubLink: "https://github.com/habibtegar/Aplikasi_Pendaftaran_Eskul",
     status: "live",
-    imageUrl: "img/webeskul.png",
+    imageUrl: "img/web_eskul.png",
     createdAt: "2025-03-01"
   },
   {
