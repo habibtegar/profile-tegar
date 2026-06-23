@@ -16,7 +16,7 @@ const projectsData = [
     demoLink: "https://aplikasi-pendaftaran-eskul.vercel.app/",
     githubLink: "https://github.com/habibtegar/Aplikasi_Pendaftaran_Eskul",
     status: "live",
-    imageUrl: "img/web_eskul.png",
+    imageUrl: "img/webeskulwithdentra.png",
     createdAt: "2025-03-01"
   },
   {
