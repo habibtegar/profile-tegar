@@ -316,12 +316,12 @@
                     <div class="skill-track"><div class="skill-fill" data-width="80" style="--bar-color:#00d9ff;"></div></div>
                 </div>
                 <div class="skill-bar-item glass-card">
-                    <div class="skill-bar-header"><span><i class='bx bxs-keyboard'></i> Typing Speed</span><span class="skill-pct">60%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-width="60" style="--bar-color:#a78bfa;"></div></div>
+                    <div class="skill-bar-header"><span><i class='bx bxs-keyboard'></i> Typing Speed</span><span class="skill-pct">75%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="75" style="--bar-color:#a78bfa;"></div></div>
                 </div>
                 <div class="skill-bar-item glass-card">
-                    <div class="skill-bar-header"><span><i class='bx bx-code-alt'></i> Programming</span><span class="skill-pct">55%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-width="55" style="--bar-color:#34d399;"></div></div>
+                    <div class="skill-bar-header"><span><i class='bx bx-code-alt'></i> Programming</span><span class="skill-pct">50%</span></div>
+                    <div class="skill-track"><div class="skill-fill" data-width="50" style="--bar-color:#34d399;"></div></div>
                 </div>
                 <div class="skill-bar-item glass-card">
                     <div class="skill-bar-header"><span><i class='bx bxl-figma'></i> UI/UX Design</span><span class="skill-pct">20%</span></div>
@@ -399,6 +399,7 @@
                                     <i class='bx bxs-user'></i>
                                     <input type="text" id="fullName" placeholder="Habib Tegar" required />
                                 </div>
+                                <div class="field-error" id="fullNameError" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address</label>
@@ -406,6 +407,7 @@
                                     <i class='bx bxs-envelope'></i>
                                     <input type="email" id="email" placeholder="email@example.com" required />
                                 </div>
+                                <div class="field-error" id="emailError" aria-live="polite"></div>
                             </div>
                         </div>
                         <div class="form-row">
@@ -429,7 +431,8 @@
                             <div class="input-wrap textarea-wrap">
                                 <i class='bx bxs-message-dots'></i>
                                 <textarea id="message" placeholder="Tell me about your project..." rows="5" required></textarea>
-                            </div>
+                                </div>
+                                <div class="field-error" id="messageError" aria-live="polite"></div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
                             <i class='bx bxl-whatsapp'></i>
@@ -450,16 +453,57 @@
     <script src="js/projects-data.js"></script>
     <script src="js/projects-local.js"></script>
     <script src="js/main.js"></script>
+    <!-- Toast container for notifications -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
     <script>
-        /* ===== CONTACT FORM — WhatsApp ===== */
+        /* ===== CONTACT FORM — WhatsApp (custom validation) ===== */
         const WA_NUMBER = "6281271447069";
         document.getElementById("contactForm").addEventListener("submit", function(e) {
             e.preventDefault();
+            const form = this;
+
+            // Clear previous errors
+            function clearErrors() {
+                document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+                document.querySelectorAll('.input-wrap').forEach(w => w.classList.remove('has-error'));
+            }
+            function showError(fieldId, msg) {
+                const err = document.getElementById(fieldId + 'Error');
+                if (err) err.textContent = msg;
+                const input = document.getElementById(fieldId);
+                if (input) {
+                    const wrap = input.closest('.input-wrap');
+                    if (wrap) wrap.classList.add('has-error');
+                }
+            }
+
+            clearErrors();
+
             const name    = document.getElementById("fullName").value.trim();
             const email   = document.getElementById("email").value.trim();
             const phone   = document.getElementById("phone").value.trim();
             const subject = document.getElementById("subject").value.trim();
             const message = document.getElementById("message").value.trim();
+
+            // Custom validation
+            let valid = true;
+            if (!name) { showError('fullName', 'Nama harus diisi'); valid = false; }
+            if (!email) { showError('email', 'Email harus diisi'); valid = false; }
+            else if (!/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Format email harus menggunakan @gmail.com'); valid = false; }
+            else if (!email.toLowerCase().endsWith('@gmail.com')) { showError('email', 'Email harus memakai @gmail.com'); valid = false; }
+            if (!message) { showError('message', 'Pesan tidak boleh kosong'); valid = false; }
+
+            if (!valid) {
+                const first = document.querySelector('.field-error:not(:empty)');
+                if (first) {
+                    const id = first.id.replace('Error', '');
+                    const el = document.getElementById(id);
+                    if (el) el.focus();
+                }
+                return;
+            }
+
             let waText = `Halo Habib! Saya ingin menghubungi Anda melalui portfolio Anda.\n\n`;
             waText += `*Nama:* ${name}\n`;
             waText += `*Email:* ${email}\n`;
@@ -471,8 +515,26 @@
             setTimeout(() => {
                 window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`, "_blank");
                 btn.classList.remove("loading");
+                // Show success notification (opened WhatsApp)
+                showToast('Pesan berhasil dikirim ke WhatsApp', 'success');
             }, 600);
         });
+
+        // Simple toast helper
+        function showToast(message, type = 'success', timeout = 4000) {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (type === 'success' ? ' toast-success' : '');
+            toast.innerHTML = `<span class="icon">${type === 'success' ? '✓' : '!'}</span><span class="msg">${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.transition = 'opacity 260ms, transform 260ms';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(12px)';
+                setTimeout(() => container.removeChild(toast), 300);
+            }, timeout);
+        }
     </script>
 </body>
 </html>
