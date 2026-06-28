@@ -417,6 +417,7 @@
                                     <i class='bx bxs-phone'></i>
                                     <input type="tel" id="phone" placeholder="+62 8xx xxxx xxxx" />
                                 </div>
+                                <div class="field-error" id="phoneError" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="subject">Subject</label>
@@ -490,8 +491,9 @@
             let valid = true;
             if (!name) { showError('fullName', 'Nama harus diisi'); valid = false; }
             if (!email) { showError('email', 'Email harus diisi'); valid = false; }
-            else if (!/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Format email harus menggunakan @gmail.com'); valid = false; }
+            else if (!/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Format email tidak valid'); valid = false; }
             else if (!email.toLowerCase().endsWith('@gmail.com')) { showError('email', 'Email harus memakai @gmail.com'); valid = false; }
+            if (phone && !/^\d+$/.test(phone.replace(/\s+/g, ''))) { showError('phone', 'Nomor telepon harus angka saja'); valid = false; }
             if (!message) { showError('message', 'Pesan tidak boleh kosong'); valid = false; }
 
             if (!valid) {
