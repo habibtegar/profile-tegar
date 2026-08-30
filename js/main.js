@@ -204,7 +204,7 @@
     const el = document.getElementById('typedText');
     if (!el) return;
 
-    const words   = ['Frontend Developer', 'Web Developer', 'UI Enthusiast', 'PHP Developer'];
+    const words   = ['Frontend Developer', 'PPLG Student', 'Web Developer', 'Laravel Developer'];
     let wi        = 0;
     let ci        = 0;
     let deleting  = false;

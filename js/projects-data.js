@@ -1,5 +1,15 @@
 const projectsData = [
   {
+    title: "Simas",
+    desc: "Sistem Informasi Manajemen Siswa untuk mengelola data siswa, kelas, jurusan, dan informasi akademik secara terstruktur menggunakan React dan Vite.",
+    tags: ["Library"],
+    demoLink: "https://simas-app-rho.vercel.app/",
+    githubLink: "https://github.com/habibtegar/simas-react",
+    status: "live",
+    imageUrl: "img/simas.app.png",
+    createdAt: "2026-30-08"
+  },
+  {
     title: "Portofolio",
     desc: "Project portofolio menggunakan gemini ai.",
     tags: ["Portofolio"],

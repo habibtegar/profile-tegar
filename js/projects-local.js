@@ -33,20 +33,18 @@ function renderProjects(projects) {
       .map((tag) => `<span class="project-tag">${tag}</span>`)
       .join('');
 
-
-
     let footerHtml = '';
     if (project.demoLink) {
       footerHtml += `
         <a href="${project.demoLink}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
-          <i class='bx bx-globe'></i> Website
+          <i class='bx bx-globe'></i> View Project
         </a>
       `;
     }
     if (project.githubLink) {
       footerHtml += `
         <a href="${project.githubLink}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
-          <i class='bx bxl-github'></i> Github
+          <i class='bx bxl-github'></i> Source Code
         </a>
       `;
     }
@@ -59,7 +57,6 @@ function renderProjects(projects) {
       <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="${delay}">
         <div class="project-image">
           <img src="${imageUrl}" alt="${project.title}" loading="lazy" onerror="this.src='img/placeholder.png'" />
-
           <div class="project-status ${statusClass}">${statusText}</div>
         </div>
         <div class="project-body">
@@ -88,4 +85,3 @@ if (projectsGrid) {
   // Render immediately (local data)
   renderProjects(sorted);
 }
-

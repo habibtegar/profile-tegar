@@ -7,24 +7,25 @@
 
 /* ===== CSS VARIABLES ===== */
 :root {
-    --bg:           #060b14;
-    --bg-2:         #0b1120;
+    --bg:           #050811;
+    --bg-2:         #090e1a;
     --bg-3:         #0e1628;
-    --cyan:         #00d9ff;
-    --cyan-dim:     #00afd4;
-    --cyan-glow:    rgba(0, 217, 255, 0.18);
-    --cyan-glow-s:  rgba(0, 217, 255, 0.08);
-    --purple:       #7c3aed;
-    --white:        #f0f6ff;
-    --white-dim:    rgba(240, 246, 255, 0.7);
-    --white-mute:   rgba(240, 246, 255, 0.4);
-    --glass-bg:     rgba(255, 255, 255, 0.04);
-    --glass-border: rgba(0, 217, 255, 0.15);
-    --glass-hover:  rgba(0, 217, 255, 0.08);
+    --cyan:         #00f0ff;
+    --cyan-dim:     #00d9ff;
+    --cyan-glow:    rgba(0, 240, 255, 0.18);
+    --cyan-glow-s:  rgba(0, 240, 255, 0.08);
+    --purple:       #8b5cf6;
+    --purple-glow:  rgba(139, 92, 246, 0.18);
+    --white:        #f8fafc;
+    --white-dim:    rgba(248, 250, 252, 0.75);
+    --white-mute:   rgba(248, 250, 252, 0.45);
+    --glass-bg:     rgba(15, 23, 42, 0.55);
+    --glass-border: rgba(0, 240, 255, 0.12);
+    --glass-hover:  rgba(0, 240, 255, 0.08);
     --nav-h:        68px;
     --radius:       16px;
     --radius-sm:    10px;
-    --shadow-cyan:  0 0 30px rgba(0, 217, 255, 0.25);
+    --shadow-cyan:  0 0 30px rgba(0, 240, 255, 0.25);
     --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
     /* Spacing scale */
     --section-pad-x: clamp(1rem, 5%, 7%);
@@ -51,6 +52,19 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     line-height: 1.6;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
 }
 
 img  { max-width: 100%; height: auto; display: block; }
