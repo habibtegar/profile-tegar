@@ -12,10 +12,15 @@
             src: "music/That Should Be Me.mp3"
         },
         {
-            title: "The One That Got Away",
-            artist: "Katy Perry",
-            src: "music/The One That Got Away.mp3"
-        }
+            title: "Everything You Are",
+            artist: "Hindia",
+            src: "music/everything you are.mp3"
+        },
+        {
+            title: "Teh Hijau",
+            artist: "Tulus",
+            src: "music/Teh Hijau.mp3"
+        },
     ];
 
     /* ── BUILD HTML WITH EXPANDED & MINIMIZED WIDGET ─────── */
@@ -25,7 +30,7 @@
         <!-- 1. Minimized Floating Widget -->
         <div class="player-mini-widget" id="playerMiniWidget" title="Buka Music Player" aria-label="Expand Music Player">
             <div class="mini-disc-ring paused" id="miniDisc">
-                <i class='bx bxs-music mini-music-icon'></i>
+                <i class='bx bxs-music mini-music-icon'></i>   
             </div>
         </div>
 
