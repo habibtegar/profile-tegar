@@ -26,6 +26,11 @@
             artist: "Tulus",
             src: "music/Teh Hijau.mp3"
         },
+        {
+            title: "Celengan Rindu",
+            artist: "Fiersa Besari",
+            src: "music/Celengan Rindu.mp3"
+        }
     ];
 
     /* ── BUILD HTML WITH EXPANDED & MINIMIZED WIDGET ─────── */
