@@ -29,7 +29,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 .skill-card:hover {
@@ -56,7 +57,7 @@
     font-size: 1.6rem;
     background: var(--bg-secondary);
     border: 1px solid var(--surface-border);
-    transition: transform var(--transition);
+    transition: transform var(--transition), background-color var(--transition), border-color var(--transition);
 }
 
 .skill-icon-wrap svg {
@@ -79,7 +80,7 @@
 .skill-icon-laravel { color: #f43f5e; }
 .skill-icon-mysql   { color: #38bdf8; }
 .skill-icon-git     { color: #fb923c; }
-.skill-icon-github  { color: #f8fafc; }
+.skill-icon-github  { color: var(--text-primary); }
 .skill-icon-resp    { color: #4ade80; }
 
 .skill-category {
@@ -92,6 +93,7 @@
     color: var(--text-muted);
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .skill-name {
@@ -99,6 +101,7 @@
     font-weight: 700;
     color: var(--text-primary);
     margin-top: 0.2rem;
+    transition: color var(--transition);
 }
 
 .skill-desc {
@@ -106,6 +109,7 @@
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
+    transition: color var(--transition);
 }
 
 /* ===== RESPONSIVE ===== */

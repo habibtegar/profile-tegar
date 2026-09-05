@@ -1,7 +1,53 @@
 /**
  * main.js — Habib Tegar Portfolio
- * Handles: Navbar, Hamburger, Scroll Spy, Typing Effect, Scroll Reveal, Stats Counter
+ * Handles: Theme Toggle, Navbar, Hamburger, Scroll Spy, Typing Effect, Scroll Reveal, Stats Counter
  */
+
+/* =============================
+   0. THEME TOGGLE (Dark / Light Mode)
+   ============================= */
+(function initTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+
+    function getSavedTheme() {
+        return localStorage.getItem('portfolio-theme') || 'dark';
+    }
+
+    function applyTheme(theme, animate = false) {
+        if (animate) {
+            root.classList.add('theme-transition');
+        }
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolio-theme', theme);
+
+        if (themeToggle) {
+            const isLight = theme === 'light';
+            themeToggle.setAttribute('aria-label', isLight ? 'Ganti ke Dark Mode' : 'Ganti ke Light Mode');
+            themeToggle.setAttribute('title', isLight ? 'Ganti ke Dark Mode' : 'Ganti ke Light Mode');
+        }
+
+        if (animate) {
+            window.setTimeout(() => {
+                root.classList.remove('theme-transition');
+            }, 450);
+        }
+    }
+
+    // Initialize theme state & sync UI
+    const currentTheme = getSavedTheme();
+    applyTheme(currentTheme, false);
+
+    // Event listener for toggle button
+    if (themeToggle) {
+        themeToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            const nextTheme = current === 'light' ? 'dark' : 'light';
+            applyTheme(nextTheme, true);
+        });
+    }
+})();
 
 /* =============================
    1. NAVBAR — scroll, hamburger & smooth scroll

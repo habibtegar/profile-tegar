@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/contact.css" />
     <link rel="stylesheet" href="css/music-player.css" />
+
+    <!-- Prevent Theme FOUC -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('portfolio-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
 
@@ -19,9 +29,6 @@
         <a href="index.html" class="logo">
             <span class="logo-bracket">&lt;</span>Garr.<span class="logo-bracket"> /&gt;</span>
         </a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
@@ -29,6 +36,21 @@
             <li><a href="projek.html" class="nav-link">Projects</a></li>
             <li><a href="contact.html" class="nav-link active">Contact</a></li>
         </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti ke Light Mode" title="Ganti Mode Tema">
+                <span class="theme-toggle-track">
+                    <span class="theme-toggle-icon-sun" aria-hidden="true"><i class='bx bx-sun'></i></span>
+                    <span class="theme-toggle-icon-moon" aria-hidden="true"><i class='bx bx-moon'></i></span>
+                    <span class="theme-toggle-thumb">
+                        <i class='bx bx-moon thumb-icon-moon' aria-hidden="true"></i>
+                        <i class='bx bx-sun thumb-icon-sun' aria-hidden="true"></i>
+                    </span>
+                </span>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
         <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 

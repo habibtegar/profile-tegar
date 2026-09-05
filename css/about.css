@@ -35,16 +35,14 @@
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     padding: 4px;
-    background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 60%, var(--cyan) 100%);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.55),
-                0 0 25px rgba(0, 240, 255, 0.2);
-    transition: transform var(--transition), box-shadow var(--transition);
+    background: var(--photo-border-grad);
+    box-shadow: var(--photo-shadow);
+    transition: transform var(--transition), box-shadow var(--transition), background 0.4s ease;
 }
 
 .about-photo-wrapper:hover {
     transform: scale(1.02);
-    box-shadow: 0 14px 45px rgba(0, 0, 0, 0.65),
-                0 0 35px rgba(0, 240, 255, 0.3);
+    box-shadow: var(--photo-shadow-hover);
 }
 
 .about-photo {
@@ -55,6 +53,7 @@
     border-radius: 50%;
     background: var(--bg-alt);
     display: block;
+    transition: background-color var(--transition);
 }
 
 /* Stats Row */
@@ -72,13 +71,14 @@
     border-radius: var(--radius-md);
     background: var(--surface);
     border: 1px solid var(--surface-border);
-    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 .stat-card:hover {
     border-color: var(--surface-border-hover);
     transform: translateY(-3px);
-    box-shadow: 0 4px 16px rgba(0, 240, 255, 0.15);
+    box-shadow: 0 4px 16px var(--cyan-glow);
 }
 
 .stat-number {
@@ -87,9 +87,10 @@
     font-size: clamp(1.4rem, 2.5vw, 1.8rem);
     font-weight: 800;
     color: var(--cyan);
-    text-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+    text-shadow: 0 0 12px var(--cyan-glow);
     line-height: 1.1;
     margin-bottom: 0.25rem;
+    transition: color var(--transition), text-shadow var(--transition);
 }
 
 .stat-label {
@@ -98,6 +99,7 @@
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    transition: color var(--transition);
 }
 
 /* ===== RIGHT COLUMN: Bio & Info ===== */
@@ -113,6 +115,7 @@
     background: var(--surface);
     border: 1px solid var(--surface-border);
     box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .about-role-tag {
@@ -125,8 +128,9 @@
     background: var(--cyan-dim);
     padding: 0.25rem 0.75rem;
     border-radius: var(--radius-full);
-    border: 1px solid rgba(0, 240, 255, 0.2);
+    border: 1px solid var(--surface-border-hover);
     margin-bottom: 0.85rem;
+    transition: color var(--transition), background-color var(--transition), border-color var(--transition);
 }
 
 .about-heading {
@@ -134,6 +138,7 @@
     font-weight: 700;
     margin-bottom: 1.25rem;
     letter-spacing: -0.02em;
+    transition: color var(--transition);
 }
 
 .about-text {
@@ -141,6 +146,7 @@
     line-height: 1.75;
     color: var(--text-secondary);
     margin-bottom: 1rem;
+    transition: color var(--transition);
 }
 
 .about-text:last-of-type {
@@ -155,6 +161,7 @@
     padding-top: 1.5rem;
     border-top: 1px solid var(--surface-border);
     margin-bottom: 1.75rem;
+    transition: border-color var(--transition);
 }
 
 .detail-item {
@@ -168,7 +175,7 @@
     height: 38px;
     border-radius: var(--radius-sm);
     background: var(--cyan-dim);
-    border: 1px solid rgba(0, 240, 255, 0.2);
+    border: 1px solid var(--surface-border-hover);
     color: var(--cyan);
     display: flex;
     align-items: center;
@@ -229,7 +236,7 @@ a.detail-value:hover {
 .skill-pill:hover {
     border-color: var(--cyan);
     color: var(--cyan);
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+    box-shadow: var(--shadow-cyan);
 }
 
 .skill-pill i,

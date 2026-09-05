@@ -7,6 +7,11 @@
             src: "music/About You.mp3"
         },
         {
+            title: "Berdansalah, karir ini tak ada artinya",
+            artist: "Hindia",
+            src: "music/Berdansalah.mp3"
+        },
+        {
             title: "That Should Be Me",
             artist: "Justin Bieber",
             src: "music/That Should Be Me.mp3"
@@ -14,7 +19,7 @@
         {
             title: "Everything You Are",
             artist: "Hindia",
-            src: "music/everything you are.mp3"
+            src: "music/everything u are.mp3"
         },
         {
             title: "Teh Hijau",

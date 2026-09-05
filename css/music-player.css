@@ -15,25 +15,24 @@
 .player-expanded-box {
     display: flex;
     flex-direction: column;
-    background: rgba(16, 24, 39, 0.94);
+    background: var(--player-bg);
     border: 1px solid var(--surface-border);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: var(--radius-md);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.55),
-                0 0 20px rgba(0, 240, 255, 0.08);
+    box-shadow: var(--player-shadow);
     width: 250px;
     overflow: hidden;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.25s ease,
                 border-color 0.25s ease,
-                box-shadow 0.25s ease;
+                box-shadow 0.25s ease,
+                background-color var(--transition);
 }
 
 #music-player:not(.minimized) .player-expanded-box:hover {
     border-color: var(--surface-border-hover);
-    box-shadow: 0 14px 45px rgba(0, 0, 0, 0.7),
-                0 0 25px rgba(0, 240, 255, 0.18);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Header bar */
@@ -43,6 +42,7 @@
     gap: 0.45rem;
     padding: 0.45rem 0.75rem 0.35rem;
     border-bottom: 1px solid var(--surface-border);
+    transition: border-color var(--transition);
 }
 
 .player-header-dot {
@@ -51,6 +51,7 @@
     border-radius: 50%;
     background: var(--cyan);
     box-shadow: 0 0 6px var(--cyan);
+    transition: background-color var(--transition), box-shadow var(--transition);
 }
 
 .player-header-icon {
@@ -58,6 +59,7 @@
     color: var(--cyan);
     display: flex;
     align-items: center;
+    transition: color var(--transition);
 }
 
 .player-header-label {
@@ -68,6 +70,7 @@
     color: var(--text-muted);
     text-transform: uppercase;
     flex: 1;
+    transition: color var(--transition);
 }
 
 /* Minimize Button */
@@ -118,7 +121,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border: 1px solid rgba(0, 240, 255, 0.35);
+    border: 1px solid var(--surface-border-hover);
+    transition: border-color var(--transition);
 }
 
 .player-disc-ring::before {
@@ -126,10 +130,11 @@
     position: absolute;
     width: 12px;
     height: 12px;
-    background: #070a12;
+    background: var(--bg);
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--surface-border);
     z-index: 2;
+    transition: background-color var(--transition), border-color var(--transition);
 }
 
 .player-disc-ring.spinning {
@@ -162,6 +167,7 @@
     text-overflow: ellipsis;
     line-height: 1.3;
     margin-bottom: 0.1rem;
+    transition: color var(--transition);
 }
 
 .player-artist {
@@ -172,6 +178,7 @@
     text-overflow: ellipsis;
     line-height: 1.25;
     margin-bottom: 0.3rem;
+    transition: color var(--transition);
 }
 
 /* Sound Waves */
@@ -189,6 +196,7 @@
     background: var(--cyan);
     transform-origin: bottom;
     height: 2px;
+    transition: background-color var(--transition);
 }
 
 #music-player.playing .player-wave-bar:nth-child(1) { animation: wave 0.8s ease-in-out infinite; }
@@ -211,10 +219,11 @@
 .player-progress {
     width: 100%;
     height: 3px;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--surface-border);
     border-radius: 2px;
     overflow: hidden;
     cursor: pointer;
+    transition: background-color var(--transition);
 }
 
 .player-progress-fill {
@@ -222,7 +231,7 @@
     background: var(--cyan);
     border-radius: 2px;
     width: 0%;
-    transition: width 0.25s linear;
+    transition: width 0.25s linear, background-color var(--transition);
 }
 
 /* Controls */
@@ -239,8 +248,8 @@
     height: 30px;
     border-radius: 50%;
     border: none;
-    background: var(--cyan);
-    color: #070a12;
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,8 +261,8 @@
 
 .player-btn:hover {
     transform: scale(1.08);
-    background: #1ae8f8;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+    background: var(--btn-primary-hover);
+    box-shadow: var(--btn-primary-hover-shadow);
 }
 
 .player-btn:active {
@@ -281,24 +290,22 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: rgba(16, 24, 39, 0.95);
+    background: var(--player-bg);
     border: 1.5px solid var(--surface-border);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5),
-                0 0 15px rgba(0, 240, 255, 0.15);
+    box-shadow: var(--player-shadow);
     align-items: center;
     justify-content: center;
     cursor: pointer;
     position: relative;
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 .player-mini-widget:hover {
     transform: scale(1.1);
     border-color: var(--cyan);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
-                0 0 20px rgba(0, 240, 255, 0.35);
+    box-shadow: var(--shadow-lg), 0 0 20px var(--cyan-glow);
 }
 
 .mini-disc-ring {
