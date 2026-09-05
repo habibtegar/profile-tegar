@@ -1,111 +1,116 @@
 /* ============================================
-   SKILLS PAGE CSS — Modern Glassmorphism Cards
+   SKILLS CSS — Professional Grid Without Generic Bars
    ============================================ */
 
 .skills-section {
+    padding: var(--section-pad-y) var(--section-pad-x);
     position: relative;
-    min-height: 100vh;
-    padding: var(--section-pad-y-top) var(--section-pad-x) var(--section-pad-y-bot);
     z-index: 1;
-    overflow: hidden;
 }
 
-/* ===== MODERN SKILLS GRID ===== */
-.modern-skills-grid {
+.skills-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+/* ===== SKILLS GRID ===== */
+.skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
-    gap: clamp(1.2rem, 3vw, 1.75rem);
-    position: relative;
-    z-index: 1;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: clamp(1.2rem, 2.5vw, 1.6rem);
 }
 
-/* ===== MODERN SKILL CARD ===== */
-.modern-skill-card {
-    padding: clamp(1.25rem, 2.5vw, 1.75rem);
-    border-radius: var(--radius);
+/* ===== SKILL CARD ===== */
+.skill-card {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-    transition: transform var(--transition),
-                box-shadow var(--transition),
-                border-color var(--transition);
-}
-.modern-skill-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 45px rgba(0, 240, 255, 0.12);
-    border-color: rgba(0, 240, 255, 0.35);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
-/* Card Header (Icon + Badge) */
-.skill-card-top {
+.skill-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--surface-border-hover);
+    box-shadow: var(--shadow-md);
+}
+
+/* Card Header (Icon + Tag) */
+.skill-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.25rem;
+    gap: 0.75rem;
 }
 
-.skill-icon-box {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+.skill-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--glass-border);
+    font-size: 1.6rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--surface-border);
     transition: transform var(--transition);
 }
-.modern-skill-card:hover .skill-icon-box {
-    transform: scale(1.08);
+
+.skill-icon-wrap svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+    display: block;
 }
 
-/* Icon Theme Colors */
-.html-theme    { color: #e34f26; border-color: rgba(227, 79, 38, 0.3);  background: rgba(227, 79, 38, 0.1); }
-.css-theme     { color: #264de4; border-color: rgba(38, 77, 228, 0.3);  background: rgba(38, 77, 228, 0.1); }
-.js-theme      { color: #f7df1e; border-color: rgba(247, 223, 30, 0.3); background: rgba(247, 223, 30, 0.1); }
-.php-theme     { color: #8892bf; border-color: rgba(136, 146, 191, 0.3); background: rgba(136, 146, 191, 0.1); }
-.laravel-theme { color: #ff2d20; border-color: rgba(255, 45, 32, 0.3); background: rgba(255, 45, 32, 0.1); }
-.git-theme     { color: #f05032; border-color: rgba(240, 80, 50, 0.3); background: rgba(240, 80, 50, 0.1); }
-.github-theme  { color: #f8fafc; border-color: rgba(248, 250, 252, 0.3); background: rgba(248, 250, 252, 0.1); }
-.resp-theme    { color: #00f0ff; border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.1); }
+.skill-card:hover .skill-icon-wrap {
+    transform: scale(1.06);
+}
 
-/* Level Badge */
-.skill-level-badge {
-    font-size: clamp(0.68rem, 1.5vw, 0.75rem);
+/* Icon Colors (Clean & Subtle) */
+.skill-icon-html    { color: #f97316; }
+.skill-icon-css     { color: #38bdf8; }
+.skill-icon-js      { color: #facc15; }
+.skill-icon-react   { color: #38bdf8; }
+.skill-icon-php     { color: #a78bfa; }
+.skill-icon-laravel { color: #f43f5e; }
+.skill-icon-mysql   { color: #38bdf8; }
+.skill-icon-git     { color: #fb923c; }
+.skill-icon-github  { color: #f8fafc; }
+.skill-icon-resp    { color: #4ade80; }
+
+.skill-category {
+    font-size: 0.72rem;
     font-weight: 600;
-    padding: 0.25rem 0.65rem;
-    border-radius: 50px;
-    background: rgba(0, 240, 255, 0.08);
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    color: var(--cyan);
-    letter-spacing: 0.03em;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-secondary);
+    border: 1px solid var(--surface-border);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
-.skill-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+.skill-name {
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--text-primary);
+    margin-top: 0.2rem;
 }
 
 .skill-desc {
-    font-size: clamp(0.8rem, 1.8vw, 0.86rem);
-    color: var(--white-mute);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
     line-height: 1.6;
+    margin: 0;
 }
 
-/* =====================================================
-   RESPONSIVE — SKILLS
-   ===================================================== */
-@media (max-width: 1024px) {
-    .modern-skills-grid {
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
-    }
-}
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
-    .modern-skills-grid {
+    .skills-grid {
         grid-template-columns: 1fr;
     }
 }

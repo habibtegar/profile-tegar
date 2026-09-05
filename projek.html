@@ -1,53 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Projects by Habib Tegar Ramadhan - Frontend Developer portfolio." />
+    <meta name="description" content="Projects by Habib Tegar Ramadhan - Web Developer." />
     <title>Projects | Habib Tegar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/projects.css" />
     <link rel="stylesheet" href="css/music-player.css" />
 </head>
 <body>
-    <canvas id="particleCanvas" aria-hidden="true"></canvas>
 
     <nav class="navbar" id="navbar">
         <a href="index.html" class="logo">
-            <span class="logo-bracket">&lt;</span>Garzyy<span class="logo-bracket">/&gt;</span>
+            <span class="logo-bracket">&lt;</span>Garr.<span class="logo-bracket"> /&gt;</span>
         </a>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
-            <li><a href="about.html" class="nav-link" data-page="about">About</a></li>
-            <li><a href="projek.html" class="nav-link active" data-page="project">Projects</a></li>
-            <li><a href="skill.html" class="nav-link" data-page="skills">Skills</a></li>
-            <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="skill.html" class="nav-link">Skills</a></li>
+            <li><a href="projek.html" class="nav-link active">Projects</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
         <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
     <section class="projects-section" id="projects">
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
+        <div class="projects-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">// 03. PROJECTS</span>
+                <h1 class="section-title">Featured <span class="accent-text">Projects</span></h1>
+                <p class="section-subtitle">Beberapa proyek pengembangan web yang telah saya selesaikan.</p>
+            </div>
 
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">// my work</span>
-            <h1 class="section-title">Featured <span class="gradient-text">Projects</span></h1>
-            <p class="section-subtitle">Beberapa proyek yang telah saya kerjakan</p>
+            <div class="projects-grid" id="firebase-projects-grid">
+                <!-- Dynamic project cards loaded via js/projects-local.js -->
+            </div>
         </div>
-
-        <div class="projects-grid" id="firebase-projects-grid">
-            <!-- Projects will be dynamically loaded here from js/projects-data.js -->
-        </div>
-
     </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2026 <span>Habib Tegar</span>. Built with HTML, CSS &amp; JavaScript.</p>
+            <div class="footer-social">
+                <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/projects-data.js"></script>
     <script src="js/projects-local.js"></script>
@@ -55,4 +65,3 @@
     <script src="js/music-player.js"></script>
 </body>
 </html>
-

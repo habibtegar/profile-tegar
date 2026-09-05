@@ -1,10 +1,10 @@
 /**
- * main.js — Habib Tegar Portfolio 2025
- * Single Page — Handles: Navbar, Hamburger, Scroll Spy, Particles, Typing, AOS, Counter, Skill Bars
+ * main.js — Habib Tegar Portfolio
+ * Handles: Navbar, Hamburger, Scroll Spy, Typing Effect, Scroll Reveal, Stats Counter
  */
 
 /* =============================
-   1. NAVBAR — scroll, hamburger & scroll-spy
+   1. NAVBAR — scroll, hamburger & smooth scroll
    ============================= */
 (function initNavbar() {
     const navbar    = document.getElementById('navbar');
@@ -16,7 +16,7 @@
 
     /* --- Sticky navbar on scroll --- */
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
     if (!hamburger || !navLinks) return;
@@ -57,8 +57,8 @@
                 const target = document.querySelector(href);
                 if (target) {
                     closeMenu();
-                    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
-                    const top  = target.getBoundingClientRect().top + window.scrollY - navH;
+                    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
+                    const top  = target.getBoundingClientRect().top + window.scrollY - navH + 10;
                     window.scrollTo({ top, behavior: 'smooth' });
                 }
             } else {
@@ -72,7 +72,7 @@
         if (e.key === 'Escape') closeMenu();
     });
 
-    /* --- Close menu on window resize (if wider than breakpoint) --- */
+    /* --- Close menu on window resize --- */
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) closeMenu();
     }, { passive: true });
@@ -90,8 +90,8 @@
     if (!sections.length || !links.length) return;
 
     function onScroll() {
-        const navH    = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
-        const scrollY = window.scrollY + navH + 80;
+        const navH    = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
+        const scrollY = window.scrollY + navH + 60;
 
         let current = '';
         sections.forEach(section => {
@@ -106,105 +106,17 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run on load
+    onScroll();
 })();
 
 /* =============================
-   3. PARTICLE CANVAS BACKGROUND
-   ============================= */
-(function initParticles() {
-    const canvas = document.getElementById('particleCanvas');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animFrame;
-
-    function resize() {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    function createParticle() {
-        return {
-            x:     Math.random() * canvas.width,
-            y:     Math.random() * canvas.height,
-            r:     Math.random() * 1.5 + 0.3,
-            dx:    (Math.random() - 0.5) * 0.4,
-            dy:    (Math.random() - 0.5) * 0.4,
-            alpha: Math.random() * 0.5 + 0.1,
-            pulse: Math.random() * Math.PI * 2
-        };
-    }
-
-    function init() {
-        resize();
-        const isMobile = window.innerWidth < 768;
-        const count = isMobile
-            ? Math.min(Math.floor(window.innerWidth / 20), 50)
-            : Math.min(Math.floor(window.innerWidth / 9), 140);
-        particles = Array.from({ length: count }, createParticle);
-    }
-
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach(p => {
-            p.x += p.dx;
-            p.y += p.dy;
-            p.pulse += 0.015;
-
-            if (p.x < 0)             p.x = canvas.width;
-            if (p.x > canvas.width)  p.x = 0;
-            if (p.y < 0)             p.y = canvas.height;
-            if (p.y > canvas.height) p.y = 0;
-
-            const alpha = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0, 217, 255, ${alpha})`;
-            ctx.fill();
-        });
-
-        if (window.innerWidth >= 480) {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx   = particles[i].x - particles[j].x;
-                    const dy   = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(0, 217, 255, ${0.07 * (1 - dist / 100)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        animFrame = requestAnimationFrame(draw);
-    }
-
-    init();
-    draw();
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(init, 200);
-    }, { passive: true });
-})();
-
-/* =============================
-   4. TYPING ANIMATION
+   3. TYPING ANIMATION (Hero Role)
    ============================= */
 (function initTyping() {
     const el = document.getElementById('typedText');
     if (!el) return;
 
-    const words   = ['Frontend Developer', 'PPLG Student', 'Web Developer', 'Laravel Developer'];
+    const words   = ['Web Developer', 'PPLG Student', 'Frontend Enthusiast', 'Laravel Learner'];
     let wi        = 0;
     let ci        = 0;
     let deleting  = false;
@@ -217,25 +129,25 @@
         if (!deleting) ci++;
         else           ci--;
 
-        let delay = deleting ? 55 : 100;
+        let delay = deleting ? 45 : 90;
 
         if (!deleting && ci === word.length + 1) {
             deleting = true;
-            delay    = 1800;
+            delay    = 2000;
         } else if (deleting && ci === 0) {
             deleting = false;
             wi = (wi + 1) % words.length;
-            delay = 400;
+            delay = 350;
         }
 
         setTimeout(type, delay);
     }
 
-    setTimeout(type, 800);
+    setTimeout(type, 600);
 })();
 
 /* =============================
-   5. SCROLL REVEAL (AOS-like)
+   4. SCROLL REVEAL (IntersectionObserver)
    ============================= */
 (function initScrollReveal() {
     const elements = document.querySelectorAll('[data-aos]');
@@ -253,34 +165,13 @@
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     elements.forEach(el => observer.observe(el));
 })();
 
 /* =============================
-   6. SKILL BAR ANIMATION
-   ============================= */
-(function initSkillBars() {
-    const fills = document.querySelectorAll('.tech-bar-fill, .skill-fill');
-    if (!fills.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el    = entry.target;
-                const width = el.dataset.width || '0';
-                setTimeout(() => { el.style.width = width + '%'; }, 200);
-                observer.unobserve(el);
-            }
-        });
-    }, { threshold: 0.25 });
-
-    fills.forEach(el => observer.observe(el));
-})();
-
-/* =============================
-   7. COUNTER ANIMATION (About stats)
+   5. COUNTER ANIMATION (About stats)
    ============================= */
 (async function initCounters() {
     const counters = document.querySelectorAll('[data-count]');
@@ -307,7 +198,7 @@
                     return;
                 }
 
-                const step   = Math.max(1, Math.ceil(1500 / (target * 10)));
+                const step   = Math.max(1, Math.ceil(1200 / (target * 10)));
                 let current  = 0;
 
                 const timer = setInterval(() => {

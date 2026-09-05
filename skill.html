@@ -1,113 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Technical skills of Habib Tegar Ramadhan - Web Developer." />
     <title>Skills | Habib Tegar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/skills.css" />
     <link rel="stylesheet" href="css/music-player.css" />
 </head>
 <body>
-    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
     <nav class="navbar" id="navbar">
-        <a href="index.html" class="logo"><span class="logo-bracket">&lt;</span>Garzyy<span class="logo-bracket">/&gt;</span></a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <a href="index.html" class="logo">
+            <span class="logo-bracket">&lt;</span>Garr.<span class="logo-bracket"> /&gt;</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="projek.html" class="nav-link">Projects</a></li>
             <li><a href="skill.html" class="nav-link active">Skills</a></li>
+            <li><a href="projek.html" class="nav-link">Projects</a></li>
             <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
         <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
     <section class="skills-section" id="skills">
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">// what i know</span>
-            <h1 class="section-title">My <span class="gradient-text">Skills</span></h1>
-            <p class="section-subtitle">Teknologi dan tools yang saya kuasai</p>
-        </div>
+        <div class="skills-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">// 02. SKILLS</span>
+                <h1 class="section-title">Technical <span class="accent-text">Skills</span></h1>
+                <p class="section-subtitle">Teknologi dan tools yang saya gunakan dalam pengembangan aplikasi web.</p>
+            </div>
 
-        <div class="tech-grid" data-aos="fade-up">
-            <div class="tech-card glass-card">
-                <div class="tech-icon html-color"><i class='bx bxl-html5'></i></div>
-                <span class="tech-name">HTML5</span>
-                <div class="tech-bar-wrap">
-                    <div class="tech-bar"><div class="tech-bar-fill html-bg" data-width="80"></div></div>
-                    <span class="tech-percent">80%</span>
+            <div class="skills-grid" data-aos="fade-up">
+                <!-- Skill 1: HTML5 -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-html">
+                            <i class='bx bxl-html5'></i>
+                        </div>
+                        <span class="skill-category">Core</span>
+                    </div>
+                    <h3 class="skill-name">HTML5</h3>
+                    <p class="skill-desc">Semantic markup, struktur halaman yang rapi, aksesibilitas web, dan kaidah SEO friendly.</p>
                 </div>
-            </div>
-            <div class="tech-card glass-card">
-                <div class="tech-icon css-color"><i class='bx bxl-css3'></i></div>
-                <span class="tech-name">CSS3</span>
-                <div class="tech-bar-wrap">
-                    <div class="tech-bar"><div class="tech-bar-fill css-bg" data-width="65"></div></div>
-                    <span class="tech-percent">65%</span>
-                </div>
-            </div>
-            <div class="tech-card glass-card">
-                <div class="tech-icon php-color"><i class='bx bxl-php'></i></div>
-                <span class="tech-name">PHP</span>
-                <div class="tech-bar-wrap">
-                    <div class="tech-bar"><div class="tech-bar-fill php-bg" data-width="55"></div></div>
-                    <span class="tech-percent">55%</span>
-                </div>
-            </div>
-            <div class="tech-card glass-card">
-                <div class="tech-icon mysql-color"><i class='bx bx-data'></i></div>
-                <span class="tech-name">MySQL</span>
-                <div class="tech-bar-wrap">
-                    <div class="tech-bar"><div class="tech-bar-fill mysql-bg" data-width="50"></div></div>
-                    <span class="tech-percent">50%</span>
-                </div>
-            </div>
-            <div class="tech-card glass-card">
-                <div class="tech-icon bs-color"><i class='bx bxl-bootstrap'></i></div>
-                <span class="tech-name">Bootstrap</span>
-                <div class="tech-bar-wrap">
-                    <div class="tech-bar"><div class="tech-bar-fill bs-bg" data-width="60"></div></div>
-                    <span class="tech-percent">60%</span>
-                </div>
-            </div>
-            <div class="tech-card glass-card">
-                <div class="tech-icon git-color"><i class='bx bxl-git'></i></div>
-                <span class="tech-name">Git</span>
-                <div class="tech-bar-wrap">
-                    <div class="tech-bar"><div class="tech-bar-fill git-bg" data-width="40"></div></div>
-                    <span class="tech-percent">40%</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="other-skills" data-aos="fade-up">
-            <h2 class="subsection-title">General <span class="gradient-text">Skills</span></h2>
-            <div class="skills-bars-grid">
-                <div class="skill-bar-item glass-card">
-                    <div class="skill-bar-header"><span><i class='bx bxs-game'></i> Gaming</span><span class="skill-pct">80%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-width="80" style="--bar-color:#00d9ff;"></div></div>
+                <!-- Skill 2: CSS3 -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-css">
+                            <i class='bx bxl-css3'></i>
+                        </div>
+                        <span class="skill-category">Styling</span>
+                    </div>
+                    <h3 class="skill-name">CSS3</h3>
+                    <p class="skill-desc">Flexbox, CSS Grid, Custom Properties (Variables), transisi halus, dan tata letak modern.</p>
                 </div>
-                <div class="skill-bar-item glass-card">
-                    <div class="skill-bar-header"><span><i class='bx bxs-keyboard'></i> Typing Speed</span><span class="skill-pct">60%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-width="60" style="--bar-color:#a78bfa;"></div></div>
+
+                <!-- Skill 3: JavaScript -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-js">
+                            <i class='bx bxl-javascript'></i>
+                        </div>
+                        <span class="skill-category">Language</span>
+                    </div>
+                    <h3 class="skill-name">JavaScript (ES6+)</h3>
+                    <p class="skill-desc">DOM manipulation, event handling, asynchronous programming (Fetch API/Promises), dan interaktivitas.</p>
                 </div>
-                <div class="skill-bar-item glass-card">
-                    <div class="skill-bar-header"><span><i class='bx bx-code-alt'></i> Programming</span><span class="skill-pct">55%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-width="55" style="--bar-color:#34d399;"></div></div>
+
+                <!-- Skill 4: React -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-react">
+                            <i class='bx bxl-react'></i>
+                        </div>
+                        <span class="skill-category">Frontend</span>
+                    </div>
+                    <h3 class="skill-name">React &amp; Vite</h3>
+                    <p class="skill-desc">Komponen berbasis React, state management sederhana, hooks, dan modern build tool Vite.</p>
                 </div>
-                <div class="skill-bar-item glass-card">
-                    <div class="skill-bar-header"><span><i class='bx bxl-figma'></i> UI/UX Design</span><span class="skill-pct">30%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-width="30" style="--bar-color:#f472b6;"></div></div>
+
+                <!-- Skill 5: PHP -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-php">
+                            <i class='bx bxl-php'></i>
+                        </div>
+                        <span class="skill-category">Backend</span>
+                    </div>
+                    <h3 class="skill-name">PHP</h3>
+                    <p class="skill-desc">Dasar pemrograman backend, pengolahan form data, penanganan session, dan logika server.</p>
+                </div>
+
+                <!-- Skill 6: Laravel -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-laravel">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg>
+                        </div>
+                        <span class="skill-category">Framework</span>
+                    </div>
+                    <h3 class="skill-name">Laravel</h3>
+                    <p class="skill-desc">Pola arsitektur MVC, routing, Blade templating, dan pengelolaan database menggunakan Eloquent ORM.</p>
+                </div>
+
+                <!-- Skill 7: MySQL -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-mysql">
+                            <i class='bx bx-data'></i>
+                        </div>
+                        <span class="skill-category">Database</span>
+                    </div>
+                    <h3 class="skill-name">MySQL</h3>
+                    <p class="skill-desc">Desain skema tabel relasional, query SQL (CRUD), integrasi database pada backend web.</p>
+                </div>
+
+                <!-- Skill 8: Git & GitHub -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-git">
+                            <i class='bx bxl-git'></i>
+                        </div>
+                        <span class="skill-category">Tools</span>
+                    </div>
+                    <h3 class="skill-name">Git &amp; GitHub</h3>
+                    <p class="skill-desc">Version control, commit history, branch workflow, repository management, dan deployment.</p>
+                </div>
+
+                <!-- Skill 9: Responsive Design -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-resp">
+                            <i class='bx bx-mobile-alt'></i>
+                        </div>
+                        <span class="skill-category">UI / UX</span>
+                    </div>
+                    <h3 class="skill-name">Responsive Design</h3>
+                    <p class="skill-desc">Mobile-first approach, adaptasi multi-layar desktop, tablet, dan smartphone secara optimal.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2026 <span>Habib Tegar</span>. Built with HTML, CSS &amp; JavaScript.</p>
+            <div class="footer-social">
+                <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
     <script src="js/music-player.js"></script>
 </body>

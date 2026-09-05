@@ -10,6 +10,16 @@ const projectsData = [
     createdAt: "2026-30-08"
   },
   {
+    title: "Calcora",
+    desc: "Kalkulator web modern untuk melakukan perhitungan matematika dengan cepat dan mudah.",
+    tags: ["Library"],
+    demoLink: "https://calcora-app.vercel.app/",
+    githubLink: "https://github.com/habibtegar/kalkulator",
+    status: "live",
+    imageUrl: "img/kalkulator.png",
+    createdAt: "2025-03-01"
+  },
+  {
     title: "Portofolio",
     desc: "Project portofolio menggunakan gemini ai.",
     tags: ["Portofolio"],

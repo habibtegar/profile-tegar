@@ -1,144 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="About Habib Tegar Ramadhan - Frontend Developer from SMKN 1 CIOMAS." />
+    <meta name="description" content="About Habib Tegar Ramadhan - Web Developer from SMKN 1 CIOMAS." />
     <title>About | Habib Tegar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/about.css" />
     <link rel="stylesheet" href="css/music-player.css" />
 </head>
 <body>
-    <canvas id="particleCanvas" aria-hidden="true"></canvas>
 
     <nav class="navbar" id="navbar">
         <a href="index.html" class="logo">
-            <span class="logo-bracket">&lt;</span>Garzyy<span class="logo-bracket">/&gt;</span>
+            <span class="logo-bracket">&lt;</span>Garr.<span class="logo-bracket"> /&gt;</span>
         </a>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
-            <li><a href="about.html" class="nav-link active" data-page="about">About</a></li>
-            <li><a href="projek.html" class="nav-link" data-page="project">Projects</a></li>
-            <li><a href="skill.html" class="nav-link" data-page="skills">Skills</a></li>
-            <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link active">About</a></li>
+            <li><a href="skill.html" class="nav-link">Skills</a></li>
+            <li><a href="projek.html" class="nav-link">Projects</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
         <div class="nav-overlay" id="navOverlay"></div>
     </nav>
 
     <section class="about-section" id="about">
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
-
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">// who am i</span>
-            <h1 class="section-title">About <span class="gradient-text">Me</span></h1>
-            <p class="section-subtitle">Pengembang frontend yang bersemangat menciptakan pengalaman digital modern.</p>
-        </div>
-
-        <div class="about-grid">
-            <!-- Image Column -->
-            <div class="about-image-col" data-aos="fade-right">
-                <div class="about-img-wrapper">
-                    <div class="about-img-ring" aria-hidden="true"></div>
-                    <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan" class="about-photo" />
-                    <div class="about-img-glow" aria-hidden="true"></div>
-                </div>
-                <!-- Stats Cards -->
-                <div class="stats-row">
-                    <div class="stat-card glass-card">
-                        <span class="stat-number gradient-text" id="projects-done-count" data-count="4">0</span>
-                        <span class="stat-label">Projects Done</span>
-                    </div>
-                    <div class="stat-card glass-card">
-                        <span class="stat-number gradient-text" data-count="3">0</span>
-                        <span class="stat-label">Tech Stack</span>
-                    </div>
-                    <div class="stat-card glass-card">
-                        <span class="stat-number gradient-text" data-count="1">0</span>
-                        <span class="stat-label">Years Coding</span>
-                    </div>
-                </div>
+        <div class="about-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">// 01. ABOUT</span>
+                <h1 class="section-title">About <span class="accent-text">Me</span></h1>
+                <p class="section-subtitle">Pengembang web yang bersemangat menciptakan pengalaman digital modern dan fungsional.</p>
             </div>
 
-            <!-- Content Column -->
-            <div class="about-content-col" data-aos="fade-left">
-                <div class="about-info glass-card">
-                    <div class="about-role-badge">
-                        <i class='bx bx-code-alt'></i>
-                        Frontend Developer
+            <div class="about-grid">
+                <!-- Left Column: Photo & Stats -->
+                <div class="about-left-col" data-aos="fade-up">
+                    <div class="about-photo-wrapper">
+                        <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan" class="about-photo" />
                     </div>
-                    <h2 class="about-name">Habib Tegar <span class="gradient-text">Ramadhan</span></h2>
-                    <p class="about-desc">
-                        Saya adalah siswa jurusan PPLG di SMKN 1 CIOMAS yang memiliki passion besar dalam dunia web development. Fokus utama saya adalah menciptakan antarmuka pengguna yang interaktif, responsif, dan estetis.
-                    </p>
-                    <p class="about-desc">
-                        Saya gemar mempelajari teknologi baru dan selalu berusaha mengikuti tren desain modern untuk menghasilkan karya yang berkualitas.
-                    </p>
-
-                    <div class="about-details">
-                        <div class="detail-item">
-                            <i class='bx bxs-user'></i>
-                            <div>
-                                <span class="detail-label">Full Name</span>
-                                <span class="detail-value">Habib Tegar Ramadhan</span>
-                            </div>
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <span class="stat-number" id="projects-done-count" data-count="6">0</span>
+                            <span class="stat-label">Projects</span>
                         </div>
-                        <div class="detail-item">
-                            <i class='bx bxs-school'></i>
-                            <div>
-                                <span class="detail-label">School</span>
-                                <span class="detail-value">SMKN 1 CIOMAS</span>
-                            </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="8">0</span>
+                            <span class="stat-label">Tech Stack</span>
                         </div>
-                        <div class="detail-item">
-                            <i class='bx bxs-map'></i>
-                            <div>
-                                <span class="detail-label">Location</span>
-                                <span class="detail-value">Ciomas, Bogor, Indonesia</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <i class='bx bxs-envelope'></i>
-                            <div>
-                                <span class="detail-label">Email</span>
-                                <span class="detail-value">habibtegarramadhan@gmail.com</span>
-                            </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="1">0</span>
+                            <span class="stat-label">Tahun</span>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Skills Badges -->
-                    <div class="skills-badges">
-                        <span class="skill-badge"><i class='bx bxl-html5'></i> HTML</span>
-                        <span class="skill-badge"><i class='bx bxl-css3'></i> CSS</span>
-                        <span class="skill-badge"><i class='bx bxl-php'></i> PHP</span>
-                        <span class="skill-badge"><i class='bx bx-data'></i> MySQL</span>
-                        <span class="skill-badge"><i class='bx bxl-bootstrap'></i> Bootstrap</span>
-                    </div>
+                <!-- Right Column: Bio & Info Details -->
+                <div class="about-right-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="about-bio-card">
+                        <div class="about-role-tag">
+                            <i class='bx bx-code-alt'></i>
+                            <span>Web Developer &amp; PPLG Student</span>
+                        </div>
+                        <h2 class="about-heading">Habib Tegar <span class="accent-text">Ramadhan</span></h2>
+                        
+                        <p class="about-text">
+                            Saya adalah siswa jurusan Pengembangan Perangkat Lunak dan GIM (PPLG) di SMKN 1 CIOMAS yang memiliki minat mendalam di bidang web development. Saya berfokus pada perancangan antarmuka pengguna yang terstruktur rapi, responsif di semua perangkat, serta mudah digunakan.
+                        </p>
+                        <p class="about-text">
+                            Saya terus mengasah kemampuan teknis mulai dari fundamental web (HTML, CSS, JavaScript) hingga framework modern seperti React dan backend PHP/Laravel.
+                        </p>
 
-                    <div class="about-actions">
-                        <a href="projek.html" class="btn btn-primary">
-                            <span>View Projects</span>
-                            <i class='bx bx-right-arrow-alt'></i>
-                        </a>
-                        <div class="about-social">
-                            <a href="https://github.com/habibtegar" target="_blank" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
-                            <a href="https://www.instagram.com/hbibtegar_" target="_blank" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-                            <a href="https://www.tiktok.com/@garrzyy_" target="_blank" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
-                            <a href="https://discord.com/users/1358819591249203414" target="_blank" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+                        <!-- Details Grid -->
+                        <div class="about-details-grid">
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-user'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Nama Lengkap</span>
+                                    <span class="detail-value">Habib Tegar Ramadhan</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-school'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Sekolah</span>
+                                    <span class="detail-value">SMKN 1 CIOMAS</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-map'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Lokasi</span>
+                                    <span class="detail-value">Ciomas, Bogor, Indonesia</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-envelope'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Email</span>
+                                    <a href="mailto:habibtegarramadhan@gmail.com" class="detail-value">habibtegarramadhan@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Pills -->
+                        <div class="skills-pills">
+                            <span class="skill-pill"><i class='bx bxl-html5'></i> HTML5</span>
+                            <span class="skill-pill"><i class='bx bxl-css3'></i> CSS3</span>
+                            <span class="skill-pill"><i class='bx bxl-javascript'></i> JavaScript</span>
+                            <span class="skill-pill"><i class='bx bxl-react'></i> React</span>
+                            <span class="skill-pill"><i class='bx bxl-php'></i> PHP</span>
+                            <span class="skill-pill"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg> Laravel</span>
+                            <span class="skill-pill"><i class='bx bx-data'></i> MySQL</span>
+                            <span class="skill-pill"><i class='bx bxl-git'></i> Git</span>
+                        </div>
+
+                        <div class="about-actions">
+                            <a href="projek.html" class="btn btn-primary">
+                                <span>Lihat Proyek</span>
+                                <i class='bx bx-right-arrow-alt'></i>
+                            </a>
+                            <a href="contact.html" class="btn btn-outline">
+                                <span>Hubungi Saya</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2026 <span>Habib Tegar</span>. Built with HTML, CSS &amp; JavaScript.</p>
+            <div class="footer-social">
+                <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/projects-data.js"></script>
     <script src="js/main.js"></script>

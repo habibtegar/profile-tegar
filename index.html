@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Habib Tegar Ramadhan - Frontend Developer & PPLG Student at SMKN 1 Ciomas. Portfolio showcasing modern web development projects." />
-    <title>Profile Tegar</title>
+    <meta name="description" content="Habib Tegar Ramadhan - Web Developer & PPLG Student at SMKN 1 Ciomas. Portfolio showcasing modern web development projects." />
+    <title>Habib Tegar — Web Developer</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     
     <!-- Stylesheets -->
@@ -19,10 +19,9 @@
     <link rel="stylesheet" href="css/skills.css" />
     <link rel="stylesheet" href="css/projects.css" />
     <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/music-player.css" />
 </head>
 <body>
-    <!-- ===== CANVAS PARTICLE BG ===== -->
-    <canvas id="particleCanvas" aria-hidden="true"></canvas>
 
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
@@ -48,75 +47,74 @@
          SECTION 1: HERO / HOME
          =================================================== -->
     <section class="hero" id="home">
-        <!-- Background glows -->
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
+        <div class="hero-container">
+            <!-- Left Column: Content -->
+            <div class="hero-content" data-aos="fade-up">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Available for work &amp; collaboration
+                </div>
 
-        <div class="hero-content" data-aos="fade-right">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Available for work
+                <span class="hero-intro">Hi, I'm</span>
+                <h1 class="hero-name">HABIB TEGAR</h1>
+
+                <div class="hero-role">
+                    <span class="role-prefix"></span>
+                    <span class="typed-text" id="typedText">Web Developer</span>
+                    <span class="typed-cursor">|</span>
+                </div>
+
+                <p class="hero-desc">
+                    Saya membangun website yang modern, interaktif, dan responsive dengan fokus pada antarmuka yang bersih dan pengalaman pengguna yang nyaman.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>View My Projects</span>
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <span>Contact Me</span>
+                        <i class='bx bx-send'></i>
+                    </a>
+                </div>
+
+                <div class="hero-social">
+                    <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                        <i class='bx bxl-github'></i>
+                    </a>
+                    <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                        <i class='bx bxl-instagram'></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+                        <i class='bx bxl-tiktok'></i>
+                    </a>
+                    <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord">
+                        <i class='bx bxl-discord'></i>
+                    </a>
+                </div>
             </div>
 
-            <h1 class="hero-name">
-                Hi, I'm <span class="gradient-text">Habib Tegar</span>
-            </h1>
-
-            <div class="hero-role">
-                <span class="role-prefix">I'm a </span>
-                <span class="typed-text" id="typedText"></span>
-                <span class="typed-cursor">|</span>
-            </div>
-
-            <p class="hero-desc">
-                Saya adalah siswa PPLG yang tertarik pada web development dan senang membangun website yang modern, interaktif, dan responsive.
-            </p>
-
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">
-                    <span>View My Projects</span>
-                    <i class='bx bx-right-arrow-alt'></i>
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    <span>Contact Me</span>
-                    <i class='bx bx-send'></i>
-                </a>
-            </div>
-
-            <div class="hero-social">
-                <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
-                    <i class='bx bxl-github'></i>
-                </a>
-                <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-                    <i class='bx bxl-instagram'></i>
-                </a>
-                <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
-                    <i class='bx bxl-tiktok'></i>
-                </a>
-                <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord">
-                    <i class='bx bxl-discord'></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="hero-image-wrapper" data-aos="fade-left">
-            <div class="hero-image-ring ring-1" aria-hidden="true"></div>
-            <div class="hero-image-ring ring-2" aria-hidden="true"></div>
-            <div class="hero-image-ring ring-3" aria-hidden="true"></div>
-            <div class="hero-image-container">
-                <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan - Frontend Developer" class="hero-photo" />
-            </div>
-            <div class="hero-image-glow" aria-hidden="true"></div>
-            
-            <!-- Floating tech badges -->
-            <div class="float-badge badge-html" aria-label="HTML5">
-                <i class='bx bxl-html5'></i> HTML5
-            </div>
-            <div class="float-badge badge-css" aria-label="CSS3">
-                <i class='bx bxl-css3'></i> CSS3
-            </div>
-            <div class="float-badge badge-js" aria-label="JavaScript">
-                <i class='bx bxl-javascript'></i> JavaScript
+            <!-- Right Column: Profile Photo (Circle with Floating Language Badges) -->
+            <div class="hero-image-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <div class="hero-orbit-ring" aria-hidden="true"></div>
+                <div class="hero-photo-circle">
+                    <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan" class="hero-photo" />
+                </div>
+                
+                <!-- Floating Tech Badges -->
+                <div class="hero-tech-badge badge-html" title="HTML5">
+                    <i class='bx bxl-html5'></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="hero-tech-badge badge-css" title="CSS3">
+                    <i class='bx bxl-css3'></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="hero-tech-badge badge-js" title="JavaScript">
+                    <i class='bx bxl-javascript'></i>
+                    <span>JavaScript</span>
+                </div>
             </div>
         </div>
     </section>
@@ -125,107 +123,103 @@
          SECTION 2: ABOUT
          =================================================== -->
     <section class="about-section" id="about">
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
-
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">// SIAPA SAYA</span>
-            <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
-            <p class="section-subtitle">Pengembang frontend yang bersemangat menciptakan pengalaman digital modern.</p>
-        </div>
-
-        <div class="about-grid">
-            <!-- Image Column -->
-            <div class="about-image-col" data-aos="fade-right">
-                <div class="about-img-wrapper">
-                    <div class="about-img-ring" aria-hidden="true"></div>
-                    <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan" class="about-photo" />
-                    <div class="about-img-glow" aria-hidden="true"></div>
-                </div>
-                <!-- Stats Cards -->
-                <div class="stats-row">
-                    <div class="stat-card glass-card">
-                        <span class="stat-number gradient-text" id="projects-done-count" data-count="4">0</span>
-                        <span class="stat-label">Projects</span>
-                    </div>
-                    <div class="stat-card glass-card">
-                        <span class="stat-number gradient-text" data-count="8">0</span>
-                        <span class="stat-label">Tech Stack</span>
-                    </div>
-                    <div class="stat-card glass-card">
-                        <span class="stat-number gradient-text" data-count="1">0</span>
-                        <span class="stat-label">Tahun Coding</span>
-                    </div>
-                </div>
+        <div class="about-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">// 01. ABOUT</span>
+                <h2 class="section-title">About <span class="accent-text">Me</span></h2>
+                <p class="section-subtitle">Pengembang web yang bersemangat menciptakan pengalaman digital modern dan fungsional.</p>
             </div>
 
-            <!-- Content Column -->
-            <div class="about-content-col" data-aos="fade-left">
-                <div class="about-info glass-card">
-                    <div class="about-role-badge">
-                        <i class='bx bx-code-alt'></i>
-                        Frontend Developer / PPLG Student
+            <div class="about-grid">
+                <!-- Left Column: Photo & Stats -->
+                <div class="about-left-col" data-aos="fade-up">
+                    <div class="about-photo-wrapper">
+                        <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan" class="about-photo" />
                     </div>
-                    <h3 class="about-name">Habib Tegar <span class="gradient-text">Ramadhan</span></h3>
-                    <p class="about-desc">
-                        Saya adalah siswa jurusan PPLG di SMKN 1 CIOMAS yang memiliki passion besar dalam dunia web development. Fokus utama saya adalah menciptakan antarmuka pengguna yang interaktif, responsif, dan estetis.
-                    </p>
-                    <p class="about-desc">
-                        Saya gemar mempelajari teknologi baru dan selalu berusaha mengikuti tren desain modern untuk menghasilkan karya yang berkualitas.
-                    </p>
-
-                    <!-- Details Card (2x2 Grid) -->
-                    <div class="about-details">
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class='bx bxs-user'></i></div>
-                            <div>
-                                <span class="detail-label">Full Name</span>
-                                <span class="detail-value">Habib Tegar Ramadhan</span>
-                            </div>
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <span class="stat-number" id="projects-done-count" data-count="6">0</span>
+                            <span class="stat-label">Projects</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class='bx bxs-school'></i></div>
-                            <div>
-                                <span class="detail-label">School</span>
-                                <span class="detail-value">SMKN 1 CIOMAS</span>
-                            </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="8">0</span>
+                            <span class="stat-label">Tech Stack</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class='bx bxs-map'></i></div>
-                            <div>
-                                <span class="detail-label">Location</span>
-                                <span class="detail-value">Ciomas, Bogor, Indonesia</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class='bx bxs-envelope'></i></div>
-                            <div>
-                                <span class="detail-label">Email</span>
-                                <a href="mailto:habibtegarramadhan@gmail.com" class="detail-value">habibtegarramadhan@gmail.com</a>
-                            </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="1">0</span>
+                            <span class="stat-label">Tahun</span>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Skills Badges -->
-                    <div class="skills-badges">
-                        <span class="skill-badge"><i class='bx bxl-html5'></i> HTML</span>
-                        <span class="skill-badge"><i class='bx bxl-css3'></i> CSS</span>
-                        <span class="skill-badge"><i class='bx bxl-php'></i> PHP</span>
-                        <span class="skill-badge"><i class='bx bx-data'></i> MySQL</span>
-                        <span class="skill-badge"><i class='bx bxl-bootstrap'></i> Bootstrap</span>
-                        <span class="skill-badge"><i class='bx bxl-laravel'></i> Laravel</span>
-                    </div>
+                <!-- Right Column: Bio & Info Details -->
+                <div class="about-right-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="about-bio-card">
+                        <div class="about-role-tag">
+                            <i class='bx bx-code-alt'></i>
+                            <span>Web Developer &amp; PPLG Student</span>
+                        </div>
+                        <h3 class="about-heading">Habib Tegar <span class="accent-text">Ramadhan</span></h3>
+                        
+                        <p class="about-text">
+                            Saya adalah siswa jurusan Pengembangan Perangkat Lunak dan GIM (PPLG) di SMKN 1 CIOMAS yang memiliki minat mendalam di bidang web development. Saya berfokus pada perancangan antarmuka pengguna yang terstruktur rapi, responsif di semua perangkat, serta mudah digunakan.
+                        </p>
+                        <p class="about-text">
+                            Saya terus mengasah kemampuan teknis mulai dari fundamental web (HTML, CSS, JavaScript) hingga framework modern seperti React dan backend PHP/Laravel.
+                        </p>
 
-                    <div class="about-actions">
-                        <a href="#projects" class="btn btn-primary">
-                            <span>View Projects</span>
-                            <i class='bx bx-right-arrow-alt'></i>
-                        </a>
-                        <div class="about-social">
-                            <a href="https://github.com/habibtegar" target="_blank" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
-                            <a href="https://www.instagram.com/hbibtegar_" target="_blank" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-                            <a href="https://www.tiktok.com/@garrzyy_" target="_blank" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
-                            <a href="https://discord.com/users/1358819591249203414" target="_blank" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+                        <!-- Details Grid -->
+                        <div class="about-details-grid">
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-user'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Nama Lengkap</span>
+                                    <span class="detail-value">Habib Tegar Ramadhan</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-school'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Sekolah</span>
+                                    <span class="detail-value">SMKN 1 CIOMAS</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-map'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Lokasi</span>
+                                    <span class="detail-value">Ciomas, Bogor, Indonesia</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-icon"><i class='bx bxs-envelope'></i></div>
+                                <div class="detail-meta">
+                                    <span class="detail-label">Email</span>
+                                    <a href="mailto:habibtegarramadhan@gmail.com" class="detail-value">habibtegarramadhan@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skill Pills -->
+                        <div class="skills-pills">
+                            <span class="skill-pill"><i class='bx bxl-html5'></i> HTML5</span>
+                            <span class="skill-pill"><i class='bx bxl-css3'></i> CSS3</span>
+                            <span class="skill-pill"><i class='bx bxl-javascript'></i> JavaScript</span>
+                            <span class="skill-pill"><i class='bx bxl-react'></i> React</span>
+                            <span class="skill-pill"><i class='bx bxl-php'></i> PHP</span>
+                            <span class="skill-pill"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg> Laravel</span>
+                            <span class="skill-pill"><i class='bx bx-data'></i> MySQL</span>
+                            <span class="skill-pill"><i class='bx bxl-git'></i> Git</span>
+                        </div>
+
+                        <div class="about-actions">
+                            <a href="#projects" class="btn btn-primary">
+                                <span>Lihat Proyek</span>
+                                <i class='bx bx-right-arrow-alt'></i>
+                            </a>
+                            <a href="#contact" class="btn btn-outline">
+                                <span>Hubungi Saya</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -237,110 +231,121 @@
          SECTION 3: SKILLS
          =================================================== -->
     <section class="skills-section" id="skills">
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
-
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">// KEMAMPUAN TEKNIS</span>
-            <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
-            <p class="section-subtitle">Teknologi dan tools yang sedang saya pelajari dan kuasai</p>
-        </div>
-
-        <div class="modern-skills-grid" data-aos="fade-up">
-            <!-- Skill Card 1: HTML -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box html-theme">
-                        <i class='bx bxl-html5'></i>
-                    </div>
-                    <span class="skill-level-badge">Advanced</span>
-                </div>
-                <h3 class="skill-title">HTML5</h3>
-                <p class="skill-desc">Semantic markup, struktur halaman web yang rapi, SEO friendly, dan aksesibilitas.</p>
+        <div class="skills-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">// 02. SKILLS</span>
+                <h2 class="section-title">Technical <span class="accent-text">Skills</span></h2>
+                <p class="section-subtitle">Teknologi dan alat bantu yang saya gunakan dalam membangun aplikasi web.</p>
             </div>
 
-            <!-- Skill Card 2: CSS -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box css-theme">
-                        <i class='bx bxl-css3'></i>
+            <div class="skills-grid" data-aos="fade-up">
+                <!-- Skill 1: HTML5 -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-html">
+                            <i class='bx bxl-html5'></i>
+                        </div>
+                        <span class="skill-category">Core</span>
                     </div>
-                    <span class="skill-level-badge">Proficient</span>
+                    <h3 class="skill-name">HTML5</h3>
+                    <p class="skill-desc">Semantic markup, struktur halaman yang rapi, aksesibilitas web, dan kaidah SEO friendly.</p>
                 </div>
-                <h3 class="skill-title">CSS3</h3>
-                <p class="skill-desc">Flexbox, Grid Layout, Custom Variables, Glassmorphic UI, dan animasi halus.</p>
-            </div>
 
-            <!-- Skill Card 3: JavaScript -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box js-theme">
-                        <i class='bx bxl-javascript'></i>
+                <!-- Skill 2: CSS3 -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-css">
+                            <i class='bx bxl-css3'></i>
+                        </div>
+                        <span class="skill-category">Styling</span>
                     </div>
-                    <span class="skill-level-badge">Intermediate</span>
+                    <h3 class="skill-name">CSS3</h3>
+                    <p class="skill-desc">Flexbox, CSS Grid, Custom Properties (Variables), transisi halus, dan tata letak modern.</p>
                 </div>
-                <h3 class="skill-title">JavaScript</h3>
-                <p class="skill-desc">ES6+, DOM Manipulation, Event Handling, Async Fetch API, dan interaktivitas website.</p>
-            </div>
 
-            <!-- Skill Card 4: PHP -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box php-theme">
-                        <i class='bx bxl-php'></i>
+                <!-- Skill 3: JavaScript -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-js">
+                            <i class='bx bxl-javascript'></i>
+                        </div>
+                        <span class="skill-category">Language</span>
                     </div>
-                    <span class="skill-level-badge">Intermediate</span>
+                    <h3 class="skill-name">JavaScript (ES6+)</h3>
+                    <p class="skill-desc">DOM manipulation, event handling, asynchronous programming (Fetch API/Promises), dan interaktivitas.</p>
                 </div>
-                <h3 class="skill-title">PHP</h3>
-                <p class="skill-desc">Pemrograman backend dasar, penanganan form data, pengolahan session, dan logika server.</p>
-            </div>
 
-            <!-- Skill Card 5: Laravel -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box laravel-theme">
-                        <i class='bx bxl-laravel'></i>
+                <!-- Skill 4: React -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-react">
+                            <i class='bx bxl-react'></i>
+                        </div>
+                        <span class="skill-category">Frontend</span>
                     </div>
-                    <span class="skill-level-badge">Learning</span>
+                    <h3 class="skill-name">React &amp; Vite</h3>
+                    <p class="skill-desc">Komponen berbasis React, state management sederhana, hooks, dan modern build tool Vite.</p>
                 </div>
-                <h3 class="skill-title">Laravel</h3>
-                <p class="skill-desc">MVC Architecture, Routing, Blade Templating, Eloquent ORM, dan pengembangan web app.</p>
-            </div>
 
-            <!-- Skill Card 6: Git -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box git-theme">
-                        <i class='bx bxl-git'></i>
+                <!-- Skill 5: PHP -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-php">
+                            <i class='bx bxl-php'></i>
+                        </div>
+                        <span class="skill-category">Backend</span>
                     </div>
-                    <span class="skill-level-badge">Intermediate</span>
+                    <h3 class="skill-name">PHP</h3>
+                    <p class="skill-desc">Dasar pemrograman backend, pengolahan form data, penanganan session, dan logika server.</p>
                 </div>
-                <h3 class="skill-title">Git</h3>
-                <p class="skill-desc">Version control, branch management, commit tracking, dan workflow kolaborasi.</p>
-            </div>
 
-            <!-- Skill Card 7: GitHub -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box github-theme">
-                        <i class='bx bxl-github'></i>
+                <!-- Skill 6: Laravel -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-laravel">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg>
+                        </div>
+                        <span class="skill-category">Framework</span>
                     </div>
-                    <span class="skill-level-badge">Proficient</span>
+                    <h3 class="skill-name">Laravel</h3>
+                    <p class="skill-desc">Pola arsitektur MVC, routing, Blade templating, dan pengelolaan database menggunakan Eloquent ORM.</p>
                 </div>
-                <h3 class="skill-title">GitHub</h3>
-                <p class="skill-desc">Repository hosting, GitHub Pages deployment, open-source management, dan showcase kode.</p>
-            </div>
 
-            <!-- Skill Card 8: Responsive Design -->
-            <div class="modern-skill-card glass-card">
-                <div class="skill-card-top">
-                    <div class="skill-icon-box resp-theme">
-                        <i class='bx bx-mobile-alt'></i>
+                <!-- Skill 7: MySQL -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-mysql">
+                            <i class='bx bx-data'></i>
+                        </div>
+                        <span class="skill-category">Database</span>
                     </div>
-                    <span class="skill-level-badge">Advanced</span>
+                    <h3 class="skill-name">MySQL</h3>
+                    <p class="skill-desc">Desain skema tabel relasional, query SQL (CRUD), integrasi database pada backend web.</p>
                 </div>
-                <h3 class="skill-title">Responsive Design</h3>
-                <p class="skill-desc">Mobile-first approach, media queries, adaptasi layout multi-screen (Desktop, Tablet, Mobile).</p>
+
+                <!-- Skill 8: Git & GitHub -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-git">
+                            <i class='bx bxl-git'></i>
+                        </div>
+                        <span class="skill-category">Tools</span>
+                    </div>
+                    <h3 class="skill-name">Git &amp; GitHub</h3>
+                    <p class="skill-desc">Version control, commit history, branch workflow, repository management, dan deployment.</p>
+                </div>
+
+                <!-- Skill 9: Responsive Design -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-icon-wrap skill-icon-resp">
+                            <i class='bx bx-mobile-alt'></i>
+                        </div>
+                        <span class="skill-category">UI / UX</span>
+                    </div>
+                    <h3 class="skill-name">Responsive Design</h3>
+                    <p class="skill-desc">Mobile-first approach, adaptasi multi-layar desktop, tablet, dan smartphone secara optimal.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -349,17 +354,16 @@
          SECTION 4: PROJECTS
          =================================================== -->
     <section class="projects-section" id="projects">
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
+        <div class="projects-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">// 03. PROJECTS</span>
+                <h2 class="section-title">Featured <span class="accent-text">Projects</span></h2>
+                <p class="section-subtitle">Beberapa proyek pengembangan web yang telah saya selesaikan.</p>
+            </div>
 
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">// HASIL KARYA</span>
-            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-            <p class="section-subtitle">Beberapa proyek web development yang telah saya buat</p>
-        </div>
-
-        <div class="projects-grid" id="firebase-projects-grid">
-            <!-- Dynamic project items loaded via js/projects-local.js -->
+            <div class="projects-grid" id="firebase-projects-grid">
+                <!-- Dynamic project cards loaded via js/projects-local.js -->
+            </div>
         </div>
     </section>
 
@@ -367,112 +371,120 @@
          SECTION 5: CONTACT
          =================================================== -->
     <section class="contact-section" id="contact">
-        <div class="glow glow-1" aria-hidden="true"></div>
-        <div class="glow glow-2" aria-hidden="true"></div>
+        <div class="contact-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">// 04. CONTACT</span>
+                <h2 class="section-title">Get in <span class="accent-text">Touch</span></h2>
+                <p class="section-subtitle">Punya ide proyek atau ingin berdiskusi? Jangan ragu untuk menghubungi saya.</p>
+            </div>
 
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">// HUBUNGI SAYA</span>
-            <h2 class="section-title">Let's <span class="gradient-text">Work Together</span></h2>
-            <p class="section-subtitle">Punya ide project atau ingin berkolaborasi? Silakan hubungi saya.</p>
-        </div>
+            <div class="contact-grid">
+                <!-- Left Column: Contact Info -->
+                <div class="contact-info-col" data-aos="fade-up">
+                    <div class="contact-info-card">
+                        <div>
+                            <h3 class="contact-card-title">Mari Berdiskusi</h3>
+                            <p class="contact-card-desc">Saya terbuka untuk kolaborasi proyek, kesempatan magang, atau sekadar berdiskusi seputar dunia web development.</p>
+                        </div>
 
-        <div class="contact-grid">
-            <!-- Info Column -->
-            <div class="contact-info-col" data-aos="fade-right">
-                <div class="contact-info-card glass-card">
-                    <h3 class="contact-info-title">Mari <span class="gradient-text">Berdiskusi</span></h3>
-                    <p class="contact-info-desc">Saya selalu terbuka untuk ide proyek baru, kesempatan magang, kolaborasi, atau sekadar bertukar wawasan tentang web development.</p>
-
-                    <div class="info-items">
-                        <div class="info-item">
-                            <div class="info-icon"><i class='bx bxs-phone'></i></div>
-                            <div class="info-text">
-                                <span class="info-label">Telepon / WA</span>
-                                <a href="tel:+6281271447069" class="info-value">+62 812 7144 7069</a>
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="info-icon"><i class='bx bxs-phone'></i></div>
+                                <div class="info-text">
+                                    <span class="info-label">WhatsApp / Telepon</span>
+                                    <a href="https://wa.me/6281271447069" target="_blank" rel="noopener" class="info-value">+62 812 7144 7069</a>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon"><i class='bx bxs-envelope'></i></div>
+                                <div class="info-text">
+                                    <span class="info-label">Email</span>
+                                    <a href="mailto:habibtegarramadhan@gmail.com" class="info-value">habibtegarramadhan@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon"><i class='bx bxs-map'></i></div>
+                                <div class="info-text">
+                                    <span class="info-label">Lokasi</span>
+                                    <span class="info-value">Ciomas, Bogor, Indonesia</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-icon"><i class='bx bxs-envelope'></i></div>
-                            <div class="info-text">
-                                <span class="info-label">Email</span>
-                                <a href="mailto:habibtegarramadhan@gmail.com" class="info-value">habibtegarramadhan@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon"><i class='bx bxs-map'></i></div>
-                            <div class="info-text">
-                                <span class="info-label">Lokasi</span>
-                                <span class="info-value">Ciomas, Bogor, Indonesia</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="contact-social">
-                        <h4 class="social-heading">Media Sosial</h4>
-                        <div class="social-row">
-                            <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
-                            <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-                            <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
-                            <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+                        <div class="contact-social-box">
+                            <h4 class="social-heading">Sosial Media</h4>
+                            <div class="social-row">
+                                <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                                    <i class='bx bxl-github'></i>
+                                </a>
+                                <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                                    <i class='bx bxl-instagram'></i>
+                                </a>
+                                <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+                                    <i class='bx bxl-tiktok'></i>
+                                </a>
+                                <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord">
+                                    <i class='bx bxl-discord'></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Form Column -->
-            <div class="contact-form-col" data-aos="fade-left">
-                <div class="contact-form-card glass-card">
-                    <h3 class="form-title">Kirim <span class="gradient-text">Pesan</span></h3>
-                    <form id="contactForm" novalidate>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fullName">Nama Lengkap</label>
-                                <div class="input-wrap">
-                                    <i class='bx bxs-user'></i>
-                                    <input type="text" id="fullName" placeholder="Nama Anda" required />
+                <!-- Right Column: Contact Form (Direct to WhatsApp) -->
+                <div class="contact-form-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-form-card">
+                        <h3 class="form-title">Kirim Pesan</h3>
+                        <form id="contactForm" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Nama Lengkap</label>
+                                    <div class="input-wrap">
+                                        <i class='bx bxs-user'></i>
+                                        <input type="text" id="fullName" placeholder="Nama Anda" required />
+                                    </div>
+                                    <div class="field-error" id="fullNameError" aria-live="polite"></div>
                                 </div>
-                                <div class="field-error" id="fullNameError" aria-live="polite"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Alamat Email</label>
-                                <div class="input-wrap">
-                                    <i class='bx bxs-envelope'></i>
-                                    <input type="email" id="email" placeholder="email@gmail.com" required />
-                                </div>
-                                <div class="field-error" id="emailError" aria-live="polite"></div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">Nomor HP / WA</label>
-                                <div class="input-wrap">
-                                    <i class='bx bxs-phone'></i>
-                                    <input type="tel" id="phone" placeholder="0812xxxxxxxx" />
-                                </div>
-                                <div class="field-error" id="phoneError" aria-live="polite"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Subjek</label>
-                                <div class="input-wrap">
-                                    <i class='bx bxs-message-detail'></i>
-                                    <input type="text" id="subject" placeholder="Kolaborasi Project" />
+                                <div class="form-group">
+                                    <label for="email">Alamat Email</label>
+                                    <div class="input-wrap">
+                                        <i class='bx bxs-envelope'></i>
+                                        <input type="email" id="email" placeholder="email@gmail.com" required />
+                                    </div>
+                                    <div class="field-error" id="emailError" aria-live="polite"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="message">Pesan</label>
-                            <div class="input-wrap textarea-wrap">
-                                <i class='bx bxs-message-dots'></i>
-                                <textarea id="message" placeholder="Tuliskan pesan atau ide project Anda di sini..." rows="5" required></textarea>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Nomor HP / WhatsApp</label>
+                                    <div class="input-wrap">
+                                        <i class='bx bxs-phone'></i>
+                                        <input type="tel" id="phone" placeholder="0812xxxxxxxx" />
+                                    </div>
+                                    <div class="field-error" id="phoneError" aria-live="polite"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subjek</label>
+                                    <div class="input-wrap">
+                                        <i class='bx bxs-message-detail'></i>
+                                        <input type="text" id="subject" placeholder="Kolaborasi Project" />
+                                    </div>
+                                </div>
                             </div>
-                            <div class="field-error" id="messageError" aria-live="polite"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
-                            <i class='bx bxl-whatsapp'></i>
-                            <span>Kirim via WhatsApp</span>
-                            <i class='bx bx-right-arrow-alt'></i>
-                        </button>
-                    </form>
+                            <div class="form-group full-width">
+                                <label for="message">Pesan</label>
+                                <div class="input-wrap textarea-wrap">
+                                    <i class='bx bxs-message-dots'></i>
+                                    <textarea id="message" placeholder="Tuliskan pesan atau ide project Anda..." rows="4" required></textarea>
+                                </div>
+                                <div class="field-error" id="messageError" aria-live="polite"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                                <i class='bx bxl-whatsapp'></i>
+                                <span>Kirim via WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -480,16 +492,25 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
-        <p>&copy; 2026 <span class="gradient-text">Habib Tegar Ramadhan</span>. Built with HTML, CSS &amp; JavaScript.</p>
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2026 <span>Habib Tegar</span>. Built with HTML, CSS &amp; JavaScript.</p>
+            <div class="footer-social">
+                <a href="https://github.com/habibtegar" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/hbibtegar_" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@garrzyy_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+                <a href="https://discord.com/users/1358819591249203414" target="_blank" rel="noopener" class="social-link" aria-label="Discord"><i class='bx bxl-discord'></i></a>
+            </div>
+        </div>
     </footer>
+
+    <!-- Notification Toast Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
     <!-- Scripts -->
     <script src="js/projects-data.js"></script>
     <script src="js/projects-local.js"></script>
     <script src="js/main.js"></script>
-
-    <!-- Notification Toast Container -->
-    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+    <script src="js/music-player.js"></script>
 
     <script>
         /* ===== CONTACT FORM HANDLER (WhatsApp Direct Link) ===== */
@@ -523,7 +544,6 @@
             if (!name) { showError('fullName', 'Nama harus diisi'); valid = false; }
             if (!email) { showError('email', 'Email harus diisi'); valid = false; }
             else if (!/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Format email tidak valid'); valid = false; }
-            else if (!email.toLowerCase().endsWith('@gmail.com')) { showError('email', 'Email harus menggunakan @gmail.com'); valid = false; }
             if (phone && !/^\d+$/.test(phone.replace(/\s+/g, ''))) { showError('phone', 'Nomor telepon harus angka saja'); valid = false; }
             if (!message) { showError('message', 'Pesan tidak boleh kosong'); valid = false; }
 
@@ -549,8 +569,8 @@
             setTimeout(() => {
                 window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`, "_blank");
                 btn.classList.remove("loading");
-                showToast('Pesan berhasil dikirim ke WhatsApp', 'success');
-            }, 600);
+                showToast('Pesan siap dikirim ke WhatsApp', 'success');
+            }, 400);
         });
 
         function showToast(message, type = 'success', timeout = 4000) {
@@ -561,10 +581,12 @@
             toast.innerHTML = `<span class="icon">${type === 'success' ? '✓' : '!'}</span><span class="msg">${message}</span>`;
             container.appendChild(toast);
             setTimeout(() => {
-                toast.style.transition = 'opacity 260ms, transform 260ms';
+                toast.style.transition = 'opacity 250ms, transform 250ms';
                 toast.style.opacity = '0';
                 toast.style.transform = 'translateY(12px)';
-                setTimeout(() => container.removeChild(toast), 300);
+                setTimeout(() => {
+                    if (toast.parentNode) container.removeChild(toast);
+                }, 260);
             }, timeout);
         }
     </script>
