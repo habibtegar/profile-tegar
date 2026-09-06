@@ -36,17 +36,26 @@ section {
    NAVBAR
 ===================== */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1.5rem 7%;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(12px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000; /* diperbesar */
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 48px);
+  max-width: 1200px;
+
+  padding: 1rem 2rem;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 18px;
+  border: 1px solid rgba(0, 220, 255, 0.15);
+
+  z-index: 1000;
 }
 
 .logo {
