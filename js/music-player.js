@@ -35,7 +35,7 @@
 
     /* ── BUILD HTML WITH EXPANDED & MINIMIZED WIDGET ─────── */
     const playerHTML = `
-    <div id="music-player" role="region" aria-label="Music Player">
+    <div id="music-player" class="minimized" role="region" aria-label="Music Player">
 
         <!-- 1. Minimized Floating Widget -->
         <div class="player-mini-widget" id="playerMiniWidget" title="Buka Music Player" aria-label="Expand Music Player">
@@ -52,7 +52,7 @@
                 <i class='bx bxs-music player-header-icon'></i>
                 <span class="player-header-label">MUSIC PLAYER</span>
                 <button class="player-minimize-btn" id="playerMinimizeBtn" aria-label="Minimize player" title="Minimize">
-                    <i class='bx bx-minus'></i>
+                    <i class='bx bx-chevron-down'></i>
                 </button>
             </div>
 
@@ -76,6 +76,11 @@
                     </div>
                     <div class="player-progress" id="playerProgressBar" title="Seek">
                         <div class="player-progress-fill" id="playerProgressFill"></div>
+                    </div>
+                    <div class="player-time" aria-label="Playback time">
+                        <span id="playerCurrentTime">0:00</span>
+                        <span>/</span>
+                        <span id="playerDuration">0:00</span>
                     </div>
                 </div>
             </div>
@@ -114,6 +119,8 @@
         const nextBtn      = document.getElementById('playerNext');
         const progressFill = document.getElementById('playerProgressFill');
         const progressBar  = document.getElementById('playerProgressBar');
+        const currentTimeEl = document.getElementById('playerCurrentTime');
+        const durationEl    = document.getElementById('playerDuration');
 
         /* ── MINIMIZE / EXPAND TOGGLE ─────────────────────────── */
         minimizeBtn.addEventListener('click', (e) => {
@@ -131,6 +138,18 @@
         const audio      = new Audio();
         audio.volume     = 0.55;
         audio.preload    = 'metadata';
+
+        function formatTime(seconds) {
+            if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${minutes}:${remainingSeconds}`;
+        }
+
+        function updateTimeDisplay() {
+            if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+            if (durationEl) durationEl.textContent = formatTime(audio.duration);
+        }
 
         /* ── PLAYING / PAUSED STATES ──────────────────────────── */
         function setPlaying() {
@@ -171,6 +190,8 @@
             if (titleEl)  titleEl.textContent  = track.title;
             if (artistEl) artistEl.textContent = track.artist;
             if (progressFill) progressFill.style.width = '0%';
+            if (currentTimeEl) currentTimeEl.textContent = '0:00';
+            if (durationEl) durationEl.textContent = '0:00';
 
             if (autoPlay) {
                 audio.play().then(setPlaying).catch((err) => {
@@ -185,6 +206,7 @@
         /* ── AUDIO EVENT LISTENERS ────────────────────────────── */
         audio.addEventListener('play', setPlaying);
         audio.addEventListener('pause', setPaused);
+        audio.addEventListener('loadedmetadata', updateTimeDisplay);
 
         /* Auto next when song ends */
         audio.addEventListener('ended', () => {
@@ -195,6 +217,7 @@
         audio.addEventListener('timeupdate', () => {
             if (!audio.duration || isNaN(audio.duration) || !progressFill) return;
             progressFill.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
+            updateTimeDisplay();
         });
 
         /* ── CONTROLS ─────────────────────────────────────────── */

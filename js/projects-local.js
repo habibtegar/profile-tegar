@@ -37,20 +37,20 @@ function renderProjects(projects) {
     if (project.demoLink) {
       footerHtml += `
         <a href="${project.demoLink}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
-          <i class='bx bx-link-external'></i> Live Demo
+          <i class='bx bx-link-external'></i> Live Preview
         </a>
       `;
     }
     if (project.githubLink) {
       footerHtml += `
         <a href="${project.githubLink}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
-          <i class='bx bxl-github'></i> GitHub
+          <i class='bx bxl-github'></i> Source Code
         </a>
       `;
     }
 
     const statusClass = project.status === 'live' ? 'live' : '';
-    const statusText = project.status === 'live' ? 'Live Demo' : 'Project';
+    const statusText = project.status === 'live' ? 'View Live' : 'Project';
     const imageUrl = project.imageUrl || 'img/placeholder.png';
 
     const cardHtml = `
