@@ -2,9 +2,9 @@
 
     const playlist = [
         {
-            title: "About You",
-            artist: "The 1975",
-            src: "music/About You.mp3"
+            title: "What If I Call",
+            artist: "Alex Christon",
+            src: "music/What If I Call.mp3"
         },
         {
             title: "Berdansalah, karir ini tak ada artinya",
@@ -12,9 +12,14 @@
             src: "music/Berdansalah.mp3"
         },
         {
-            title: "That Should Be Me",
-            artist: "Justin Bieber",
-            src: "music/That Should Be Me.mp3"
+            title: "Wonderwall",
+            artist: "Oasis",
+            src: "music/Wonderwall.mp3"
+        },
+        {
+            title: "Panasea",
+            artist: "rumahsakit",
+            src: "music/Panasea.mp3"
         },
         {
             title: "Everything You Are",
