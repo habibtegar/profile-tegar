@@ -7,6 +7,11 @@
             src: "music/What If I Call.mp3"
         },
         {
+            title: "Disillusioned",
+            artist: "Daniel Caesar",
+            src: "music/Disillusioned.mp3"
+        },
+        {
             title: "Berdansalah, karir ini tak ada artinya",
             artist: "Hindia",
             src: "music/Berdansalah.mp3"
