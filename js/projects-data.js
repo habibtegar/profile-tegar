@@ -3,11 +3,31 @@ const projectsData = [
     title: "Simas",
     desc: "Sistem Informasi Manajemen Siswa untuk mengelola data siswa, kelas, jurusan, dan informasi akademik secara terstruktur menggunakan React dan Vite.",
     tags: ["Library"],
-    demoLink: "https://simas-app-rho.vercel.app/",
+    demoLink: "https://simas-smkn1ciomas.vercel.app/",
     githubLink: "https://github.com/habibtegar/simas-react",
     status: "live",
     imageUrl: "img/simas.app.png",
     createdAt: "2026-30-08"
+  },
+  {
+    title: "Cineva",
+    desc: "Website untuk menonton movie streaming dengan kualitas terbaik.",
+    tags: ["Project"],
+    demoLink: "https://cineva-movie.vercel.app/",
+    githubLink: "https://github.com/habibtegar/Cineva",
+    status: "live",
+    imageUrl: "img/cineva.png",
+    createdAt: "2026-03-10"
+  },
+  {
+    title: "Kopi Senja",
+    desc: "Website untuk membeli kopi dengan mudah dan cepat.",
+    tags: ["Library"],
+    demoLink: "https://kopi-senja.vercel.app/",
+    githubLink: "https://github.com/habibtegar/kopi-senja",
+    status: "live",
+    imageUrl: "img/kopisenja.png",
+    createdAt: "2026-17-09"
   },
   {
     title: "Calcora",
