@@ -11,7 +11,7 @@ const projectsData = [
   },
   {
     title: "Cineva",
-    desc: "Website untuk menonton movie streaming dengan kualitas terbaik.",
+    desc: "Website untuk melihat film dengan kualitas terbaik.",
     tags: ["Project"],
     demoLink: "https://cineva-movie.vercel.app/",
     githubLink: "https://github.com/habibtegar/Cineva",
@@ -23,7 +23,7 @@ const projectsData = [
     title: "Kopi Senja",
     desc: "Website untuk membeli kopi dengan mudah dan cepat.",
     tags: ["Library"],
-    demoLink: "https://kopi-senja.vercel.app/",
+    demoLink: "https://kopisenja-web.vercel.app/",
     githubLink: "https://github.com/habibtegar/kopi-senja",
     status: "live",
     imageUrl: "img/kopisenja.png",
