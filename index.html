@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/skills.css" />
     <link rel="stylesheet" href="css/projects.css" />
     <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/music-player.css" />
 
     <!-- Prevent Theme FOUC -->
     <script>
@@ -46,6 +47,10 @@
             <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
+            <!-- Music Player Toggle Button -->
+            <button class="nav-music-btn" id="navMusicBtn" type="button" aria-label="Putar Musik" title="Putar Musik">
+                <i class='bx bx-music' id="navMusicIcon"></i>
+            </button>
             <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme mode" title="Switch theme mode">
                 <span class="theme-toggle-track">
                     <span class="theme-toggle-icon-sun" aria-hidden="true"><i class='bx bx-sun'></i></span>
@@ -940,10 +945,80 @@
     <!-- Notification Toast Container -->
     <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
+    <!-- Audio Element -->
+    <audio id="musicAudio" preload="metadata"></audio>
+
+    <!-- Floating Music Player Widget -->
+    <div id="music-player" class="minimized" role="region" aria-label="Music Player">
+
+        <!-- 1. Minimized Floating Widget -->
+        <div class="player-mini-widget" id="playerMiniWidget" title="Buka Music Player" aria-label="Expand Music Player">
+            <div class="mini-disc-ring paused" id="miniDisc">
+                <i class='bx bxs-music mini-music-icon'></i>   
+            </div>
+        </div>
+
+        <!-- 2. Expanded Card Body -->
+        <div class="player-expanded-box" id="playerExpandedBox">
+            <!-- Header bar -->
+            <div class="player-header">
+                <span class="player-header-dot"></span>
+                <i class='bx bxs-music player-header-icon'></i>
+                <span class="player-header-label">MUSIC PLAYER</span>
+                <button class="player-minimize-btn" id="playerMinimizeBtn" aria-label="Minimize player" title="Minimize">
+                    <i class='bx bx-chevron-down'></i>
+                </button>
+            </div>
+
+            <!-- Main body -->
+            <div class="player-body">
+                <!-- Disc -->
+                <div class="player-disc">
+                    <div class="player-disc-ring paused" id="playerDisc"></div>
+                </div>
+
+                <!-- Track info -->
+                <div class="player-info">
+                    <div class="player-title" id="playerTitle">What If I Call</div>
+                    <div class="player-artist" id="playerArtist">Alex Christon</div>
+                    <div class="player-waves" aria-hidden="true">
+                        <span class="player-wave-bar"></span>
+                        <span class="player-wave-bar"></span>
+                        <span class="player-wave-bar"></span>
+                        <span class="player-wave-bar"></span>
+                        <span class="player-wave-bar"></span>
+                    </div>
+                    <div class="player-progress" id="playerProgressBar" title="Seek">
+                        <div class="player-progress-fill" id="playerProgressFill"></div>
+                    </div>
+                    <div class="player-time" aria-label="Playback time">
+                        <span id="playerCurrentTime">0:00</span>
+                        <span>/</span>
+                        <span id="playerDuration">0:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="player-controls">
+                <button class="player-btn player-btn-sm" id="playerPrev" aria-label="Previous track" title="Previous">
+                    <i class='bx bx-skip-previous'></i>
+                </button>
+                <button class="player-btn" id="playerPlayPause" aria-label="Play / Pause" title="Play / Pause">
+                    <i class='bx bx-play' id="playIcon"></i>
+                </button>
+                <button class="player-btn player-btn-sm" id="playerNext" aria-label="Next track" title="Next">
+                    <i class='bx bx-skip-next'></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="js/projects-data.js"></script>
     <script src="js/projects-local.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/music-player.js"></script>
 
     <script>
         /* ===== CONTACT FORM HANDLER (WhatsApp Direct Link) ===== */

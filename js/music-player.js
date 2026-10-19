@@ -111,41 +111,48 @@
     </div>`;
 
     function setupPlayer() {
-        if (document.getElementById('music-player')) return;
-
-        document.body.insertAdjacentHTML('beforeend', playerHTML);
+        let player = document.getElementById('music-player');
+        if (!player) {
+            document.body.insertAdjacentHTML('beforeend', playerHTML);
+            player = document.getElementById('music-player');
+        }
 
         /* ── ELEMENTS ─────────────────────────────────────────── */
-        const player       = document.getElementById('music-player');
-        const miniWidget   = document.getElementById('playerMiniWidget');
-        const minimizeBtn  = document.getElementById('playerMinimizeBtn');
-        const disc         = document.getElementById('playerDisc');
-        const miniDisc     = document.getElementById('miniDisc');
-        const titleEl      = document.getElementById('playerTitle');
-        const artistEl     = document.getElementById('playerArtist');
-        const playPauseBtn = document.getElementById('playerPlayPause');
-        const playIcon     = document.getElementById('playIcon');
-        const prevBtn      = document.getElementById('playerPrev');
-        const nextBtn      = document.getElementById('playerNext');
-        const progressFill = document.getElementById('playerProgressFill');
-        const progressBar  = document.getElementById('playerProgressBar');
+        const miniWidget    = document.getElementById('playerMiniWidget');
+        const minimizeBtn   = document.getElementById('playerMinimizeBtn');
+        const disc          = document.getElementById('playerDisc');
+        const miniDisc      = document.getElementById('miniDisc');
+        const titleEl       = document.getElementById('playerTitle');
+        const artistEl      = document.getElementById('playerArtist');
+        const playPauseBtn  = document.getElementById('playerPlayPause');
+        const playIcon      = document.getElementById('playIcon');
+        const prevBtn       = document.getElementById('playerPrev');
+        const nextBtn       = document.getElementById('playerNext');
+        const progressFill  = document.getElementById('playerProgressFill');
+        const progressBar   = document.getElementById('playerProgressBar');
         const currentTimeEl = document.getElementById('playerCurrentTime');
         const durationEl    = document.getElementById('playerDuration');
+        const navMusicBtn   = document.getElementById('navMusicBtn');
+        const navMusicIcon  = document.getElementById('navMusicIcon');
 
         /* ── MINIMIZE / EXPAND TOGGLE ─────────────────────────── */
-        minimizeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            player.classList.add('minimized');
-        });
+        if (minimizeBtn && player) {
+            minimizeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                player.classList.add('minimized');
+            });
+        }
 
-        miniWidget.addEventListener('click', () => {
-            player.classList.remove('minimized');
-        });
+        if (miniWidget && player) {
+            miniWidget.addEventListener('click', () => {
+                player.classList.remove('minimized');
+            });
+        }
 
         /* ── AUDIO STATE ──────────────────────────────────────── */
         let currentIndex = 0;
         let isPlaying    = false;
-        const audio      = new Audio();
+        const audio      = document.getElementById('musicAudio') || new Audio();
         audio.volume     = 0.55;
         audio.preload    = 'metadata';
 
@@ -164,7 +171,7 @@
         /* ── PLAYING / PAUSED STATES ──────────────────────────── */
         function setPlaying() {
             isPlaying = true;
-            player.classList.add('playing');
+            if (player) player.classList.add('playing');
             if (disc) {
                 disc.classList.remove('paused');
                 disc.classList.add('spinning');
@@ -174,11 +181,19 @@
                 miniDisc.classList.add('spinning');
             }
             if (playIcon) playIcon.className = 'bx bx-pause';
+            if (navMusicBtn) {
+                navMusicBtn.classList.add('playing');
+                navMusicBtn.setAttribute('title', 'Jeda Musik');
+                navMusicBtn.setAttribute('aria-label', 'Jeda Musik');
+            }
+            if (navMusicIcon) {
+                navMusicIcon.className = 'bx bxs-music';
+            }
         }
 
         function setPaused() {
             isPlaying = false;
-            player.classList.remove('playing');
+            if (player) player.classList.remove('playing');
             if (disc) {
                 disc.classList.remove('spinning');
                 disc.classList.add('paused');
@@ -188,6 +203,26 @@
                 miniDisc.classList.add('paused');
             }
             if (playIcon) playIcon.className = 'bx bx-play';
+            if (navMusicBtn) {
+                navMusicBtn.classList.remove('playing');
+                navMusicBtn.setAttribute('title', 'Putar Musik');
+                navMusicBtn.setAttribute('aria-label', 'Putar Musik');
+            }
+            if (navMusicIcon) {
+                navMusicIcon.className = 'bx bx-music';
+            }
+        }
+
+        /* ── TOGGLE PLAY / PAUSE HELPER ───────────────────────── */
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play().then(setPlaying).catch((err) => {
+                    console.warn("Playback failed:", err);
+                    setPaused();
+                });
+            }
         }
 
         /* ── LOAD TRACK ───────────────────────────────────────── */
@@ -231,35 +266,43 @@
         });
 
         /* ── CONTROLS ─────────────────────────────────────────── */
-        playPauseBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isPlaying) {
-                audio.pause();
-            } else {
-                audio.play().then(setPlaying).catch((err) => {
-                    console.warn("Playback failed:", err);
-                    setPaused();
-                });
-            }
-        });
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlayPause();
+            });
+        }
 
-        prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            loadTrack(currentIndex - 1, isPlaying);
-        });
+        if (navMusicBtn) {
+            navMusicBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlayPause();
+            });
+        }
 
-        nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            loadTrack(currentIndex + 1, isPlaying);
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                loadTrack(currentIndex - 1, isPlaying);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                loadTrack(currentIndex + 1, isPlaying);
+            });
+        }
 
         /* Seek on progress bar click */
-        progressBar.addEventListener('click', (e) => {
-            if (!audio.duration || isNaN(audio.duration)) return;
-            const rect = progressBar.getBoundingClientRect();
-            const clickPosition = (e.clientX - rect.left) / rect.width;
-            audio.currentTime = Math.max(0, Math.min(1, clickPosition)) * audio.duration;
-        });
+        if (progressBar) {
+            progressBar.addEventListener('click', (e) => {
+                if (!audio.duration || isNaN(audio.duration)) return;
+                const rect = progressBar.getBoundingClientRect();
+                const clickPosition = (e.clientX - rect.left) / rect.width;
+                audio.currentTime = Math.max(0, Math.min(1, clickPosition)) * audio.duration;
+            });
+        }
 
         /* ── INIT (Load first track without autoplay) ─────────── */
         loadTrack(0, false);
