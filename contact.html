@@ -27,7 +27,7 @@
 
     <nav class="navbar" id="navbar">
         <a href="index.html" class="logo">
-            <span class="logo-bracket">&lt;</span>Garr.<span class="logo-bracket"> /&gt;</span>
+            <span class="logo-bracket">&lt; </span>Tegar.<span class="logo-bracket"> /&gt;</span>
         </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="nav-link">Home</a></li>
@@ -122,48 +122,38 @@
                         <form id="contactForm" novalidate>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="fullName">Nama Lengkap</label>
+                                    <label for="fullName">Nama Lengkap <span class="required-star">*</span></label>
                                     <div class="input-wrap">
                                         <i class='bx bxs-user'></i>
-                                        <input type="text" id="fullName" placeholder="Nama Anda" required />
+                                        <input type="text" id="fullName" name="fullName" placeholder="Nama Lengkap Anda" required autocomplete="name" />
                                     </div>
                                     <div class="field-error" id="fullNameError" aria-live="polite"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Alamat Email</label>
+                                    <label for="email">Alamat Email <span class="optional-label">(Opsional)</span></label>
                                     <div class="input-wrap">
                                         <i class='bx bxs-envelope'></i>
-                                        <input type="email" id="email" placeholder="email@gmail.com" required />
+                                        <input type="email" id="email" name="email" placeholder="nama@email.com" autocomplete="email" />
                                     </div>
                                     <div class="field-error" id="emailError" aria-live="polite"></div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="phone">Nomor HP / WhatsApp</label>
-                                    <div class="input-wrap">
-                                        <i class='bx bxs-phone'></i>
-                                        <input type="tel" id="phone" placeholder="0812xxxxxxxx" />
-                                    </div>
-                                    <div class="field-error" id="phoneError" aria-live="polite"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="subject">Subjek</label>
-                                    <div class="input-wrap">
-                                        <i class='bx bxs-message-detail'></i>
-                                        <input type="text" id="subject" placeholder="Kolaborasi Project" />
-                                    </div>
+                            <div class="form-group full-width">
+                                <label for="subject">Subjek</label>
+                                <div class="input-wrap">
+                                    <i class='bx bxs-message-detail'></i>
+                                    <input type="text" id="subject" name="subject" placeholder="Topik pesan (misal: Kolaborasi Project)" />
                                 </div>
                             </div>
-                            <div class="form-group full-width">
-                                <label for="message">Pesan</label>
+                            <div class="form-group full-width message-group">
+                                <label for="message">Isi Pesan <span class="required-star">*</span></label>
                                 <div class="input-wrap textarea-wrap">
                                     <i class='bx bxs-message-dots'></i>
-                                    <textarea id="message" placeholder="Tuliskan pesan atau ide project Anda..." rows="4" required></textarea>
+                                    <textarea id="message" name="message" placeholder="Tuliskan isi pesan atau detail ide proyek Anda di sini..." rows="4" required></textarea>
                                 </div>
                                 <div class="field-error" id="messageError" aria-live="polite"></div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                            <button type="submit" class="btn btn-submit" id="submitBtn">
                                 <i class='bx bxl-whatsapp'></i>
                                 <span>Kirim via WhatsApp</span>
                             </button>
@@ -193,14 +183,16 @@
     <script src="js/main.js"></script>
     <script src="js/music-player.js"></script>
     <script>
+        /* ===== CONTACT FORM HANDLER (WhatsApp Direct Link) ===== */
         const WA_NUMBER = "6281271447069";
-        document.getElementById("contactForm").addEventListener("submit", function(e) {
-            e.preventDefault();
+        const contactForm = document.getElementById("contactForm");
 
+        if (contactForm) {
             function clearErrors() {
                 document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
                 document.querySelectorAll('.input-wrap').forEach(w => w.classList.remove('has-error'));
             }
+
             function showError(fieldId, msg) {
                 const err = document.getElementById(fieldId + 'Error');
                 if (err) err.textContent = msg;
@@ -211,46 +203,80 @@
                 }
             }
 
-            clearErrors();
+            // Real-time error clearance when user interacts with inputs
+            contactForm.querySelectorAll('input, textarea').forEach(field => {
+                field.addEventListener('input', function() {
+                    const err = document.getElementById(this.id + 'Error');
+                    if (err) err.textContent = '';
+                    const wrap = this.closest('.input-wrap');
+                    if (wrap) wrap.classList.remove('has-error');
+                });
+            });
 
-            const name    = document.getElementById("fullName").value.trim();
-            const email   = document.getElementById("email").value.trim();
-            const phone   = document.getElementById("phone").value.trim();
-            const subject = document.getElementById("subject").value.trim();
-            const message = document.getElementById("message").value.trim();
+            contactForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                clearErrors();
 
-            let valid = true;
-            if (!name) { showError('fullName', 'Nama harus diisi'); valid = false; }
-            if (!email) { showError('email', 'Email harus diisi'); valid = false; }
-            else if (!/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Format email tidak valid'); valid = false; }
-            if (phone && !/^\d+$/.test(phone.replace(/\s+/g, ''))) { showError('phone', 'Nomor telepon harus angka saja'); valid = false; }
-            if (!message) { showError('message', 'Pesan tidak boleh kosong'); valid = false; }
+                const name    = document.getElementById("fullName").value.trim();
+                const email   = document.getElementById("email").value.trim();
+                const subject = document.getElementById("subject").value.trim();
+                const message = document.getElementById("message").value.trim();
 
-            if (!valid) {
-                const first = document.querySelector('.field-error:not(:empty)');
-                if (first) {
-                    const id = first.id.replace('Error', '');
-                    const el = document.getElementById(id);
-                    if (el) el.focus();
+                let isValid = true;
+
+                // Validasi Nama Lengkap (Wajib)
+                if (!name) {
+                    showError('fullName', 'Silakan masukkan nama lengkap Anda.');
+                    isValid = false;
                 }
-                return;
-            }
 
-            let waText = `Halo Habib! Saya ingin menghubungi Anda melalui portfolio website.\n\n`;
-            waText += `*Nama:* ${name}\n`;
-            waText += `*Email:* ${email}\n`;
-            if (phone)   waText += `*No. HP:* ${phone}\n`;
-            if (subject) waText += `*Subjek:* ${subject}\n`;
-            waText += `\n*Pesan:*\n${message}`;
+                // Validasi Email (Opsional, namun dicek format jika diisi)
+                if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+                    showError('email', 'Format alamat email tidak valid.');
+                    isValid = false;
+                }
 
-            const btn = document.getElementById("submitBtn");
-            btn.classList.add("loading");
-            setTimeout(() => {
-                window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`, "_blank");
-                btn.classList.remove("loading");
-                showToast('Pesan siap dikirim ke WhatsApp', 'success');
-            }, 400);
-        });
+                // Validasi Pesan (Wajib)
+                if (!message) {
+                    showError('message', 'Silakan tuliskan isi pesan Anda.');
+                    isValid = false;
+                }
+
+                // Jika validasi gagal, fokuskan ke input pertama yang bermasalah dan batalkan kirim
+                if (!isValid) {
+                    const firstError = document.querySelector('.input-wrap.has-error input, .input-wrap.has-error textarea');
+                    if (firstError) firstError.focus();
+                    return;
+                }
+
+                // Format pesan WhatsApp yang rapi dan elegan:
+                // Halo Tegar, saya [Nama] ([Email]).
+                // Subjek: [Subjek]
+                // Pesan: [Isi Pesan]
+                let intro = `Halo Tegar, saya ${name}`;
+                if (email) {
+                    intro += ` (${email})`;
+                }
+                intro += `.`;
+
+                const subjectText = subject ? `Subjek: ${subject}` : `Subjek: -`;
+                const waMessage = `${intro}\n${subjectText}\nPesan: ${message}`;
+
+                // Target URL WhatsApp
+                const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+
+                const btn = document.getElementById("submitBtn");
+                btn.classList.add("loading");
+
+                // Buka otomatis tab baru ke WhatsApp
+                window.open(waUrl, "_blank");
+
+                setTimeout(() => {
+                    btn.classList.remove("loading");
+                    showToast('Membuka WhatsApp...', 'success');
+                }, 400);
+            });
+        }
 
         function showToast(message, type = 'success', timeout = 4000) {
             const container = document.getElementById('toastContainer');

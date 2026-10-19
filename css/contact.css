@@ -18,20 +18,37 @@
     display: grid;
     grid-template-columns: 1fr 1.35fr;
     gap: clamp(2rem, 4vw, 3.5rem);
-    align-items: start;
+    align-items: stretch;
+}
+
+.contact-info-col,
+.contact-form-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 /* ===== INFO CARD (Left Column) ===== */
 .contact-info-card {
-    background: var(--surface);
+    background: rgba(16, 24, 39, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-lg);
     padding: clamp(1.75rem, 3vw, 2.25rem);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1.5rem;
+    height: 100%;
     box-shadow: var(--shadow-sm);
     transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+[data-theme="light"] .contact-info-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
 }
 
 .contact-card-title {
@@ -140,43 +157,78 @@ a.info-value:hover {
 
 /* ===== FORM CARD (Right Column) ===== */
 .contact-form-card {
-    background: var(--surface);
+    background: rgba(16, 24, 39, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-lg);
-    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    padding: clamp(1.75rem, 3vw, 2.25rem);
     box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+[data-theme="light"] .contact-form-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
 }
 
 .form-title {
     font-size: 1.35rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     transition: color var(--transition);
 }
 
+/* Jarak antar-baris input sekitar 14px - 16px */
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 15px;
 }
 
+/* Jarak teks label ke kotak input konsisten di 7px (rentang 6px - 8px) */
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 7px;
 }
 
 .form-group.full-width {
-    margin-bottom: 1rem;
+    margin-bottom: 15px;
+}
+
+/* Jarak dari textarea (Isi Pesan) ke tombol submit tepat 18px */
+.form-group.message-group,
+.form-group:has(#message) {
+    margin-bottom: 18px;
 }
 
 .form-group label {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 500;
     color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    line-height: 1.2;
     transition: color var(--transition);
+}
+
+.required-star {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.optional-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: normal;
+    margin-left: 4px;
 }
 
 /* Input wrap */
@@ -216,14 +268,28 @@ a.info-value:hover {
     transition: color var(--transition);
 }
 
+/* Soft Glowing Cyan Focus State */
 .input-wrap input:focus,
 .input-wrap textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-dim);
+    border-color: #00d2ff;
+    box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.18), 0 0 16px rgba(0, 210, 255, 0.22);
+    background: rgba(17, 26, 44, 0.95);
+    outline: none;
 }
 
 .input-wrap:focus-within > i {
-    color: var(--accent);
+    color: #00d2ff;
+}
+
+[data-theme="light"] .input-wrap input:focus,
+[data-theme="light"] .input-wrap textarea:focus {
+    border-color: #00b4d8;
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.16), 0 0 14px rgba(0, 180, 216, 0.18);
+    background: #ffffff;
+}
+
+[data-theme="light"] .input-wrap:focus-within > i {
+    color: #00b4d8;
 }
 
 /* Textarea */
@@ -245,27 +311,77 @@ a.info-value:hover {
 .input-wrap.has-error input,
 .input-wrap.has-error textarea {
     border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
+
+.input-wrap.has-error > i {
+    color: #ef4444;
 }
 
 .field-error {
     color: #ef4444;
     font-size: 0.75rem;
-    margin-top: 0.2rem;
     font-weight: 500;
+    line-height: 1.2;
 }
 
-/* Submit button */
+.field-error:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.field-error:not(:empty) {
+    display: block;
+    margin-top: 4px;
+}
+
+/* Submit button (WhatsApp Direct Action) */
 .btn-submit {
     width: 100%;
-    padding: 0.85rem;
-    font-size: 0.92rem;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
     border-radius: var(--radius-md);
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.28);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.25s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 0 16px rgba(37, 211, 102, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+}
+
+.btn-submit i.bxl-whatsapp {
+    font-size: 1.35rem;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-submit:hover i.bxl-whatsapp {
+    transform: scale(1.22) rotate(-8deg);
 }
 
 .btn-submit.loading {
-    opacity: 0.75;
+    opacity: 0.8;
     pointer-events: none;
+    cursor: wait;
 }
 
 /* Toast Notification */
@@ -317,6 +433,17 @@ a.info-value:hover {
 @media (max-width: 860px) {
     .contact-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-info-col,
+    .contact-form-col {
+        height: auto;
+    }
+
+    .contact-info-card,
+    .contact-form-card {
+        height: auto;
     }
 }
 

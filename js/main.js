@@ -23,8 +23,8 @@
 
         if (themeToggle) {
             const isLight = theme === 'light';
-            themeToggle.setAttribute('aria-label', isLight ? 'Ganti ke Dark Mode' : 'Ganti ke Light Mode');
-            themeToggle.setAttribute('title', isLight ? 'Ganti ke Dark Mode' : 'Ganti ke Light Mode');
+            themeToggle.setAttribute('aria-label', isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+            themeToggle.setAttribute('title', isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode');
         }
 
         if (animate) {
@@ -162,7 +162,7 @@
     const el = document.getElementById('typedText');
     if (!el) return;
 
-    const words   = ['Web Developer', 'PPLG Student', 'Frontend Enthusiast', 'Laravel Learner'];
+    const words   = ['Laravel Developer', 'Web Developer', 'Frontend Enthusiast', 'PPLG Student'];
     let wi        = 0;
     let ci        = 0;
     let deleting  = false;
@@ -262,4 +262,29 @@
     }, { threshold: 0.5 });
 
     counters.forEach(el => observer.observe(el));
+})();
+
+/* =============================
+   6. SKILLS MARQUEE (Ultra-wide screen seamless loop helper)
+   ============================= */
+(function initSkillsMarquee() {
+    const rows = document.querySelectorAll('.skills-marquee-row');
+    if (!rows.length) return;
+
+    // Duplikasi otomatis jika layar sangat lebar (>2200px) agar marquee tidak memiliki celah kosong
+    function ensureWideScreenCoverage() {
+        if (window.innerWidth > 2200) {
+            rows.forEach(row => {
+                const groups = row.querySelectorAll('.skills-marquee-group');
+                if (groups.length < 3) {
+                    const clone = groups[0].cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    row.appendChild(clone);
+                }
+            });
+        }
+    }
+
+    ensureWideScreenCoverage();
+    window.addEventListener('resize', ensureWideScreenCoverage, { passive: true });
 })();

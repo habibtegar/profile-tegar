@@ -26,7 +26,7 @@
 
     <nav class="navbar" id="navbar">
         <a href="index.html" class="logo">
-            <span class="logo-bracket">&lt;</span>Garr.<span class="logo-bracket"> /&gt;</span>
+            <span class="logo-bracket">&lt; </span>Tegar.<span class="logo-bracket"> /&gt;</span>
         </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="nav-link">Home</a></li>
@@ -58,116 +58,409 @@
             <div class="section-header" data-aos="fade-up">
                 <span class="section-tag">// 02. SKILLS</span>
                 <h1 class="section-title">Technical <span class="accent-text">Skills</span></h1>
-                <p class="section-subtitle">Teknologi dan tools yang saya gunakan dalam pengembangan aplikasi web.</p>
+                <p class="section-subtitle">Teknologi dan tools yang saya gunakan dalam pengembangan aplikasi web modern.</p>
+            </div>
+        </div>
+
+        <!-- Infinite Auto-Scroll Carousel (Marquee 2 Baris) -->
+        <div class="skills-marquee-wrapper" data-aos="fade-up">
+            <!-- Baris 1: Smooth Continuous Scroll ke KANAN -->
+            <div class="skills-marquee-row marquee-row-right">
+                <div class="skills-marquee-group">
+                    <!-- 1. HTML5 -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-html">
+                                <i class='bx bxl-html5'></i>
+                            </div>
+                            <span class="skill-category">Core</span>
+                        </div>
+                        <h3 class="skill-name">HTML5</h3>
+                        <p class="skill-desc">Semantic markup, struktur web terstandarisasi, aksesibilitas (a11y), dan kaidah SEO friendly.</p>
+                    </div>
+
+                    <!-- 2. CSS3 -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-css">
+                                <i class='bx bxl-css3'></i>
+                            </div>
+                            <span class="skill-category">Styling</span>
+                        </div>
+                        <h3 class="skill-name">CSS3</h3>
+                        <p class="skill-desc">Modern Flexbox, CSS Grid, Custom Properties (Variables), dan animasi transisi halus.</p>
+                    </div>
+
+                    <!-- 3. JavaScript -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-js">
+                                <i class='bx bxl-javascript'></i>
+                            </div>
+                            <span class="skill-category">Language</span>
+                        </div>
+                        <h3 class="skill-name">JavaScript (ES6+)</h3>
+                        <p class="skill-desc">DOM manipulation dinamis, async/await, Fetch API, modular code, dan interaktivitas modern.</p>
+                    </div>
+
+                    <!-- 4. React & Vite -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-react">
+                                <i class='bx bxl-react'></i>
+                            </div>
+                            <span class="skill-category">Frontend</span>
+                        </div>
+                        <h3 class="skill-name">React &amp; Vite</h3>
+                        <p class="skill-desc">Komponen modular reusable, hooks, state management, dan modern build tool Vite yang cepat.</p>
+                    </div>
+
+                    <!-- 5. Tailwind CSS -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-tailwind">
+                                <i class='bx bxl-tailwind-css'></i>
+                            </div>
+                            <span class="skill-category">Styling</span>
+                        </div>
+                        <h3 class="skill-name">Tailwind CSS</h3>
+                        <p class="skill-desc">Utility-first CSS framework untuk styling cepat, responsif, dan konsistensi desain yang fleksibel.</p>
+                    </div>
+
+                    <!-- 6. TypeScript -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-typescript">
+                                <i class='bx bxl-typescript'></i>
+                            </div>
+                            <span class="skill-category">Language</span>
+                        </div>
+                        <h3 class="skill-name">TypeScript</h3>
+                        <p class="skill-desc">Static typing untuk JavaScript, meningkatkan maintainability kode, dan pencegahan runtime bug.</p>
+                    </div>
+
+                    <!-- 7. Next.js -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-nextjs">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.665 21.978C16.71 23.275 14.417 24 12 24 5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12c0 3.197-1.254 6.1-3.3 8.243l-8.91-11.455H9.6v10.424h2.19V11.23l6.875 10.748zm-1.875-10.748h2.19v6.574l-2.19-3.418V11.23z"/></svg>
+                            </div>
+                            <span class="skill-category">Framework</span>
+                        </div>
+                        <h3 class="skill-name">Next.js</h3>
+                        <p class="skill-desc">React framework untuk Server-Side Rendering (SSR), SSG, routing dinamis, dan optimasi performa SEO.</p>
+                    </div>
+
+                    <!-- 8. Bootstrap -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-bootstrap">
+                                <i class='bx bxl-bootstrap'></i>
+                            </div>
+                            <span class="skill-category">Styling</span>
+                        </div>
+                        <h3 class="skill-name">Bootstrap</h3>
+                        <p class="skill-desc">Rapid prototyping antarmuka responsif, mobile-first grid system, dan komponen UI siap pakai.</p>
+                    </div>
+                </div>
+
+                <!-- Duplicate Group untuk Seamless Infinite Loop -->
+                <div class="skills-marquee-group" aria-hidden="true">
+                    <!-- 1. HTML5 -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-html">
+                                <i class='bx bxl-html5'></i>
+                            </div>
+                            <span class="skill-category">Core</span>
+                        </div>
+                        <h3 class="skill-name">HTML5</h3>
+                        <p class="skill-desc">Semantic markup, struktur web terstandarisasi, aksesibilitas (a11y), dan kaidah SEO friendly.</p>
+                    </div>
+
+                    <!-- 2. CSS3 -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-css">
+                                <i class='bx bxl-css3'></i>
+                            </div>
+                            <span class="skill-category">Styling</span>
+                        </div>
+                        <h3 class="skill-name">CSS3</h3>
+                        <p class="skill-desc">Modern Flexbox, CSS Grid, Custom Properties (Variables), dan animasi transisi halus.</p>
+                    </div>
+
+                    <!-- 3. JavaScript -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-js">
+                                <i class='bx bxl-javascript'></i>
+                            </div>
+                            <span class="skill-category">Language</span>
+                        </div>
+                        <h3 class="skill-name">JavaScript (ES6+)</h3>
+                        <p class="skill-desc">DOM manipulation dinamis, async/await, Fetch API, modular code, dan interaktivitas modern.</p>
+                    </div>
+
+                    <!-- 4. React & Vite -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-react">
+                                <i class='bx bxl-react'></i>
+                            </div>
+                            <span class="skill-category">Frontend</span>
+                        </div>
+                        <h3 class="skill-name">React &amp; Vite</h3>
+                        <p class="skill-desc">Komponen modular reusable, hooks, state management, dan modern build tool Vite yang cepat.</p>
+                    </div>
+
+                    <!-- 5. Tailwind CSS -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-tailwind">
+                                <i class='bx bxl-tailwind-css'></i>
+                            </div>
+                            <span class="skill-category">Styling</span>
+                        </div>
+                        <h3 class="skill-name">Tailwind CSS</h3>
+                        <p class="skill-desc">Utility-first CSS framework untuk styling cepat, responsif, dan konsistensi desain yang fleksibel.</p>
+                    </div>
+
+                    <!-- 6. TypeScript -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-typescript">
+                                <i class='bx bxl-typescript'></i>
+                            </div>
+                            <span class="skill-category">Language</span>
+                        </div>
+                        <h3 class="skill-name">TypeScript</h3>
+                        <p class="skill-desc">Static typing untuk JavaScript, meningkatkan maintainability kode, dan pencegahan runtime bug.</p>
+                    </div>
+
+                    <!-- 7. Next.js -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-nextjs">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.665 21.978C16.71 23.275 14.417 24 12 24 5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12c0 3.197-1.254 6.1-3.3 8.243l-8.91-11.455H9.6v10.424h2.19V11.23l6.875 10.748zm-1.875-10.748h2.19v6.574l-2.19-3.418V11.23z"/></svg>
+                            </div>
+                            <span class="skill-category">Framework</span>
+                        </div>
+                        <h3 class="skill-name">Next.js</h3>
+                        <p class="skill-desc">React framework untuk Server-Side Rendering (SSR), SSG, routing dinamis, dan optimasi performa SEO.</p>
+                    </div>
+
+                    <!-- 8. Bootstrap -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-bootstrap">
+                                <i class='bx bxl-bootstrap'></i>
+                            </div>
+                            <span class="skill-category">Styling</span>
+                        </div>
+                        <h3 class="skill-name">Bootstrap</h3>
+                        <p class="skill-desc">Rapid prototyping antarmuka responsif, mobile-first grid system, dan komponen UI siap pakai.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="skills-grid" data-aos="fade-up">
-                <!-- Skill 1: HTML5 -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-html">
-                            <i class='bx bxl-html5'></i>
+            <!-- Baris 2: Smooth Continuous Scroll ke KIRI -->
+            <div class="skills-marquee-row marquee-row-left">
+                <div class="skills-marquee-group">
+                    <!-- 1. PHP -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-php">
+                                <i class='bx bxl-php'></i>
+                            </div>
+                            <span class="skill-category">Backend</span>
                         </div>
-                        <span class="skill-category">Core</span>
+                        <h3 class="skill-name">PHP</h3>
+                        <p class="skill-desc">Dasar pemrograman backend, pengolahan form data, penanganan session, dan logika sisi server.</p>
                     </div>
-                    <h3 class="skill-name">HTML5</h3>
-                    <p class="skill-desc">Semantic markup, struktur halaman yang rapi, aksesibilitas web, dan kaidah SEO friendly.</p>
+
+                    <!-- 2. Laravel -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-laravel">
+                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg>
+                            </div>
+                            <span class="skill-category">Framework</span>
+                        </div>
+                        <h3 class="skill-name">Laravel</h3>
+                        <p class="skill-desc">Pola arsitektur MVC, routing elegan, Eloquent ORM efisien, Blade templating, dan REST API.</p>
+                    </div>
+
+                    <!-- 3. MySQL -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-mysql">
+                                <i class='bx bx-data'></i>
+                            </div>
+                            <span class="skill-category">Database</span>
+                        </div>
+                        <h3 class="skill-name">MySQL</h3>
+                        <p class="skill-desc">Desain skema tabel relasional (RDBMS), optimasi query SQL CRUD, indexing, dan integritas data.</p>
+                    </div>
+
+                    <!-- 4. PostgreSQL -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-postgres">
+                                <i class='bx bxl-postgresql'></i>
+                            </div>
+                            <span class="skill-category">Database</span>
+                        </div>
+                        <h3 class="skill-name">PostgreSQL</h3>
+                        <p class="skill-desc">Database relasional tangguh untuk query kompleks, JSON indexing, konkurensi, dan keandalan data tinggi.</p>
+                    </div>
+
+                    <!-- 5. Git & GitHub -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-git">
+                                <i class='bx bxl-git'></i>
+                            </div>
+                            <span class="skill-category">Tools</span>
+                        </div>
+                        <h3 class="skill-name">Git &amp; GitHub</h3>
+                        <p class="skill-desc">Version control, manajemen repositori, branch workflow, collaboration pull request, dan CI/CD.</p>
+                    </div>
+
+                    <!-- 6. RESTful API -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-api">
+                                <i class='bx bx-transfer-alt'></i>
+                            </div>
+                            <span class="skill-category">Backend</span>
+                        </div>
+                        <h3 class="skill-name">RESTful API</h3>
+                        <p class="skill-desc">Perancangan endpoint HTTP RESTful, standardisasi payload JSON, autentikasi Bearer/JWT, dan integrasi API.</p>
+                    </div>
+
+                    <!-- 7. Node.js / Express -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-node">
+                                <i class='bx bxl-nodejs'></i>
+                            </div>
+                            <span class="skill-category">Backend</span>
+                        </div>
+                        <h3 class="skill-name">Node.js / Express</h3>
+                        <p class="skill-desc">Runtime JavaScript sisi server yang cepat, asynchronous non-blocking I/O, dan backend web services.</p>
+                    </div>
+
+                    <!-- 8. Figma (UI/UX) -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-figma">
+                                <i class='bx bxl-figma'></i>
+                            </div>
+                            <span class="skill-category">UI / UX</span>
+                        </div>
+                        <h3 class="skill-name">Figma (UI/UX)</h3>
+                        <p class="skill-desc">Perancangan wireframe, prototyping interaktif, implementasi UI design system, dan user experience modern.</p>
+                    </div>
                 </div>
 
-                <!-- Skill 2: CSS3 -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-css">
-                            <i class='bx bxl-css3'></i>
+                <!-- Duplicate Group untuk Seamless Infinite Loop -->
+                <div class="skills-marquee-group" aria-hidden="true">
+                    <!-- 1. PHP -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-php">
+                                <i class='bx bxl-php'></i>
+                            </div>
+                            <span class="skill-category">Backend</span>
                         </div>
-                        <span class="skill-category">Styling</span>
+                        <h3 class="skill-name">PHP</h3>
+                        <p class="skill-desc">Dasar pemrograman backend, pengolahan form data, penanganan session, dan logika sisi server.</p>
                     </div>
-                    <h3 class="skill-name">CSS3</h3>
-                    <p class="skill-desc">Flexbox, CSS Grid, Custom Properties (Variables), transisi halus, dan tata letak modern.</p>
-                </div>
 
-                <!-- Skill 3: JavaScript -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-js">
-                            <i class='bx bxl-javascript'></i>
+                    <!-- 2. Laravel -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-laravel">
+                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg>
+                            </div>
+                            <span class="skill-category">Framework</span>
                         </div>
-                        <span class="skill-category">Language</span>
+                        <h3 class="skill-name">Laravel</h3>
+                        <p class="skill-desc">Pola arsitektur MVC, routing elegan, Eloquent ORM efisien, Blade templating, dan REST API.</p>
                     </div>
-                    <h3 class="skill-name">JavaScript (ES6+)</h3>
-                    <p class="skill-desc">DOM manipulation, event handling, asynchronous programming (Fetch API/Promises), dan interaktivitas.</p>
-                </div>
 
-                <!-- Skill 4: React -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-react">
-                            <i class='bx bxl-react'></i>
+                    <!-- 3. MySQL -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-mysql">
+                                <i class='bx bx-data'></i>
+                            </div>
+                            <span class="skill-category">Database</span>
                         </div>
-                        <span class="skill-category">Frontend</span>
+                        <h3 class="skill-name">MySQL</h3>
+                        <p class="skill-desc">Desain skema tabel relasional (RDBMS), optimasi query SQL CRUD, indexing, dan integritas data.</p>
                     </div>
-                    <h3 class="skill-name">React &amp; Vite</h3>
-                    <p class="skill-desc">Komponen berbasis React, state management sederhana, hooks, dan modern build tool Vite.</p>
-                </div>
 
-                <!-- Skill 5: PHP -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-php">
-                            <i class='bx bxl-php'></i>
+                    <!-- 4. PostgreSQL -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-postgres">
+                                <i class='bx bxl-postgresql'></i>
+                            </div>
+                            <span class="skill-category">Database</span>
                         </div>
-                        <span class="skill-category">Backend</span>
+                        <h3 class="skill-name">PostgreSQL</h3>
+                        <p class="skill-desc">Database relasional tangguh untuk query kompleks, JSON indexing, konkurensi, dan keandalan data tinggi.</p>
                     </div>
-                    <h3 class="skill-name">PHP</h3>
-                    <p class="skill-desc">Dasar pemrograman backend, pengolahan form data, penanganan session, dan logika server.</p>
-                </div>
 
-                <!-- Skill 6: Laravel -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-laravel">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg>
+                    <!-- 5. Git & GitHub -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-git">
+                                <i class='bx bxl-git'></i>
+                            </div>
+                            <span class="skill-category">Tools</span>
                         </div>
-                        <span class="skill-category">Framework</span>
+                        <h3 class="skill-name">Git &amp; GitHub</h3>
+                        <p class="skill-desc">Version control, manajemen repositori, branch workflow, collaboration pull request, dan CI/CD.</p>
                     </div>
-                    <h3 class="skill-name">Laravel</h3>
-                    <p class="skill-desc">Pola arsitektur MVC, routing, Blade templating, dan pengelolaan database menggunakan Eloquent ORM.</p>
-                </div>
 
-                <!-- Skill 7: MySQL -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-mysql">
-                            <i class='bx bx-data'></i>
+                    <!-- 6. RESTful API -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-api">
+                                <i class='bx bx-transfer-alt'></i>
+                            </div>
+                            <span class="skill-category">Backend</span>
                         </div>
-                        <span class="skill-category">Database</span>
+                        <h3 class="skill-name">RESTful API</h3>
+                        <p class="skill-desc">Perancangan endpoint HTTP RESTful, standardisasi payload JSON, autentikasi Bearer/JWT, dan integrasi API.</p>
                     </div>
-                    <h3 class="skill-name">MySQL</h3>
-                    <p class="skill-desc">Desain skema tabel relasional, query SQL (CRUD), integrasi database pada backend web.</p>
-                </div>
 
-                <!-- Skill 8: Git & GitHub -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-git">
-                            <i class='bx bxl-git'></i>
+                    <!-- 7. Node.js / Express -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-node">
+                                <i class='bx bxl-nodejs'></i>
+                            </div>
+                            <span class="skill-category">Backend</span>
                         </div>
-                        <span class="skill-category">Tools</span>
+                        <h3 class="skill-name">Node.js / Express</h3>
+                        <p class="skill-desc">Runtime JavaScript sisi server yang cepat, asynchronous non-blocking I/O, dan backend web services.</p>
                     </div>
-                    <h3 class="skill-name">Git &amp; GitHub</h3>
-                    <p class="skill-desc">Version control, commit history, branch workflow, repository management, dan deployment.</p>
-                </div>
 
-                <!-- Skill 9: Responsive Design -->
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <div class="skill-icon-wrap skill-icon-resp">
-                            <i class='bx bx-mobile-alt'></i>
+                    <!-- 8. Figma (UI/UX) -->
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap skill-icon-figma">
+                                <i class='bx bxl-figma'></i>
+                            </div>
+                            <span class="skill-category">UI / UX</span>
                         </div>
-                        <span class="skill-category">UI / UX</span>
+                        <h3 class="skill-name">Figma (UI/UX)</h3>
+                        <p class="skill-desc">Perancangan wireframe, prototyping interaktif, implementasi UI design system, dan user experience modern.</p>
                     </div>
-                    <h3 class="skill-name">Responsive Design</h3>
-                    <p class="skill-desc">Mobile-first approach, adaptasi multi-layar desktop, tablet, dan smartphone secara optimal.</p>
                 </div>
             </div>
         </div>

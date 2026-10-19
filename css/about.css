@@ -211,42 +211,83 @@ a.detail-value:hover {
     color: var(--cyan);
 }
 
-/* Skill Pills */
+/* Skill Pills (Dark Glassmorphism Tech Stack Badges) */
 .skills-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-bottom: 1.75rem;
+    gap: 0.55rem 0.65rem;
+    margin-bottom: 1.85rem;
+    align-items: center;
 }
 
 .skill-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.35rem 0.85rem;
+    gap: 0.48rem;
+    padding: 0.38rem 0.85rem;
     border-radius: var(--radius-full);
-    background: var(--bg-alt);
+    background: rgba(16, 24, 39, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--surface-border);
     font-size: 0.82rem;
     font-weight: 500;
     color: var(--text-light);
-    transition: border-color var(--transition), color var(--transition), box-shadow var(--transition);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    user-select: none;
+    transition: transform var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 .skill-pill:hover {
+    transform: translateY(-2px);
     border-color: var(--cyan);
-    color: var(--cyan);
-    box-shadow: var(--shadow-cyan);
+    color: var(--text-primary);
+    background: rgba(0, 240, 255, 0.08);
+    box-shadow: 0 4px 14px rgba(0, 240, 255, 0.18);
 }
 
 .skill-pill i,
 .skill-pill svg {
-    font-size: 0.95rem;
-    width: 0.95rem;
-    height: 0.95rem;
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
     fill: currentColor;
     display: inline-block;
     vertical-align: middle;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.skill-pill:hover i,
+.skill-pill:hover svg {
+    transform: scale(1.15);
+}
+
+/* Authentic Tech Colors */
+.skill-pill-html i       { color: #f97316; }
+.skill-pill-css i        { color: #38bdf8; }
+.skill-pill-js i         { color: #facc15; }
+.skill-pill-react i      { color: #00d8ff; }
+.skill-pill-vite svg     { color: #a855f7; }
+.skill-pill-bootstrap i  { color: #a855f7; }
+.skill-pill-tailwind i   { color: #38bdf8; }
+.skill-pill-php i        { color: #a78bfa; }
+.skill-pill-laravel svg  { color: #f43f5e; }
+.skill-pill-mysql i      { color: #0284c7; }
+.skill-pill-git i        { color: #fb923c; }
+.skill-pill-figma i      { color: #ec4899; }
+
+/* Light Mode Overrides */
+[data-theme="light"] .skill-pill {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="light"] .skill-pill:hover {
+    background: rgba(2, 132, 199, 0.08);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
 }
 
 /* Actions */
