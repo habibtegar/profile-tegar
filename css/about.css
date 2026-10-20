@@ -118,19 +118,37 @@
     transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
+/* About Role Tag — Cyberpunk Parallelogram Badge */
 .about-role-tag {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--cyan);
-    background: var(--cyan-dim);
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--surface-border-hover);
-    margin-bottom: 0.85rem;
-    transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+    background: rgba(0, 240, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.35rem 1rem;
+    transform: skewX(-15deg);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.08), inset 0 0 10px rgba(0, 240, 255, 0.04);
+    margin-bottom: 0.95rem;
+    transition: all var(--transition);
+}
+
+.about-role-tag:hover {
+    background: rgba(0, 240, 255, 0.14);
+    border-color: rgba(0, 240, 255, 0.6);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 12px rgba(0, 240, 255, 0.08);
+}
+
+/* Counter-skew teks & ikon agar tetap tegak lurus (tidak miring) */
+.about-role-tag i,
+.about-role-tag span {
+    display: inline-block;
+    transform: skewX(15deg);
 }
 
 .about-heading {
@@ -278,6 +296,18 @@ a.detail-value:hover {
 .skill-pill-figma i      { color: #ec4899; }
 
 /* Light Mode Overrides */
+[data-theme="light"] .about-role-tag {
+    background: rgba(2, 132, 199, 0.08);
+    border-color: rgba(2, 132, 199, 0.3);
+    color: #0284c7;
+    box-shadow: none;
+}
+
+[data-theme="light"] .about-role-tag:hover {
+    background: rgba(2, 132, 199, 0.14);
+    border-color: rgba(2, 132, 199, 0.5);
+}
+
 [data-theme="light"] .skill-pill {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);

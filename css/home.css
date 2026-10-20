@@ -31,29 +31,44 @@
     min-width: 0;
 }
 
-/* Status Badge */
+/* Status Badge — Cyberpunk Parallelogram Glassmorphism */
 .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.38rem 0.95rem;
-    border-radius: var(--radius-full);
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
+    gap: 0.6rem;
+    padding: 0.42rem 1.15rem;
+    transform: skewX(-15deg);
+    border-radius: 4px;
+    background: rgba(16, 24, 39, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.25);
     font-size: 0.82rem;
     font-weight: 500;
     color: var(--text-light);
     margin-bottom: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    transition: background-color var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.04);
+    transition: all var(--transition);
+}
+
+.hero-badge:hover {
+    border-color: rgba(0, 240, 255, 0.45);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15), inset 0 0 12px rgba(0, 240, 255, 0.08);
+}
+
+/* Counter-skew inner elements so text & dot remain upright */
+.hero-badge > * {
+    display: inline-block;
+    transform: skewX(15deg);
 }
 
 .badge-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: var(--success);
-    box-shadow: 0 0 10px var(--success);
+    background: var(--cyan);
+    opacity: 0.8;
+    box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
     flex-shrink: 0;
     transition: background-color var(--transition), box-shadow var(--transition);
 }
@@ -111,6 +126,23 @@
     margin-bottom: 2.25rem;
     max-width: 530px;
     transition: color var(--transition);
+}
+
+[data-theme="light"] .hero-badge {
+    background: rgba(241, 245, 249, 0.85);
+    border-color: rgba(2, 132, 199, 0.3);
+    color: #1e293b;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .hero-badge:hover {
+    border-color: rgba(2, 132, 199, 0.6);
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15);
+}
+
+[data-theme="light"] .badge-dot {
+    background: #0284c7;
+    box-shadow: 0 0 6px rgba(2, 132, 199, 0.5);
 }
 
 [data-theme="light"] .hero-desc {
