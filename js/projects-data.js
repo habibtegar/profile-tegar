@@ -13,7 +13,7 @@ const projectsData = [
     demoLink: "https://simas-smkn1ciomas.vercel.app/",
     githubLink: "https://github.com/habibtegar/simas-react",
     imageUrl: "img/simas.app.png",
-    addressUrl: "simas.app",
+    addressUrl: "simas-smkn1ciomas.vercel.app",
     featured: true,
     order: 1
   },
@@ -25,8 +25,8 @@ const projectsData = [
     techStack: ["React", "Vite", "TMDB API", "Tailwind CSS"],
     demoLink: "https://cineva-movie.vercel.app/",
     githubLink: "https://github.com/habibtegar/Cineva",
-    imageUrl: "img/cineva1.png",
-    addressUrl: "cineva-movie.app",
+    imageUrl: "img/cinevanew.png",
+    addressUrl: "cineva-movie.vercel.app",
     featured: true,
     order: 2
   },
