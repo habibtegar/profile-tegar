@@ -288,3 +288,40 @@
     ensureWideScreenCoverage();
     window.addEventListener('resize', ensureWideScreenCoverage, { passive: true });
 })();
+
+/* =============================
+   7. PRELOADER / SYSTEM INITIALIZATION
+   ============================= */
+(function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
+    let hasLoaded = false;
+
+    function dismissPreloader() {
+        if (hasLoaded) return;
+        hasLoaded = true;
+
+        // Jeda transisi 500ms setelah seluruh aset termuat
+        setTimeout(() => {
+            preloader.classList.add('loaded');
+
+            // Bersihkan elemen dari DOM setelah fade out selesai
+            setTimeout(() => {
+                if (preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+            }, 650);
+        }, 500);
+    }
+
+    if (document.readyState === 'complete') {
+        dismissPreloader();
+    } else {
+        window.addEventListener('load', dismissPreloader);
+    }
+
+    // Safety fallback timeout (maksimal 4 detik) jika aset eksternal lambat
+    setTimeout(dismissPreloader, 4000);
+})();
+

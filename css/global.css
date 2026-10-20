@@ -829,3 +829,123 @@ h1, h2, h3, h4, h5, h6 {
         transform: translateX(18px) scale(0.92);
     }
 }
+
+/* ============================================
+   PRELOADER / LOADING SCREEN
+   ============================================ */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0b0f17;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Modern Tech Concentric Spinner */
+.tech-spinner {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Outer neon cyan ring */
+.spinner-ring.outer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #00f2fe;
+    border-right-color: #00f2fe;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.35);
+    animation: techSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+/* Inner reverse ring */
+.spinner-ring.inner {
+    position: absolute;
+    inset: 9px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-bottom-color: rgba(0, 242, 254, 0.85);
+    border-left-color: rgba(0, 242, 254, 0.35);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+    animation: techSpinReverse 0.9s linear infinite;
+}
+
+/* Center glowing core */
+.spinner-core {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00f2fe;
+    box-shadow: 0 0 12px #00f2fe, 0 0 20px rgba(0, 242, 254, 0.8);
+    animation: corePulse 1.4s ease-in-out infinite;
+}
+
+/* Developer Monospace Text */
+.preloader-text {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: #00f2fe;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+    margin: 0;
+}
+
+.cursor-blink {
+    animation: cursorFade 1s step-end infinite;
+}
+
+/* Keyframe Animations */
+@keyframes techSpin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes techSpinReverse {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes corePulse {
+    0%, 100% {
+        transform: scale(0.85);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+        box-shadow: 0 0 16px #00f2fe, 0 0 24px rgba(0, 242, 254, 0.9);
+    }
+}
+
+@keyframes cursorFade {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
