@@ -33,15 +33,76 @@
     </script>
 </head>
 <body>
-    <!-- ===== PRELOADER / LOADING SCREEN ===== -->
+    <!-- ===== PRELOADER / CYBERNETIC INITIALIZATION ===== -->
     <div id="preloader" class="preloader">
-        <div class="preloader-content">
-            <div class="tech-spinner">
-                <div class="spinner-ring outer"></div>
-                <div class="spinner-ring inner"></div>
-                <div class="spinner-core"></div>
+        <!-- 1. Background Digital Grid & Ambient Radial Glow -->
+        <div class="preloader-bg-grid"></div>
+        <div class="preloader-ambient-glow"></div>
+
+        <!-- 2. Center Cyber-Reticle / Radar Rings -->
+        <div class="preloader-reticle" aria-hidden="true">
+            <div class="reticle-ring outer-ring"></div>
+            <div class="reticle-ring inner-ring"></div>
+            <div class="reticle-cross-h"></div>
+            <div class="reticle-cross-v"></div>
+        </div>
+
+        <!-- 3. Left & Right Flank Data Streams -->
+        <div class="preloader-flank flank-left" aria-hidden="true">
+            <div class="flank-line"></div>
+            <div class="flank-dot"></div>
+            <div class="flank-meta">
+                <span>SYS_BOOT // v2.6</span>
+                <span>NODE_01: ONLINE</span>
+                <span>DATA_SYNC: ACTIVE</span>
             </div>
-            <p class="preloader-text">INITIALIZING SYSTEM<span class="cursor-blink">...</span></p>
+        </div>
+
+        <div class="preloader-flank flank-right" aria-hidden="true">
+            <div class="flank-line"></div>
+            <div class="flank-dot"></div>
+            <div class="flank-meta">
+                <span>LAT: 12ms // ENC</span>
+                <span>0x7FA9 [SECURE]</span>
+                <span>SYS_CORE: OPTIMAL</span>
+            </div>
+        </div>
+
+        <!-- 4. Floating Ambient Particles in Center -->
+        <div class="preloader-particles" aria-hidden="true">
+            <span class="particle p1"></span>
+            <span class="particle p2"></span>
+            <span class="particle p3"></span>
+            <span class="particle p4"></span>
+            <span class="particle p5"></span>
+            <span class="particle p6"></span>
+        </div>
+
+        <!-- 5. Center Interactive Console Card (Perfect Center) -->
+        <div class="preloader-card">
+            <!-- Jajargenjang Terminal Icon Badge (>_) -->
+            <div class="preloader-skew-box">
+                <div class="skew-box-inner">
+                    <span class="terminal-prompt">&gt;</span><span class="terminal-cursor">_</span>
+                </div>
+            </div>
+
+            <!-- Cyber-Tech Monospace Bold Glowing Title -->
+            <h2 class="preloader-title">INITIALIZING SYSTEM<span class="title-dots">...</span></h2>
+
+            <!-- Futuristic Capsule Progress Bar with Spark -->
+            <div class="preloader-bar-wrap">
+                <div class="preloader-bar" id="preloaderBar">
+                    <div class="bar-streak"></div>
+                    <div class="bar-spark"></div>
+                </div>
+            </div>
+
+            <!-- Meta: Status & Cyber Percentage -->
+            <div class="preloader-meta">
+                <span class="preloader-status" id="preloaderStatus">Configuring tech stack &amp; projects...</span>
+                <span class="preloader-percent" id="preloaderPercent">0%</span>
+            </div>
         </div>
     </div>
 

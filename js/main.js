@@ -290,38 +290,106 @@
 })();
 
 /* =============================
-   7. PRELOADER / SYSTEM INITIALIZATION
+   7. PRELOADER / OPENING PORTFOLIO EXPERIENCE
    ============================= */
 (function initPreloader() {
-    const preloader = document.getElementById('preloader');
+    const preloader   = document.getElementById('preloader');
     if (!preloader) return;
 
-    let hasLoaded = false;
+    const progressBar = document.getElementById('preloaderBar');
+    const percentEl   = document.getElementById('preloaderPercent');
+    const statusEl    = document.getElementById('preloaderStatus');
 
-    function dismissPreloader() {
-        if (hasLoaded) return;
-        hasLoaded = true;
+    let currentPercent = 0;
+    let targetPercent  = 88;
+    let isWindowLoaded = false;
+    let isFinished     = false;
 
-        // Jeda transisi 500ms setelah seluruh aset termuat
-        setTimeout(() => {
-            preloader.classList.add('loaded');
+    const stages = [
+        { threshold: 0,  text: "Loading assets..." },
+        { threshold: 28, text: "Configuring tech stack & projects..." },
+        { threshold: 58, text: "Setting up interactive interface..." },
+        { threshold: 88, text: "Almost ready..." }
+    ];
 
-            // Bersihkan elemen dari DOM setelah fade out selesai
-            setTimeout(() => {
-                if (preloader.parentNode) {
-                    preloader.parentNode.removeChild(preloader);
+    function updateStatus(val) {
+        if (!statusEl) return;
+        for (let i = stages.length - 1; i >= 0; i--) {
+            if (val >= stages[i].threshold) {
+                if (statusEl.textContent !== stages[i].text) {
+                    statusEl.textContent = stages[i].text;
                 }
-            }, 650);
-        }, 500);
+                break;
+            }
+        }
+    }
+
+    function setPercent(val) {
+        currentPercent = Math.min(100, Math.max(0, val));
+        if (progressBar) progressBar.style.width = currentPercent + '%';
+        if (percentEl) percentEl.textContent = Math.round(currentPercent) + '%';
+        updateStatus(currentPercent);
+    }
+
+    const timer = setInterval(() => {
+        if (isFinished) {
+            clearInterval(timer);
+            return;
+        }
+
+        if (!isWindowLoaded) {
+            // Simulasi progress halus hingga ~88% sambil menunggu aset halaman
+            if (currentPercent < targetPercent) {
+                const step = (targetPercent - currentPercent) * 0.08 + 0.6;
+                setPercent(currentPercent + step);
+            }
+        } else {
+            // Aset selesai dimuat, percepat menuju 100%
+            if (currentPercent < 100) {
+                currentPercent += 3.5;
+                setPercent(currentPercent);
+            } else {
+                setPercent(100);
+                isFinished = true;
+                clearInterval(timer);
+
+                // Jeda 320ms pada 100% agar user melihat status selesai, lalu transisikan layar
+                setTimeout(() => {
+                    preloader.classList.add('loaded');
+                    setTimeout(() => {
+                        if (preloader.parentNode) {
+                            preloader.parentNode.removeChild(preloader);
+                        }
+                    }, 700);
+                }, 320);
+            }
+        }
+    }, 25);
+
+    function onAssetsLoaded() {
+        isWindowLoaded = true;
     }
 
     if (document.readyState === 'complete') {
-        dismissPreloader();
+        onAssetsLoaded();
     } else {
-        window.addEventListener('load', dismissPreloader);
+        window.addEventListener('load', onAssetsLoaded);
     }
 
-    // Safety fallback timeout (maksimal 4 detik) jika aset eksternal lambat
-    setTimeout(dismissPreloader, 4000);
+    // Safety timeout: jika ada CDN eksternal macet, paksa selesai dalam 4 detik
+    setTimeout(() => {
+        onAssetsLoaded();
+        setTimeout(() => {
+            if (!isFinished) {
+                setPercent(100);
+                isFinished = true;
+                clearInterval(timer);
+                preloader.classList.add('loaded');
+                setTimeout(() => {
+                    if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+                }, 700);
+            }
+        }, 300);
+    }, 4000);
 })();
 

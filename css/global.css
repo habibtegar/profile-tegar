@@ -831,7 +831,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   PRELOADER / LOADING SCREEN
+   PRELOADER / FUTURISTIC CYBERNETIC INITIALIZATION
    ============================================ */
 .preloader {
     position: fixed;
@@ -839,113 +839,431 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #0b0f17;
-    z-index: 999999;
+    background-color: #070a0f;
+    z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1.5rem;
+    overflow: hidden;
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Transisi fade-out dan blur-out 0.6s saat selesai */
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                filter 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .preloader.loaded {
     opacity: 0;
+    filter: blur(10px);
+    transform: scale(1.02);
     visibility: hidden;
     pointer-events: none;
 }
 
-.preloader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+/* 1. Digital Grid Overlay */
+.preloader-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.035) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 20%, transparent 75%);
+    pointer-events: none;
 }
 
-/* Modern Tech Concentric Spinner */
-.tech-spinner {
-    position: relative;
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Ambient Radial Glow */
+.preloader-ambient-glow {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, rgba(129, 140, 248, 0.03) 50%, transparent 70%);
+    filter: blur(55px);
+    pointer-events: none;
+    animation: preloaderAmbient 4s ease-in-out infinite alternate;
 }
 
-/* Outer neon cyan ring */
-.spinner-ring.outer {
+/* 2. Cyber Reticle / Radar Circles in Center */
+.preloader-reticle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.reticle-ring.outer-ring {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #00f2fe;
-    border-right-color: #00f2fe;
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.35);
-    animation: techSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border: 1px dashed rgba(0, 242, 254, 0.14);
+    animation: radarSpin 22s linear infinite;
 }
 
-/* Inner reverse ring */
-.spinner-ring.inner {
+.reticle-ring.inner-ring {
     position: absolute;
-    inset: 9px;
+    inset: 60px;
     border-radius: 50%;
-    border: 2px solid transparent;
-    border-bottom-color: rgba(0, 242, 254, 0.85);
-    border-left-color: rgba(0, 242, 254, 0.35);
-    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-    animation: techSpinReverse 0.9s linear infinite;
+    border: 1px dotted rgba(0, 242, 254, 0.18);
+    animation: radarSpinRev 16s linear infinite;
 }
 
-/* Center glowing core */
-.spinner-core {
-    width: 8px;
-    height: 8px;
+.reticle-cross-h {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.18) 20%, rgba(0, 242, 254, 0.18) 80%, transparent);
+    transform: translateY(-50%);
+}
+
+.reticle-cross-v {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    bottom: 20px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(0, 242, 254, 0.18) 20%, rgba(0, 242, 254, 0.18) 80%, transparent);
+    transform: translateX(-50%);
+}
+
+/* 3. Left & Right Flank Data Streams */
+.preloader-flank {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    z-index: 2;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+}
+
+.flank-left {
+    left: clamp(16px, 4vw, 48px);
+    align-items: flex-start;
+}
+
+.flank-right {
+    right: clamp(16px, 4vw, 48px);
+    align-items: flex-end;
+    text-align: right;
+}
+
+.flank-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, rgba(0, 242, 254, 0.4), transparent);
+    margin-bottom: 8px;
+}
+
+.flank-dot {
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: #00f2fe;
-    box-shadow: 0 0 12px #00f2fe, 0 0 20px rgba(0, 242, 254, 0.8);
-    animation: corePulse 1.4s ease-in-out infinite;
+    box-shadow: 0 0 10px #00f2fe;
+    margin-bottom: 10px;
 }
 
-/* Developer Monospace Text */
-.preloader-text {
-    font-family: 'Courier New', Consolas, Monaco, monospace;
-    font-size: 0.85rem;
+.flank-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.62rem;
     font-weight: 600;
-    letter-spacing: 0.25em;
-    color: #00f2fe;
-    text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
-    margin: 0;
+    letter-spacing: 0.16em;
+    color: rgba(0, 242, 254, 0.45);
+    user-select: none;
 }
 
-.cursor-blink {
-    animation: cursorFade 1s step-end infinite;
+@media (max-width: 860px) {
+    .preloader-flank {
+        display: none;
+    }
+}
+
+/* 4. Floating Cyan Particles in Center */
+.preloader-particles {
+    position: absolute;
+    width: 380px;
+    height: 280px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: #00f2fe;
+    box-shadow: 0 0 8px #00f2fe, 0 0 14px rgba(0, 242, 254, 0.8);
+    opacity: 0;
+    animation: particleFloat 3.8s ease-in-out infinite;
+}
+
+.p1 { width: 3px; height: 3px; left: 15%; top: 75%; animation-delay: 0.2s; }
+.p2 { width: 2px; height: 2px; left: 35%; top: 60%; animation-delay: 1.1s; }
+.p3 { width: 4px; height: 4px; left: 70%; top: 80%; animation-delay: 0.6s; }
+.p4 { width: 2px; height: 2px; left: 82%; top: 45%; animation-delay: 1.8s; }
+.p5 { width: 3px; height: 3px; left: 50%; top: 90%; animation-delay: 2.3s; }
+.p6 { width: 2px; height: 2px; left: 25%; top: 35%; animation-delay: 1.4s; }
+
+/* 5. Center Interactive Card — Perfectly Centered */
+.preloader-card {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Jajargenjang Terminal Icon Box (>_) */
+.preloader-skew-box {
+    width: 58px;
+    height: 50px;
+    transform: skewX(-15deg);
+    border-radius: 4px;
+    background: rgba(16, 24, 39, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 242, 254, 0.35);
+    box-shadow: 
+        0 6px 24px rgba(0, 0, 0, 0.55),
+        0 0 20px rgba(0, 242, 254, 0.18),
+        inset 0 0 10px rgba(0, 242, 254, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.35rem;
+    animation: skewBoxGlow 3s ease-in-out infinite alternate;
+}
+
+/* Counter-skew: Membalikkan kemiringan +15deg agar teks >_ tegak lurus */
+.skew-box-inner {
+    transform: skewX(15deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.terminal-prompt {
+    color: #00f2fe;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.9), 0 0 20px rgba(0, 242, 254, 0.5);
+    margin-right: 2px;
+}
+
+.terminal-cursor {
+    color: #00f2fe;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.9), 0 0 20px rgba(0, 242, 254, 0.5);
+    animation: terminalBlink 0.9s step-end infinite;
+}
+
+/* Cyber-Tech Monospace Glowing Title */
+.preloader-title {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: clamp(1rem, 2.7vw, 1.22rem);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #00f2fe;
+    text-shadow: 
+        0 0 12px rgba(0, 242, 254, 0.85),
+        0 0 26px rgba(0, 242, 254, 0.45);
+    margin: 0 0 1.65rem 0;
+    animation: textBreath 2.8s ease-in-out infinite alternate;
+}
+
+.title-dots {
+    animation: terminalBlink 1s step-end infinite;
+}
+
+/* Futuristic Capsule Progress Bar */
+.preloader-bar-wrap {
+    width: 100%;
+    max-width: 360px;
+    height: 6px;
+    background: rgba(7, 10, 15, 0.85);
+    border-radius: 999px;
+    position: relative;
+    border: 1px solid rgba(0, 242, 254, 0.25);
+    box-shadow: 
+        inset 0 1px 4px rgba(0, 0, 0, 0.85),
+        0 0 16px rgba(0, 242, 254, 0.08);
+    margin-bottom: 0.95rem;
+    overflow: visible;
+}
+
+/* Liquid/Laser Gradient Fill (Biru Tua ke Cyan Terang) */
+.preloader-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #1e40af 0%, #0284c7 45%, #00f2fe 100%);
+    border-radius: 999px;
+    position: relative;
+    box-shadow: 
+        0 0 16px rgba(0, 242, 254, 0.7),
+        0 0 28px rgba(0, 242, 254, 0.35);
+    transition: width 0.14s linear;
+}
+
+/* Shimmer Streak */
+.bar-streak {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+    background-size: 90px 100%;
+    border-radius: 999px;
+    animation: barShimmer 1.3s linear infinite;
+}
+
+/* Kilatan Cahaya / Spark di Ujung Bar yang Bergerak */
+.bar-spark {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 
+        0 0 6px #ffffff,
+        0 0 16px #00f2fe,
+        0 0 30px #00f2fe;
+    animation: sparkPulse 0.8s ease-in-out infinite alternate;
+}
+
+/* Meta: Status & Cyber Percentage */
+.preloader-meta {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.preloader-status {
+    color: #94a3b8;
+    opacity: 0.6;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-align: left;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.25s ease;
+}
+
+.preloader-percent {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-weight: 800;
+    color: #00f2fe;
+    font-size: 0.98rem;
+    letter-spacing: 0.05em;
+    text-shadow: 
+        0 0 10px rgba(0, 242, 254, 0.9),
+        0 0 22px rgba(0, 242, 254, 0.5);
+    flex-shrink: 0;
 }
 
 /* Keyframe Animations */
-@keyframes techSpin {
+@keyframes terminalBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+@keyframes skewBoxGlow {
+    0% {
+        box-shadow: 
+            0 6px 24px rgba(0, 0, 0, 0.55),
+            0 0 16px rgba(0, 242, 254, 0.15),
+            inset 0 0 8px rgba(0, 242, 254, 0.05);
+        border-color: rgba(0, 242, 254, 0.28);
+    }
+    100% {
+        box-shadow: 
+            0 6px 28px rgba(0, 0, 0, 0.65),
+            0 0 28px rgba(0, 242, 254, 0.3),
+            inset 0 0 14px rgba(0, 242, 254, 0.1);
+        border-color: rgba(0, 242, 254, 0.55);
+    }
+}
+
+@keyframes textBreath {
+    0% {
+        text-shadow: 
+            0 0 10px rgba(0, 242, 254, 0.75),
+            0 0 22px rgba(0, 242, 254, 0.35);
+    }
+    100% {
+        text-shadow: 
+            0 0 14px rgba(0, 242, 254, 0.95),
+            0 0 32px rgba(0, 242, 254, 0.6),
+            0 0 45px rgba(0, 242, 254, 0.3);
+    }
+}
+
+@keyframes radarSpin {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-@keyframes techSpinReverse {
+@keyframes radarSpinRev {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(-360deg); }
 }
 
-@keyframes corePulse {
-    0%, 100% {
-        transform: scale(0.85);
-        opacity: 0.7;
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0;
     }
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-        box-shadow: 0 0 16px #00f2fe, 0 0 24px rgba(0, 242, 254, 0.9);
+    40% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-90px) scale(1.1);
+        opacity: 0;
     }
 }
 
-@keyframes cursorFade {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: 0; }
+@keyframes preloaderAmbient {
+    0%   { transform: scale(0.9); opacity: 0.5; }
+    100% { transform: scale(1.15); opacity: 0.9; }
+}
+
+@keyframes barShimmer {
+    0%   { background-position: -90px 0; }
+    100% { background-position: 360px 0; }
+}
+
+@keyframes sparkPulse {
+    0%   { transform: translateY(-50%) scale(0.85); opacity: 0.85; }
+    100% { transform: translateY(-50%) scale(1.3); opacity: 1; }
 }
