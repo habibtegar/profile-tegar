@@ -1,10 +1,10 @@
-/* ===================================================
-   SKILLS CSS — Infinite Auto-Scroll Marquee Carousel
+/* ============================================
+   SKILLS CSS — Animated Technology Logo Marquees
    Habib Tegar Portfolio
-   =================================================== */
+   ============================================ */
 
 :root {
-    --marquee-speed: 38s;
+    --marquee-speed: 40s;
     --marquee-gap: 1.5rem;
 }
 
@@ -21,7 +21,7 @@
     padding: 0 var(--section-pad-x);
 }
 
-/* ===== MARQUEE WRAPPER (GRADIENT MASK) ===== */
+/* ===== ANIMATED TECHNOLOGY LOGO MARQUEES (TWO CONTINUOUS ROWS) ===== */
 .skills-marquee-wrapper {
     display: flex;
     flex-direction: column;
@@ -29,10 +29,10 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding: 1.25rem 0;
-    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding: 1.5rem 0;
+    margin: 2.5rem 0 3.75rem;
 
-    /* Elegant Edge Fade Masking */
+    /* High-end edge gradient fade mask */
     -webkit-mask-image: linear-gradient(
         to right,
         transparent 0%,
@@ -49,7 +49,6 @@
     );
 }
 
-/* ===== MARQUEE ROW ===== */
 .skills-marquee-row {
     display: flex;
     gap: var(--marquee-gap);
@@ -57,231 +56,395 @@
     overflow: hidden;
     user-select: none;
     position: relative;
+    padding: 0.5rem 0;
 }
 
-/* ===== MARQUEE GROUP (FLEX ITEMS) ===== */
 .skills-marquee-group {
     flex-shrink: 0;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     gap: var(--marquee-gap);
     width: max-content;
     will-change: transform;
 }
 
-/* Row 1: Scrolling Right */
-.marquee-row-right .skills-marquee-group {
-    animation: marquee-scroll-right var(--marquee-speed) linear infinite;
-}
-
-/* Row 2: Scrolling Left */
+/* Row 1: Right to Left */
 .marquee-row-left .skills-marquee-group {
-    animation: marquee-scroll-left var(--marquee-speed) linear infinite;
+    animation: marqueeScrollLeft var(--marquee-speed) linear infinite;
 }
 
-/* ===== PAUSE ON HOVER & FOCUS ===== */
-.skills-marquee-row:hover .skills-marquee-group,
-.skills-marquee-row:focus-within .skills-marquee-group {
+/* Row 2: Left to Right */
+.marquee-row-right .skills-marquee-group {
+    animation: marqueeScrollRight var(--marquee-speed) linear infinite;
+}
+
+/* Pause corresponding marquee row on hover */
+.skills-marquee-row:hover .skills-marquee-group {
     animation-play-state: paused;
 }
 
-/* ===== INFINITE KEYFRAMES ===== */
-@keyframes marquee-scroll-right {
-    0% {
-        transform: translateX(calc(-100% - var(--marquee-gap)));
-    }
-    100% {
-        transform: translateX(0);
-    }
+@keyframes marqueeScrollLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% - var(--marquee-gap))); }
 }
 
-@keyframes marquee-scroll-left {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-100% - var(--marquee-gap)));
-    }
+@keyframes marqueeScrollRight {
+    0%   { transform: translateX(calc(-100% - var(--marquee-gap))); }
+    100% { transform: translateX(0); }
 }
 
-/* Accessibility: Pause if user prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .skills-marquee-group {
-        animation-play-state: paused !important;
-    }
-}
-
-/* ===== SKILL CARD ===== */
-.skill-card {
-    flex: 0 0 280px;
-    width: 280px;
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-lg);
-    padding: 1.4rem 1.45rem;
+/* ===== MARQUEE TECH LOGO CARD ===== */
+.marquee-tech-card {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    cursor: default;
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
-}
-
-/* Micro-interaction on card hover */
-.skills-marquee-row:hover .skill-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    border-color: var(--cyan);
-    background: var(--surface-hover);
-    box-shadow: var(--shadow-md), 0 0 22px var(--cyan-glow);
-    z-index: 10;
-}
-
-/* Card Header (Icon + Category Badge) */
-.skill-card-header {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 0.75rem;
+    min-width: 135px;
+    padding: 1.25rem 1.15rem;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease,
+                background-color 0.35s ease;
 }
 
-/* Icon Wrap */
-.skill-icon-wrap {
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-md);
+/* Subtle top hairline highlight */
+.marquee-tech-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    transition: background 0.35s ease;
+}
+
+/* Icon Container */
+.marquee-tech-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--surface-border);
-    flex-shrink: 0;
-    transition: transform var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
-}
-
-.skill-icon-wrap svg {
-    width: 1.45rem;
-    height: 1.45rem;
-    fill: currentColor;
-    display: block;
-}
-
-.skill-card:hover .skill-icon-wrap {
-    transform: scale(1.08);
-    border-color: currentColor;
-    box-shadow: 0 0 16px rgba(0, 240, 255, 0.15);
-}
-
-/* ===== TECH STACK ICON COLORS ===== */
-/* Row 1 */
-.skill-icon-html        { color: #f97316; }
-.skill-icon-css         { color: #38bdf8; }
-.skill-icon-js          { color: #facc15; }
-.skill-icon-react       { color: #00d8ff; }
-.skill-icon-tailwind    { color: #38bdf8; }
-.skill-icon-typescript  { color: #3178c6; }
-.skill-icon-nextjs      { color: var(--text-primary); }
-.skill-icon-bootstrap   { color: #a855f7; }
-
-/* Row 2 */
-.skill-icon-php         { color: #a78bfa; }
-.skill-icon-laravel     { color: #f43f5e; }
-.skill-icon-mysql       { color: #0284c7; }
-.skill-icon-postgres    { color: #60a5fa; }
-.skill-icon-git         { color: #fb923c; }
-.skill-icon-api         { color: #34d399; }
-.skill-icon-node        { color: #4ade80; }
-.skill-icon-figma       { color: #ec4899; }
-
-/* Badge Category */
-.skill-category {
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 0.22rem 0.65rem;
-    border-radius: var(--radius-full);
-    background: var(--bg-secondary);
-    border: 1px solid var(--surface-border);
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
-}
-
-.skill-card:hover .skill-category {
-    border-color: var(--surface-border-hover);
-    color: var(--accent);
-}
-
-/* Skill Name */
-.skill-name {
-    font-size: 1.05rem;
-    font-weight: 700;
+    background: var(--bg-alt);
+    border: 1px solid var(--border-hairline);
     color: var(--text-primary);
-    margin: 0;
-    transition: color var(--transition);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                background-color 0.35s ease,
+                box-shadow 0.35s ease;
 }
 
-/* Skill Description */
-.skill-desc {
-    font-size: 0.83rem;
+.marquee-tech-icon .tech-svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+    transition: fill 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+
+/* Name Label */
+.marquee-tech-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    white-space: nowrap;
+    transition: color 0.35s ease;
+}
+
+/* ===== BRAND COLOR SYSTEM FOR ALL 10 TECHNOLOGIES ===== */
+.marquee-tech-card[data-tech="html5"] {
+    --brand: #E34F26;
+    --brand-glow: rgba(227, 79, 38, 0.32);
+    --brand-tint: rgba(227, 79, 38, 0.08);
+}
+
+.marquee-tech-card[data-tech="css3"] {
+    --brand: #1572B6;
+    --brand-glow: rgba(21, 114, 182, 0.32);
+    --brand-tint: rgba(21, 114, 182, 0.08);
+}
+
+.marquee-tech-card[data-tech="javascript"] {
+    --brand: #F7DF1E;
+    --brand-glow: rgba(247, 223, 30, 0.32);
+    --brand-tint: rgba(247, 223, 30, 0.08);
+}
+
+.marquee-tech-card[data-tech="react"] {
+    --brand: #61DAFB;
+    --brand-glow: rgba(97, 218, 251, 0.36);
+    --brand-tint: rgba(97, 218, 251, 0.08);
+}
+
+.marquee-tech-card[data-tech="nextjs"] {
+    --brand: var(--cyan);
+    --brand-glow: rgba(0, 242, 254, 0.36);
+    --brand-tint: rgba(0, 242, 254, 0.08);
+}
+
+.marquee-tech-card[data-tech="php"] {
+    --brand: #777BB4;
+    --brand-glow: rgba(119, 123, 180, 0.32);
+    --brand-tint: rgba(119, 123, 180, 0.08);
+}
+
+.marquee-tech-card[data-tech="laravel"] {
+    --brand: #FF2D20;
+    --brand-glow: rgba(255, 45, 32, 0.36);
+    --brand-tint: rgba(255, 45, 32, 0.08);
+}
+
+.marquee-tech-card[data-tech="mysql"] {
+    --brand: #4479A1;
+    --brand-glow: rgba(68, 121, 161, 0.32);
+    --brand-tint: rgba(68, 121, 161, 0.08);
+}
+
+.marquee-tech-card[data-tech="postgresql"] {
+    --brand: #4169E1;
+    --brand-glow: rgba(65, 105, 225, 0.36);
+    --brand-tint: rgba(65, 105, 225, 0.08);
+}
+
+.marquee-tech-card[data-tech="git"] {
+    --brand: #F05032;
+    --brand-glow: rgba(240, 80, 50, 0.36);
+    --brand-tint: rgba(240, 80, 50, 0.08);
+}
+
+/* Subtle Hover Scaling & Brand Illumination */
+.marquee-tech-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--brand);
+    box-shadow: 0 12px 26px -6px var(--brand-glow);
+}
+
+.marquee-tech-card:hover::before {
+    background: var(--brand);
+}
+
+.marquee-tech-card:hover .marquee-tech-icon {
+    border-color: var(--brand);
+    background: var(--brand-tint);
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 4px 14px -3px var(--brand-glow);
+}
+
+.marquee-tech-card:hover .tech-svg {
+    fill: var(--brand);
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 6px var(--brand-glow));
+}
+
+.marquee-tech-card:hover .marquee-tech-name {
+    color: var(--brand);
+}
+
+/* Light Mode fine-tuning */
+[data-theme="light"] .marquee-tech-card:hover {
+    box-shadow: 0 10px 22px -5px var(--brand-glow);
+}
+
+[data-theme="light"] .marquee-tech-card[data-tech="javascript"]:hover .marquee-tech-name {
+    color: #b59f00;
+}
+
+[data-theme="light"] .marquee-tech-card[data-tech="nextjs"] {
+    --brand: #0f172a;
+    --brand-glow: rgba(15, 23, 42, 0.25);
+    --brand-tint: rgba(15, 23, 42, 0.06);
+}
+
+/* ===== EDITORIAL TECH COMPETENCY MATRIX (3 COLUMNS) ===== */
+.skills-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: clamp(1.5rem, 2.5vw, 2.25rem);
+    align-items: stretch;
+    margin-top: 1rem;
+}
+
+.matrix-col {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.6rem, 2.8vw, 2.2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.matrix-col:hover {
+    border-color: var(--surface-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.matrix-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-bottom: 1.15rem;
+    border-bottom: 1px solid var(--border-hairline);
+    min-height: 4.5rem;
+    box-sizing: border-box;
+}
+
+.matrix-index {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--cyan);
+    text-transform: uppercase;
+}
+
+.matrix-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.matrix-desc {
+    font-size: 0.92rem;
     color: var(--text-secondary);
-    line-height: 1.55;
-    margin: 0;
+    line-height: 1.7;
+    margin: 1.25rem 0 0 0;
     flex-grow: 1;
-    transition: color var(--transition);
 }
 
-/* ===== RESPONSIVE BREAKPOINTS ===== */
-@media (max-width: 768px) {
-    :root {
-        --marquee-speed: 28s;
-        --marquee-gap: 1.15rem;
+.matrix-tags {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--border-hairline);
+}
+
+.matrix-tag {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.45rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.42rem 0.65rem;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: border-color var(--transition), color var(--transition), background-color var(--transition), transform var(--transition);
+}
+
+.matrix-tag i,
+.matrix-tag svg {
+    color: var(--cyan);
+    font-size: 0.95rem;
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.matrix-tag span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.matrix-tag:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    transform: translateY(-2px) !important;
+}
+
+/* Hide legacy bulky skill cards */
+.skill-card {
+    display: none !important;
+}
+
+/* ===== ACCESSIBILITY: PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    .skills-marquee-row .skills-marquee-group {
+        animation: none !important;
+    }
+    .skills-marquee-row {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 1rem;
+    }
+    .marquee-tech-card {
+        scroll-snap-align: start;
+    }
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 900px) {
+    .skills-matrix-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 1.5rem;
     }
 
-    .skill-card {
-        flex: 0 0 255px;
-        width: 255px;
-        padding: 1.25rem 1.25rem;
-    }
-
-    .skills-marquee-wrapper {
-        gap: 1.15rem;
-        padding: 0.85rem 0;
-        -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0, 0, 0, 1) 5%,
-            rgba(0, 0, 0, 1) 95%,
-            transparent 100%
-        );
-        mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0, 0, 0, 1) 5%,
-            rgba(0, 0, 0, 1) 95%,
-            transparent 100%
-        );
+    .matrix-header {
+        min-height: auto;
     }
 }
 
 @media (max-width: 480px) {
+    .matrix-tags {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
     :root {
-        --marquee-speed: 24s;
-        --marquee-gap: 0.9rem;
+        --marquee-gap: 1rem;
+        --marquee-speed: 32s;
     }
-
-    .skill-card {
-        flex: 0 0 235px;
-        width: 235px;
-        padding: 1.1rem 1.1rem;
+    .marquee-tech-card {
+        min-width: 110px;
+        padding: 1rem 0.85rem;
+        gap: 0.6rem;
     }
-
-    .skill-name {
-        font-size: 0.98rem;
+    .marquee-tech-icon {
+        width: 42px;
+        height: 42px;
     }
-
-    .skill-desc {
+    .marquee-tech-icon .tech-svg {
+        width: 22px;
+        height: 22px;
+    }
+    .marquee-tech-name {
         font-size: 0.78rem;
     }
 }

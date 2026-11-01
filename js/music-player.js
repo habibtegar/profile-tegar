@@ -48,7 +48,7 @@
     <div id="music-player" class="minimized" role="region" aria-label="Music Player">
 
         <!-- 1. Minimized Floating Widget -->
-        <div class="player-mini-widget" id="playerMiniWidget" title="Buka Music Player" aria-label="Expand Music Player">
+        <div class="player-mini-widget" id="playerMiniWidget" title="Open Music Player" aria-label="Expand Music Player">
             <div class="mini-disc-ring paused" id="miniDisc">
                 <i class='bx bxs-music mini-music-icon'></i>   
             </div>
@@ -183,8 +183,8 @@
             if (playIcon) playIcon.className = 'bx bx-pause';
             if (navMusicBtn) {
                 navMusicBtn.classList.add('playing');
-                navMusicBtn.setAttribute('title', 'Jeda Musik');
-                navMusicBtn.setAttribute('aria-label', 'Jeda Musik');
+                navMusicBtn.setAttribute('title', 'Pause Music');
+                navMusicBtn.setAttribute('aria-label', 'Pause Music');
             }
             if (navMusicIcon) {
                 navMusicIcon.className = 'bx bxs-music';
@@ -205,8 +205,8 @@
             if (playIcon) playIcon.className = 'bx bx-play';
             if (navMusicBtn) {
                 navMusicBtn.classList.remove('playing');
-                navMusicBtn.setAttribute('title', 'Putar Musik');
-                navMusicBtn.setAttribute('aria-label', 'Putar Musik');
+                navMusicBtn.setAttribute('title', 'Play Music');
+                navMusicBtn.setAttribute('aria-label', 'Play Music');
             }
             if (navMusicIcon) {
                 navMusicIcon.className = 'bx bx-music';

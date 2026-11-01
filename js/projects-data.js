@@ -9,7 +9,7 @@ const projectsData = [
     title: "Simas",
     category: "WEB APP",
     desc: "A comprehensive student management system designed to organize student records, class placements, and academic reports efficiently.",
-    techStack: ["React", "Vite", "Tailwind CSS", "REST API"],
+    techStack: ["React", "Vite", "Tailwind CSS"],
     demoLink: "https://simas-smkn1ciomas.vercel.app/",
     githubLink: "https://github.com/habibtegar/simas-react",
     imageUrl: "img/simas.app.png",

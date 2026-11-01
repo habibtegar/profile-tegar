@@ -104,8 +104,12 @@
                 if (target) {
                     closeMenu();
                     const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
-                    const top  = target.getBoundingClientRect().top + window.scrollY - navH + 10;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    if (window.lenis) {
+                        window.lenis.scrollTo(target, { offset: -(navH - 10) });
+                    } else {
+                        const top  = target.getBoundingClientRect().top + window.scrollY - navH + 10;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
                 }
             } else {
                 closeMenu();
@@ -196,6 +200,10 @@
    4. SCROLL REVEAL (IntersectionObserver)
    ============================= */
 (function initScrollReveal() {
+    if (typeof gsap !== 'undefined') {
+        // High fidelity scroll reveal managed by GSAP + ScrollTrigger in js/animations.js
+        return;
+    }
     const elements = document.querySelectorAll('[data-aos]');
     if (!elements.length) return;
 
@@ -230,6 +238,11 @@
         }
     } catch (e) {
         console.error("Failed to update projects count:", e);
+    }
+
+    if (typeof gsap !== 'undefined') {
+        // High-fidelity counter animation is driven by GSAP ScrollTrigger in js/animations.js
+        return;
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -356,6 +369,8 @@
                 // Jeda 320ms pada 100% agar user melihat status selesai, lalu transisikan layar
                 setTimeout(() => {
                     preloader.classList.add('loaded');
+                    window.__portfolioReady = true;
+                    window.dispatchEvent(new CustomEvent('portfolio:ready'));
                     setTimeout(() => {
                         if (preloader.parentNode) {
                             preloader.parentNode.removeChild(preloader);
@@ -385,6 +400,8 @@
                 isFinished = true;
                 clearInterval(timer);
                 preloader.classList.add('loaded');
+                window.__portfolioReady = true;
+                window.dispatchEvent(new CustomEvent('portfolio:ready'));
                 setTimeout(() => {
                     if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
                 }, 700);
