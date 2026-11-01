@@ -496,18 +496,36 @@
 }
 
 /* Light Mode fine-tuning */
-[data-theme="light"] .btn-submit {
-    background: #0284c7;
-    border-color: #0284c7;
-    color: #ffffff;
-    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.28);
+[data-theme="light"] .field-error {
+    color: #dc2626;
 }
 
-[data-theme="light"] .btn-submit:hover:not(:disabled) {
+[data-theme="light"] .form-status-error {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.08);
+    border-color: rgba(220, 38, 38, 0.25);
+}
+
+[data-theme="light"] .toast.toast-error {
+    border-left-color: #dc2626;
+}
+
+[data-theme="light"] .toast.toast-error .icon {
+    color: #dc2626;
+}
+
+[data-theme="light"] .btn-submit {
     background: #0369a1;
     border-color: #0369a1;
     color: #ffffff;
-    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+    box-shadow: 0 4px 16px rgba(3, 105, 161, 0.28);
+}
+
+[data-theme="light"] .btn-submit:hover:not(:disabled) {
+    background: #075985;
+    border-color: #075985;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(7, 89, 133, 0.35);
 }
 
 /* ===== RESPONSIVE MEDIA QUERIES ===== */

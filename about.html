@@ -8,7 +8,9 @@
     <meta name="robots" content="index, follow" />
     <title>About | Habib Tegar — Web Developer</title>
     <link rel="canonical" href="https://habibtegar.github.io/profile-tegar/about.html" />
-    <link rel="icon" type="image/png" href="img/icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png" />
+    <link rel="apple-touch-icon" href="img/icon-192.png" />
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://habibtegar.github.io/profile-tegar/about.html" />
     <meta property="og:title" content="About | Habib Tegar — Web Developer" />
@@ -151,7 +153,10 @@
                 <!-- Left Column: Photo & Stats -->
                 <div class="about-left-col" data-aos="fade-up">
                     <div class="about-photo-wrapper">
-                        <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan - Web Developer portrait" class="about-photo" width="480" height="600" loading="lazy" />
+                        <picture>
+                            <source srcset="img/webcam-toy-photo2.webp" type="image/webp" />
+                            <img src="img/webcam-toy-photo2.jpg" alt="Habib Tegar Ramadhan - Web Developer portrait" class="about-photo" width="480" height="600" loading="lazy" decoding="async" />
+                        </picture>
                     </div>
                     <div class="stats-row">
                         <div class="stat-card">

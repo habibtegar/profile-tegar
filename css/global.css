@@ -3,8 +3,6 @@
    Habib Tegar Portfolio
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap');
-
 /* ===== CSS DESIGN TOKENS (DARK MODE DEFAULT) ===== */
 :root {
     color-scheme: dark;
@@ -35,7 +33,7 @@
     /* Typography Colors */
     --text-primary:          #f4f4f6;
     --text-secondary:        #9ca3af;
-    --text-muted:            #6b7280;
+    --text-muted:            #7f8aa4;
     --text-light:            #e5e7eb;
 
     /* Status Colors */
@@ -104,13 +102,13 @@
     --surface:               #ffffff;
     --surface-hover:         #f9fafb;
     --surface-border:        rgba(0, 0, 0, 0.09);
-    --surface-border-hover:  rgba(2, 132, 199, 0.45);
+    --surface-border-hover:  rgba(3, 105, 161, 0.45);
     --border-hairline:       rgba(0, 0, 0, 0.07);
 
     /* High-contrast Deep Cyan Accent */
-    --cyan:                  #0284c7;
-    --cyan-dim:              rgba(2, 132, 199, 0.09);
-    --cyan-glow:             rgba(2, 132, 199, 0.16);
+    --cyan:                  #0369a1;
+    --cyan-dim:              rgba(3, 105, 161, 0.1);
+    --cyan-glow:             rgba(3, 105, 161, 0.18);
     --accent:                var(--cyan);
     --accent-dim:            var(--cyan-dim);
     --accent-glow:           var(--cyan-glow);
@@ -123,7 +121,7 @@
     /* High Contrast Typography */
     --text-primary:          #090a0f;
     --text-secondary:        #4b5563;
-    --text-muted:            #6b7280;
+    --text-muted:            #475569;
     --text-light:            #1f2937;
 
     --success:               #059669;
@@ -131,10 +129,10 @@
     --shadow-sm:             0 2px 8px rgba(0, 0, 0, 0.04);
     --shadow-md:             0 8px 24px rgba(0, 0, 0, 0.06);
     --shadow-lg:             0 20px 45px rgba(0, 0, 0, 0.09);
-    --shadow-cyan:           0 0 20px rgba(2, 132, 199, 0.12);
+    --shadow-cyan:           0 0 20px rgba(3, 105, 161, 0.16);
 
     --grid-line:             rgba(0, 0, 0, 0.02);
-    --ambient-glow:          radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.04) 0%, transparent 65%);
+    --ambient-glow:          radial-gradient(ellipse at 50% 0%, rgba(3, 105, 161, 0.04) 0%, transparent 65%);
 
     --nav-bg:                rgba(251, 251, 250, 0.85);
     --nav-bg-scrolled:       rgba(251, 251, 250, 0.96);
@@ -143,7 +141,7 @@
 
     --btn-primary-bg:        #090a0f;
     --btn-primary-text:      #ffffff;
-    --btn-primary-hover:     #0284c7;
+    --btn-primary-hover:     #0369a1;
     --btn-primary-shadow:    0 4px 16px rgba(0, 0, 0, 0.15);
 
     --input-bg:              #ffffff;
@@ -185,7 +183,7 @@ body {
     transition: background-color var(--transition), color var(--transition);
 }
 
-/* Subtle background architectural grid */
+/* Subtle background architectural grid (GPU isolated) */
 body::before {
     content: '';
     position: fixed;
@@ -196,9 +194,10 @@ body::before {
     background-size: 48px 48px;
     pointer-events: none;
     z-index: 0;
+    transform: translateZ(0);
 }
 
-/* Ambient glow */
+/* Ambient glow (GPU isolated) */
 body::after {
     content: '';
     position: fixed;
@@ -209,6 +208,7 @@ body::after {
     background: var(--ambient-glow);
     pointer-events: none;
     z-index: 0;
+    transform: translateZ(0);
 }
 
 img, svg, picture {
@@ -231,6 +231,60 @@ button, input, textarea {
 
 button {
     cursor: pointer;
+}
+
+/* ===== ACCESSIBILITY: SKIP LINK & FOCUS VISIBLE ===== */
+.skip-link {
+    position: absolute;
+    top: -120px;
+    left: 1.5rem;
+    z-index: 10001;
+    padding: 0.75rem 1.25rem;
+    background: var(--bg);
+    color: var(--cyan);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid var(--cyan);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 1.25rem;
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.nav-link:focus-visible,
+.logo:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.theme-toggle:focus-visible,
+.hamburger:focus-visible,
+.social-link:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+    border-radius: 50%;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
 }
 
 /* Anchor scroll offset ensuring fixed navbar never covers section content */
@@ -433,6 +487,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Theme Toggle Button */
 .theme-toggle {
+    position: relative;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -443,6 +498,19 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--surface-border);
     color: var(--text-primary);
     transition: border-color var(--transition), transform var(--transition), background-color var(--transition);
+}
+
+.theme-toggle::after,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 44px;
+    min-height: 44px;
+    width: 100%;
+    height: 100%;
 }
 
 .theme-toggle:hover {
@@ -488,6 +556,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hamburger Mobile */
 .hamburger {
+    position: relative;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -861,6 +930,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Accessibility: prefers-reduced-motion immediate dismiss */
 @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
     .preloader {
         transition: none !important;
     }

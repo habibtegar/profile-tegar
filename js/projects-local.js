@@ -64,6 +64,7 @@ function renderProjects(projects) {
       `;
     }
 
+    const webpUrl = imageUrl.replace(/\.(png|jpe?g)$/i, '.webp');
     const cardHtml = `
       <div class="project-card" data-aos="fade-up" data-aos-delay="${delay}">
         <!-- Browser Frame Mockup -->
@@ -77,7 +78,10 @@ function renderProjects(projects) {
             <span class="browser-address-bar">${addressUrl}</span>
           </div>
           <div class="project-image-wrap">
-            <img src="${imageUrl}" alt="${project.title} - ${project.desc.slice(0, 75)} web application preview" loading="lazy" width="600" height="380" onerror="this.src='img/placeholder.png'" />
+            <picture>
+              <source srcset="${webpUrl}" type="image/webp" />
+              <img src="${imageUrl}" alt="${project.title} - ${project.desc.slice(0, 75)} web application preview" loading="lazy" decoding="async" width="600" height="380" onerror="this.src='img/placeholder.png'" />
+            </picture>
           </div>
         </div>
         <div class="project-content">

@@ -9,8 +9,22 @@
     <meta name="keywords" content="Habib Tegar, Habib Tegar Ramadhan, Web Developer, Frontend Engineer, Full Stack, React, Laravel, PHP, JavaScript, Portfolio, Bogor, Indonesia" />
     <title>Habib Tegar — Web Developer &amp; Frontend Engineer Portfolio</title>
     <link rel="canonical" href="https://habibtegar.github.io/profile-tegar/" />
-    <link rel="icon" type="image/png" href="img/icon.png" />
-    <link rel="apple-touch-icon" href="img/icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png" />
+    <link rel="apple-touch-icon" href="img/icon-192.png" />
+
+    <!-- Preconnect & Resource Hints for Ultra-Fast Handshakes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+    <!-- Preload Critical LCP Hero Image -->
+    <link rel="preload" as="image" href="img/habib.webp" type="image/webp" fetchpriority="high" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -76,9 +90,7 @@
     </script>
     
     <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     
     <!-- Stylesheets -->
@@ -101,6 +113,9 @@
     </script>
 </head>
 <body>
+    <!-- Skip to Main Content Link for Keyboard and Screen Reader Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- ===== PRELOADER / MODERN EDITORIAL TYPOGRAPHY PRELOADER ===== -->
     <div id="preloader" class="preloader" role="dialog" aria-modal="true" aria-label="Loading Habib Tegar Portfolio">
         <div class="preloader-inner">
@@ -178,9 +193,13 @@
     </nav>
 
     <!-- ===================================================
-         SECTION 1: HERO / HOME (Modern Editorial)
+         MAIN CONTENT LANDMARK
          =================================================== -->
-    <section class="hero" id="home">
+    <main id="main-content">
+        <!-- ===================================================
+             SECTION 1: HERO / HOME (Modern Editorial)
+             =================================================== -->
+        <section class="hero" id="home">
         <div class="hero-container">
             <!-- Left Column: Content & Typography -->
             <div class="hero-content" data-aos="fade-up">
@@ -246,7 +265,10 @@
                         <span class="meta-tag">FIG 01.</span>
                     </div>
                     <div class="hero-photo-wrap">
-                        <img src="img/habib.jpeg" alt="Habib Tegar Ramadhan - Web Developer and Software Engineering Student portrait" class="hero-photo" width="480" height="600" />
+                        <picture>
+                            <source srcset="img/habib.webp" type="image/webp" />
+                            <img src="img/habib.jpeg" alt="Habib Tegar Ramadhan - Web Developer and Software Engineering Student portrait" class="hero-photo" width="480" height="600" fetchpriority="high" loading="eager" decoding="async" />
+                        </picture>
                     </div>
                     <div class="portrait-caption">
                         <span class="caption-title">Habib Tegar Ramadhan</span>
@@ -276,7 +298,10 @@
                 <div class="about-left-col" data-aos="fade-up">
                     <div class="about-photo-wrapper">
                         <div class="about-photo-meta">[ REF // PORTRAIT ]</div>
-                        <img src="img/habib.jpeg" alt="Habib Tegar Ramadhan - Professional Web Developer based in Bogor, Indonesia" class="about-photo" width="480" height="600" loading="lazy" />
+                        <picture>
+                            <source srcset="img/habib.webp" type="image/webp" />
+                            <img src="img/habib.jpeg" alt="Habib Tegar Ramadhan - Professional Web Developer based in Bogor, Indonesia" class="about-photo" width="480" height="600" loading="lazy" decoding="async" />
+                        </picture>
                     </div>
 
                     <!-- Typographic Stats (Minimalist Editorial Strip) -->
@@ -345,18 +370,18 @@
 
                         <!-- Curated Skill Chips -->
                         <div class="skills-pills">
-                            <span class="skill-pill"><i class='bx bxl-html5'></i> HTML5</span>
-                            <span class="skill-pill"><i class='bx bxl-css3'></i> CSS3</span>
-                            <span class="skill-pill"><i class='bx bxl-javascript'></i> JavaScript</span>
-                            <span class="skill-pill"><i class='bx bxl-react'></i> React</span>
-                            <span class="skill-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.578 3.036L12.784 18.57a.9.9 0 0 1-1.568 0L2.422 3.036a.9.9 0 0 1 .784-1.343h4.632c.338 0 .647.19.799.493L12 8.79l3.363-6.604a.9.9 0 0 1 .8-.493h4.631a.9.9 0 0 1 .784 1.343z"/></svg> Vite</span>
-                            <span class="skill-pill"><i class='bx bxl-bootstrap'></i> Bootstrap</span>
-                            <span class="skill-pill"><i class='bx bxl-tailwind-css'></i> Tailwind CSS</span>
-                            <span class="skill-pill"><i class='bx bxl-php'></i> PHP</span>
-                            <span class="skill-pill"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg> Laravel</span>
-                            <span class="skill-pill"><i class='bx bx-data'></i> MySQL</span>
-                            <span class="skill-pill"><i class='bx bxl-git'></i> Git &amp; GitHub</span>
-                            <span class="skill-pill"><i class='bx bxl-figma'></i> Figma</span>
+                            <span class="skill-pill"><i class='bx bxl-html5' aria-hidden="true"></i> HTML5</span>
+                            <span class="skill-pill"><i class='bx bxl-css3' aria-hidden="true"></i> CSS3</span>
+                            <span class="skill-pill"><i class='bx bxl-javascript' aria-hidden="true"></i> JavaScript</span>
+                            <span class="skill-pill"><i class='bx bxl-react' aria-hidden="true"></i> React</span>
+                            <span class="skill-pill"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M21.578 3.036L12.784 18.57a.9.9 0 0 1-1.568 0L2.422 3.036a.9.9 0 0 1 .784-1.343h4.632c.338 0 .647.19.799.493L12 8.79l3.363-6.604a.9.9 0 0 1 .8-.493h4.631a.9.9 0 0 1 .784 1.343z"/></svg> Vite</span>
+                            <span class="skill-pill"><i class='bx bxl-bootstrap' aria-hidden="true"></i> Bootstrap</span>
+                            <span class="skill-pill"><i class='bx bxl-tailwind-css' aria-hidden="true"></i> Tailwind CSS</span>
+                            <span class="skill-pill"><i class='bx bxl-php' aria-hidden="true"></i> PHP</span>
+                            <span class="skill-pill"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m20.942 5.093-6.974-4.026a1.94 1.94 0 0 0-1.936 0L5.058 5.093A1.936 1.936 0 0 0 4.09 6.77v8.052c0 .694.37 1.334.968 1.677l6.974 4.026c.6.346 1.336.346 1.936 0l6.974-4.026a1.937 1.937 0 0 0 .968-1.677V6.77c0-.694-.37-1.334-.968-1.677ZM12 2.766l6.006 3.468-2.616 1.51L9.384 4.276 12 2.766Zm-1 16.968-6.006-3.468V9.702l6.006 3.468v6.564Zm1-7.72L5.994 8.546l2.616-1.51 6.006 3.468-2.616 1.51Zm7 4.252-6.006 3.468v-6.564l2.616-1.51V13.2l3.39-1.956v3.022Z"/></svg> Laravel</span>
+                            <span class="skill-pill"><i class='bx bx-data' aria-hidden="true"></i> MySQL</span>
+                            <span class="skill-pill"><i class='bx bxl-git' aria-hidden="true"></i> Git &amp; GitHub</span>
+                            <span class="skill-pill"><i class='bx bxl-figma' aria-hidden="true"></i> Figma</span>
                         </div>
 
                         <div class="about-actions">
@@ -979,7 +1004,10 @@
                             <span class="browser-address-bar">simas-smkn1ciomas.vercel.app</span>
                         </div>
                         <div class="project-image-wrap">
-                            <img src="img/simas.app.png" alt="Simas - School Asset and Student Management React web application preview" loading="lazy" width="600" height="380" />
+                            <picture>
+                                <source srcset="img/simas.app.webp" type="image/webp" />
+                                <img src="img/simas.app.png" alt="Simas - School Asset and Student Management React web application preview" loading="lazy" decoding="async" width="600" height="380" />
+                            </picture>
                         </div>
                     </div>
                     <div class="project-content">
@@ -1019,7 +1047,10 @@
                             <span class="browser-address-bar">cineva-movie.vercel.app</span>
                         </div>
                         <div class="project-image-wrap">
-                            <img src="img/cinevanew.png" alt="Cineva - Movie Exploration and TMDB API Streaming Information Platform preview" loading="lazy" width="600" height="380" />
+                            <picture>
+                                <source srcset="img/cinevanew.webp" type="image/webp" />
+                                <img src="img/cinevanew.png" alt="Cineva - Movie Exploration and TMDB API Streaming Information Platform preview" loading="lazy" decoding="async" width="600" height="380" />
+                            </picture>
                         </div>
                     </div>
                     <div class="project-content">
@@ -1059,7 +1090,10 @@
                             <span class="browser-address-bar">sdnlaladon3.biz.id</span>
                         </div>
                         <div class="project-image-wrap">
-                            <img src="img/smartschool.png" alt="Smart School - SDN Laladon 03 School Profile &amp; Academic Management Portal preview" loading="lazy" width="600" height="380" />
+                            <picture>
+                                <source srcset="img/smartschool.webp" type="image/webp" />
+                                <img src="img/smartschool.png" alt="Smart School - SDN Laladon 03 School Profile &amp; Academic Management Portal preview" loading="lazy" decoding="async" width="600" height="380" />
+                            </picture>
                         </div>
                     </div>
                     <div class="project-content">
@@ -1195,7 +1229,7 @@
                                     <label for="fullName">Full Name <span class="required-star">*</span></label>
                                     <div class="input-wrap">
                                         <i class='bx bxs-user'></i>
-                                        <input type="text" id="fullName" name="fullName" placeholder="Your Full Name" required autocomplete="name" />
+                                        <input type="text" id="fullName" name="fullName" placeholder="Your Full Name" required autocomplete="name" aria-describedby="fullNameError" />
                                     </div>
                                     <div class="field-error" id="fullNameError" aria-live="polite"></div>
                                 </div>
@@ -1203,7 +1237,7 @@
                                     <label for="email">Email Address <span class="optional-label">(Optional)</span></label>
                                     <div class="input-wrap">
                                         <i class='bx bxs-envelope'></i>
-                                        <input type="email" id="email" name="email" placeholder="nama@email.com" autocomplete="email" />
+                                        <input type="email" id="email" name="email" placeholder="nama@email.com" autocomplete="email" aria-describedby="emailError" />
                                     </div>
                                     <div class="field-error" id="emailError" aria-live="polite"></div>
                                 </div>
@@ -1219,7 +1253,7 @@
                                 <label for="message">Message <span class="required-star">*</span></label>
                                 <div class="input-wrap textarea-wrap">
                                     <i class='bx bxs-message-dots'></i>
-                                    <textarea id="message" name="message" placeholder="Write your message or project details here..." rows="4" required></textarea>
+                                    <textarea id="message" name="message" placeholder="Write your message or project details here..." rows="4" required aria-describedby="messageError"></textarea>
                                 </div>
                                 <div class="field-error" id="messageError" aria-live="polite"></div>
                             </div>
@@ -1235,6 +1269,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- ===== EDITORIAL FOOTER ===== -->
     <footer class="site-footer">
@@ -1258,7 +1293,7 @@
     <!-- Floating Music Player Widget -->
     <div id="music-player" class="minimized" role="region" aria-label="Music Player">
         <!-- 1. Minimized Floating Widget -->
-        <div class="player-mini-widget" id="playerMiniWidget" title="Open Music Player" aria-label="Expand Music Player">
+        <div class="player-mini-widget" id="playerMiniWidget" role="button" tabindex="0" title="Open Music Player" aria-label="Expand Music Player">
             <div class="mini-disc-ring paused" id="miniDisc">
                 <i class='bx bxs-music mini-music-icon'></i>   
             </div>

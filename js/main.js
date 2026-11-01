@@ -119,7 +119,10 @@
 
     /* --- Close on Escape key --- */
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Escape' && hamburger.classList.contains('open')) {
+            closeMenu();
+            hamburger.focus();
+        }
     });
 
     /* --- Close menu on window resize --- */
@@ -155,7 +158,18 @@
         });
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    let ticking = false;
+    function onScrollThrottled() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                onScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', onScrollThrottled, { passive: true });
     onScroll();
 })();
 
@@ -316,6 +330,7 @@
 
     // Accessibility check: instant reveal if reduced motion requested
     if (prefersReducedMotion) {
+        preloader.setAttribute('aria-hidden', 'true');
         preloader.classList.add('loaded');
         window.__portfolioReady = true;
         window.dispatchEvent(new CustomEvent('portfolio:ready'));
@@ -412,6 +427,7 @@
     function triggerCurtainExit() {
         if (isExitStarted) return;
         isExitStarted = true;
+        preloader.setAttribute('aria-hidden', 'true');
 
         // Dispatch portfolio:ready right as curtain begins to reveal hero
         window.__portfolioReady = true;

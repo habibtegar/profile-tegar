@@ -31,6 +31,9 @@
         document.querySelectorAll('.input-wrap').forEach(w => {
             w.classList.remove('has-error');
         });
+        [fullNameInput, emailInput, messageInput].forEach(inp => {
+            if (inp) inp.removeAttribute('aria-invalid');
+        });
         if (formStatus) {
             formStatus.textContent = '';
             formStatus.className = 'form-status';
@@ -45,6 +48,7 @@
         }
         const input = document.getElementById(fieldId);
         if (input) {
+            input.setAttribute('aria-invalid', 'true');
             const wrap = input.closest('.input-wrap');
             if (wrap) {
                 wrap.classList.add('has-error');
@@ -59,6 +63,7 @@
             err.textContent = '';
             err.classList.remove('active');
         }
+        field.removeAttribute('aria-invalid');
         const wrap = field.closest('.input-wrap');
         if (wrap) {
             wrap.classList.remove('has-error');

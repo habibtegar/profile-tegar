@@ -48,7 +48,7 @@
     <div id="music-player" class="minimized" role="region" aria-label="Music Player">
 
         <!-- 1. Minimized Floating Widget -->
-        <div class="player-mini-widget" id="playerMiniWidget" title="Open Music Player" aria-label="Expand Music Player">
+        <div class="player-mini-widget" id="playerMiniWidget" role="button" tabindex="0" title="Open Music Player" aria-label="Expand Music Player">
             <div class="mini-disc-ring paused" id="miniDisc">
                 <i class='bx bxs-music mini-music-icon'></i>   
             </div>
@@ -147,6 +147,12 @@
             miniWidget.addEventListener('click', () => {
                 player.classList.remove('minimized');
             });
+            miniWidget.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    player.classList.remove('minimized');
+                }
+            });
         }
 
         /* ── AUDIO STATE ──────────────────────────────────────── */
@@ -181,6 +187,10 @@
                 miniDisc.classList.add('spinning');
             }
             if (playIcon) playIcon.className = 'bx bx-pause';
+            if (playPauseBtn) {
+                playPauseBtn.setAttribute('title', 'Pause music track');
+                playPauseBtn.setAttribute('aria-label', 'Pause music track');
+            }
             if (navMusicBtn) {
                 navMusicBtn.classList.add('playing');
                 navMusicBtn.setAttribute('title', 'Pause Music');
@@ -203,6 +213,10 @@
                 miniDisc.classList.add('paused');
             }
             if (playIcon) playIcon.className = 'bx bx-play';
+            if (playPauseBtn) {
+                playPauseBtn.setAttribute('title', 'Play music track');
+                playPauseBtn.setAttribute('aria-label', 'Play music track');
+            }
             if (navMusicBtn) {
                 navMusicBtn.classList.remove('playing');
                 navMusicBtn.setAttribute('title', 'Play Music');
