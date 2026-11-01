@@ -303,26 +303,88 @@
 })();
 
 /* =============================
-   7. PRELOADER / OPENING PORTFOLIO EXPERIENCE
+   7. PRELOADER / MODERN EDITORIAL TYPOGRAPHY PRELOADER
    ============================= */
 (function initPreloader() {
     const preloader   = document.getElementById('preloader');
     if (!preloader) return;
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const progressBar = document.getElementById('preloaderBar');
     const percentEl   = document.getElementById('preloaderPercent');
     const statusEl    = document.getElementById('preloaderStatus');
+
+    // Accessibility check: instant reveal if reduced motion requested
+    if (prefersReducedMotion) {
+        preloader.classList.add('loaded');
+        window.__portfolioReady = true;
+        window.dispatchEvent(new CustomEvent('portfolio:ready'));
+        setTimeout(() => {
+            if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+        }, 100);
+        return;
+    }
+
+    // GSAP Stagger Entrance for Editorial Headline & Metadata
+    const chars = preloader.querySelectorAll('.preloader-char');
+    const metaTop = preloader.querySelector('.preloader-meta-top');
+    const category = preloader.querySelector('.preloader-category');
+    const bottomWrap = preloader.querySelector('.preloader-bottom-wrap');
+
+    if (typeof gsap !== 'undefined') {
+        if (metaTop) {
+            gsap.from(metaTop, {
+                y: -14,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+        }
+
+        if (chars.length) {
+            gsap.from(chars, {
+                yPercent: 125,
+                opacity: 0,
+                rotateZ: 2,
+                stagger: 0.032,
+                duration: 0.75,
+                ease: 'power4.out',
+                delay: 0.05
+            });
+        }
+
+        if (category) {
+            gsap.from(category, {
+                opacity: 0,
+                y: 10,
+                duration: 0.55,
+                delay: 0.28,
+                ease: 'power2.out'
+            });
+        }
+
+        if (bottomWrap) {
+            gsap.from(bottomWrap, {
+                y: 14,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+        }
+    }
 
     let currentPercent = 0;
     let targetPercent  = 88;
     let isWindowLoaded = false;
     let isFinished     = false;
+    let isExitStarted  = false;
 
     const stages = [
-        { threshold: 0,  text: "Loading assets..." },
-        { threshold: 28, text: "Configuring tech stack & projects..." },
-        { threshold: 58, text: "Setting up interactive interface..." },
-        { threshold: 88, text: "Almost ready..." }
+        { threshold: 0,   text: "INITIALIZING EDITORIAL SYSTEM" },
+        { threshold: 30,  text: "CALIBRATING TECH STACK & ASSETS" },
+        { threshold: 65,  text: "PREPARING INTERACTIVE SHOWCASE" },
+        { threshold: 90,  text: "PORTFOLIO READY" },
+        { threshold: 100, text: "WELCOME" }
     ];
 
     function updateStatus(val) {
@@ -340,8 +402,53 @@
     function setPercent(val) {
         currentPercent = Math.min(100, Math.max(0, val));
         if (progressBar) progressBar.style.width = currentPercent + '%';
-        if (percentEl) percentEl.textContent = Math.round(currentPercent) + '%';
+        if (percentEl) {
+            const formatted = String(Math.round(currentPercent)).padStart(2, '0') + '%';
+            percentEl.textContent = formatted;
+        }
         updateStatus(currentPercent);
+    }
+
+    function triggerCurtainExit() {
+        if (isExitStarted) return;
+        isExitStarted = true;
+
+        // Dispatch portfolio:ready right as curtain begins to reveal hero
+        window.__portfolioReady = true;
+        window.dispatchEvent(new CustomEvent('portfolio:ready'));
+
+        if (typeof gsap !== 'undefined') {
+            const exitTl = gsap.timeline({
+                onComplete: () => {
+                    preloader.classList.add('loaded');
+                    setTimeout(() => {
+                        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+                    }, 400);
+                }
+            });
+
+            // Headline characters lift slightly
+            if (chars.length) {
+                exitTl.to(chars, {
+                    yPercent: -22,
+                    opacity: 0.6,
+                    duration: 0.35,
+                    ease: 'power2.in'
+                }, 0);
+            }
+
+            // Smooth upward clip-path curtain wipe
+            exitTl.to(preloader, {
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
+                duration: 0.82,
+                ease: 'power4.inOut'
+            }, 0.08);
+        } else {
+            preloader.classList.add('loaded');
+            setTimeout(() => {
+                if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+            }, 850);
+        }
     }
 
     const timer = setInterval(() => {
@@ -351,35 +458,26 @@
         }
 
         if (!isWindowLoaded) {
-            // Simulasi progress halus hingga ~88% sambil menunggu aset halaman
+            // Progressive smooth increase towards ~88% while awaiting page load
             if (currentPercent < targetPercent) {
-                const step = (targetPercent - currentPercent) * 0.08 + 0.6;
+                const step = (targetPercent - currentPercent) * 0.12 + 0.8;
                 setPercent(currentPercent + step);
             }
         } else {
-            // Aset selesai dimuat, percepat menuju 100%
+            // Assets ready: swiftly accelerate to 100% without artificial drag
             if (currentPercent < 100) {
-                currentPercent += 3.5;
+                currentPercent += 5.5;
                 setPercent(currentPercent);
             } else {
                 setPercent(100);
                 isFinished = true;
                 clearInterval(timer);
 
-                // Jeda 320ms pada 100% agar user melihat status selesai, lalu transisikan layar
-                setTimeout(() => {
-                    preloader.classList.add('loaded');
-                    window.__portfolioReady = true;
-                    window.dispatchEvent(new CustomEvent('portfolio:ready'));
-                    setTimeout(() => {
-                        if (preloader.parentNode) {
-                            preloader.parentNode.removeChild(preloader);
-                        }
-                    }, 700);
-                }, 320);
+                // Brief pause at 100% (160ms) for high-end perception, then trigger curtain wipe
+                setTimeout(triggerCurtainExit, 160);
             }
         }
-    }, 25);
+    }, 22);
 
     function onAssetsLoaded() {
         isWindowLoaded = true;
@@ -391,7 +489,7 @@
         window.addEventListener('load', onAssetsLoaded);
     }
 
-    // Safety timeout: jika ada CDN eksternal macet, paksa selesai dalam 4 detik
+    // Safety timeout: prevents the page from remaining hidden if any external CDN hangs
     setTimeout(() => {
         onAssetsLoaded();
         setTimeout(() => {
@@ -399,14 +497,9 @@
                 setPercent(100);
                 isFinished = true;
                 clearInterval(timer);
-                preloader.classList.add('loaded');
-                window.__portfolioReady = true;
-                window.dispatchEvent(new CustomEvent('portfolio:ready'));
-                setTimeout(() => {
-                    if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
-                }, 700);
+                triggerCurtainExit();
             }
-        }, 300);
-    }, 4000);
+        }, 150);
+    }, 2200);
 })();
 

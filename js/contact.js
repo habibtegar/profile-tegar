@@ -16,6 +16,13 @@
     const submitBtn     = document.getElementById("submitBtn");
     const formStatus    = document.getElementById("formStatus");
 
+    // Ensure submit button is immediately visible, prominent and accessible
+    if (submitBtn) {
+        submitBtn.style.display = "inline-flex";
+        submitBtn.style.opacity = "1";
+        submitBtn.style.visibility = "visible";
+    }
+
     function clearErrors() {
         document.querySelectorAll('.field-error').forEach(el => {
             el.textContent = '';
@@ -189,6 +196,7 @@
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.classList.remove("loading");
+                    submitBtn.style.display = "inline-flex";
                     submitBtn.style.opacity = "1";
                     submitBtn.style.visibility = "visible";
                     submitBtn.innerHTML = "<i class='bx bxl-whatsapp'></i> <span>Send via WhatsApp</span>";

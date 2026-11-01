@@ -312,7 +312,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-editorial-primary,
-.btn-primary {
+.btn-primary,
+.btn-submit {
     background: var(--btn-primary-bg);
     color: var(--btn-primary-text);
     box-shadow: var(--btn-primary-shadow);
@@ -668,81 +669,207 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-/* ===== PRELOADER (Editorial Monospace Initialization) ===== */
+/* ===== PRELOADER / PREMIUM EDITORIAL TYPOGRAPHY PRELOADER ===== */
 .preloader {
     position: fixed;
     inset: 0;
-    background: var(--bg);
+    background: #08090d;
     z-index: 99999;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s ease;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(1.75rem, 4.5vw, 3.5rem);
+    box-sizing: border-box;
+    overflow: hidden;
+    pointer-events: auto;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    will-change: clip-path, transform, opacity;
 }
 
+/* Fallback CSS curtain reveal */
 .preloader.loaded {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transition: clip-path 0.85s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 0.4s ease 0.45s,
+                visibility 0.85s ease;
 }
 
-.preloader-card {
-    text-align: center;
-    max-width: 360px;
-    width: 90%;
-    padding: 2rem;
+/* Preloader Inner Layout */
+.preloader-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    position: relative;
 }
 
-.preloader-skew-box {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 1.25rem;
-    border: 1px solid var(--cyan);
-    border-radius: var(--radius-sm);
+/* Top Metadata Strip */
+.preloader-meta-top {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 1.15rem;
-    color: var(--cyan);
-}
-
-.preloader-title {
-    font-size: 0.82rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    letter-spacing: 0.15em;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
+    font-size: clamp(0.7rem, 1.2vw, 0.82rem);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
     text-transform: uppercase;
 }
 
-.preloader-bar-wrap {
-    width: 100%;
-    height: 3px;
-    background: var(--surface-border);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    margin-bottom: 0.85rem;
+.preloader-meta-tag {
+    color: var(--text-secondary);
 }
 
-.preloader-bar {
+.preloader-meta-tag .accent-slash {
+    color: var(--cyan);
+}
+
+.preloader-meta-sub {
+    color: var(--text-muted);
+    letter-spacing: 0.18em;
+}
+
+/* Editorial Large Headline Mask Container */
+.preloader-headline-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+    padding: 2rem 0;
+    overflow: hidden;
+}
+
+.preloader-headline {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: clamp(2.4rem, 8.5vw, 6.2rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: #f8fafc;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.32em;
+    user-select: none;
+}
+
+.preloader-word {
+    display: inline-flex;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+}
+
+.preloader-char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+.preloader-char.accent-dot {
+    color: var(--cyan);
+    text-shadow: 0 0 20px var(--cyan);
+}
+
+.preloader-category {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: clamp(0.68rem, 1.1vw, 0.78rem);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-top: 1.25rem;
+    opacity: 0.9;
+}
+
+/* Bottom Progress Bar & Percentage Counter */
+.preloader-bottom-wrap {
+    width: 100%;
+    margin-top: auto;
+}
+
+.preloader-progress-track {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.95rem;
+    position: relative;
+}
+
+.preloader-progress-fill {
     height: 100%;
     width: 0%;
     background: var(--cyan);
-    box-shadow: 0 0 10px var(--cyan);
-    transition: width 0.1s linear;
+    box-shadow: 0 0 10px var(--cyan), 0 0 20px rgba(0, 242, 254, 0.4);
+    border-radius: 2px;
+    will-change: width;
+    transition: width 0.08s linear;
 }
 
-.preloader-meta {
+.preloader-meta-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.72rem;
+    font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+    letter-spacing: 0.12em;
     color: var(--text-muted);
 }
 
-/* Hide preloader flank and ambient reticle to keep it clean */
+.preloader-status {
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.preloader-percent {
+    font-weight: 700;
+    color: var(--cyan);
+    font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 640px) {
+    .preloader {
+        padding: 1.5rem 1.25rem;
+    }
+    .preloader-meta-sub {
+        display: none;
+    }
+    .preloader-headline {
+        font-size: clamp(2.2rem, 11vw, 3.4rem);
+        gap: 0.22em;
+    }
+    .preloader-category {
+        letter-spacing: 0.14em;
+        font-size: 0.65rem;
+    }
+}
+
+/* Accessibility: prefers-reduced-motion immediate dismiss */
+@media (prefers-reduced-motion: reduce) {
+    .preloader {
+        transition: none !important;
+    }
+    .preloader.loaded {
+        display: none !important;
+    }
+}
+
+/* Hide legacy elements to maintain clean DOM */
 .preloader-reticle,
 .preloader-flank,
 .preloader-particles,

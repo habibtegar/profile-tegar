@@ -241,7 +241,8 @@
                 y: 20,
                 opacity: 0,
                 stagger: 0.1,
-                duration: 0.55
+                duration: 0.55,
+                clearProps: 'all'
             }, '-=0.35');
         }
 
@@ -252,7 +253,8 @@
                 opacity: 0,
                 stagger: 0.06,
                 duration: 0.45,
-                ease: 'back.out(1.8)'
+                ease: 'back.out(1.8)',
+                clearProps: 'all'
             }, '-=0.3');
         }
 
@@ -263,7 +265,8 @@
                 scale: 0.96,
                 opacity: 0,
                 duration: 0.95,
-                ease: 'power3.out'
+                ease: 'power3.out',
+                clearProps: 'transform,opacity'
             }, '-=0.8');
         }
 
@@ -418,7 +421,8 @@
             opacity: 0,
             stagger: 0.09,
             duration: 0.65,
-            ease: 'power2.out'
+            ease: 'power2.out',
+            clearProps: 'all'
         });
     }
 
@@ -435,7 +439,8 @@
             opacity: 0,
             stagger: 0.035,
             duration: 0.45,
-            ease: 'back.out(1.5)'
+            ease: 'back.out(1.5)',
+            clearProps: 'all'
         });
     }
 
@@ -452,7 +457,8 @@
             opacity: 0,
             stagger: 0.1,
             duration: 0.55,
-            ease: 'power2.out'
+            ease: 'power2.out',
+            clearProps: 'all'
         });
     }
 
@@ -473,20 +479,28 @@
         });
     }
 
-    // 5B. Reveal for Tech Competency Matrix Columns (Smooth Stagger without child opacity conflicts)
-    const matrixCols = document.querySelectorAll('.skills-matrix-grid .matrix-col');
-    if (matrixCols.length) {
-        gsap.from(matrixCols, {
+    // 5B. Reveal for Tech Competency Matrix (Unified Entrance guaranteeing 100% flat horizontal alignment)
+    const matrixGrid = document.querySelector('.skills-matrix-grid');
+    if (matrixGrid) {
+        // Guarantee all columns are reset with zero transform offset or margin displacement
+        const matrixCols = matrixGrid.querySelectorAll('.matrix-col');
+        matrixCols.forEach((col) => {
+            col.style.transform = 'none';
+            col.style.marginTop = '0';
+        });
+
+        // Entrance motion applied exclusively to container so all 3 columns stay 100% flush at all times
+        gsap.from(matrixGrid, {
             scrollTrigger: {
                 trigger: '.skills-matrix-grid',
-                start: 'top 82%',
+                start: 'top 85%',
                 toggleActions: 'play none none none'
             },
-            y: 40,
+            y: 30,
             opacity: 0,
-            stagger: 0.16,
-            duration: 0.8,
-            ease: 'power3.out'
+            duration: 0.75,
+            ease: 'power3.out',
+            clearProps: 'all'
         });
     }
 
@@ -517,7 +531,8 @@
                     scale: 0.95,
                     opacity: 0,
                     duration: 0.85,
-                    ease: 'power3.out'
+                    ease: 'power3.out',
+                    clearProps: 'transform,opacity'
                 });
             }
 
@@ -529,7 +544,8 @@
                         opacity: 0,
                         stagger: 0.08,
                         duration: 0.6,
-                        ease: 'power2.out'
+                        ease: 'power2.out',
+                        clearProps: 'all'
                     },
                     frame ? '-=0.5' : 0
                 );
@@ -591,7 +607,8 @@
             opacity: 0,
             stagger: 0.12,
             duration: 0.65,
-            ease: 'power2.out'
+            ease: 'power2.out',
+            clearProps: 'all'
         });
     }
 
@@ -608,7 +625,8 @@
             opacity: 0,
             stagger: 0.08,
             duration: 0.55,
-            ease: 'power2.out'
+            ease: 'power2.out',
+            clearProps: 'all'
         });
     }
 
@@ -624,7 +642,8 @@
             y: 35,
             opacity: 0,
             duration: 0.8,
-            ease: 'power3.out'
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
         });
     }
 

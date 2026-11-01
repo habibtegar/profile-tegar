@@ -77,7 +77,7 @@ function renderProjects(projects) {
             <span class="browser-address-bar">${addressUrl}</span>
           </div>
           <div class="project-image-wrap">
-            <img src="${imageUrl}" alt="${project.title}" loading="lazy" onerror="this.src='img/placeholder.png'" />
+            <img src="${imageUrl}" alt="${project.title} - ${project.desc.slice(0, 75)} web application preview" loading="lazy" width="600" height="380" onerror="this.src='img/placeholder.png'" />
           </div>
         </div>
         <div class="project-content">

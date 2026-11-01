@@ -1,0 +1,7 @@
+# robots.txt for Habib Tegar Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://habibtegar.github.io/profile-tegar/sitemap.xml
+
