@@ -114,10 +114,10 @@
         e.preventDefault();
         clearErrors();
 
-        const name    = fullNameInput ? fullNameInput.value.trim() : "";
-        const email   = emailInput ? emailInput.value.trim() : "";
-        const subject = subjectInput ? subjectInput.value.trim() : "";
-        const message = messageInput ? messageInput.value.trim() : "";
+        const name    = fullNameInput ? fullNameInput.value.trim().slice(0, 100) : "";
+        const email   = emailInput ? emailInput.value.trim().slice(0, 120) : "";
+        const subject = subjectInput ? subjectInput.value.trim().slice(0, 150) : "";
+        const message = messageInput ? messageInput.value.trim().slice(0, 3000) : "";
 
         let isValid = true;
         let firstInvalidField = null;
@@ -188,7 +188,7 @@
         // Brief delay so user clearly sees positive validation and feedback
         setTimeout(() => {
             try {
-                const newWindow = window.open(waUrl, "_blank");
+                const newWindow = window.open(waUrl, "_blank", "noopener,noreferrer");
                 if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
                     window.location.href = waUrl;
                 }
@@ -226,8 +226,17 @@ function showToast(message, type = 'success', timeout = 4000) {
 
     const toast = document.createElement('div');
     toast.className = 'toast' + (type === 'success' ? ' toast-success' : ' toast-error');
-    const icon = type === 'success' ? '✓' : '!';
-    toast.innerHTML = `<span class="icon">${icon}</span><span class="msg">${message}</span>`;
+    
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'icon';
+    iconSpan.textContent = type === 'success' ? '✓' : '!';
+
+    const msgSpan = document.createElement('span');
+    msgSpan.className = 'msg';
+    msgSpan.textContent = message;
+
+    toast.appendChild(iconSpan);
+    toast.appendChild(msgSpan);
     container.appendChild(toast);
 
     setTimeout(() => {

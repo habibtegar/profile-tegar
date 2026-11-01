@@ -2,6 +2,25 @@
 
 const projectsGrid = document.getElementById('firebase-projects-grid');
 
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function sanitizeUrl(url) {
+  if (!url || typeof url !== 'string') return '#';
+  const trimmed = url.trim();
+  if (/^(https?:\/\/|\/|#)/i.test(trimmed)) {
+    return escapeHtml(trimmed);
+  }
+  return '#';
+}
+
 function getTechIcon(name) {
   const lower = name.toLowerCase();
   if (lower.includes('react')) return "<i class='bx bxl-react'></i>";
@@ -36,20 +55,27 @@ function renderProjects(projects) {
     const imageUrl = project.imageUrl || 'img/placeholder.png';
     const addressUrl = project.addressUrl || (project.title.toLowerCase().replace(/\s+/g, '') + '.app');
 
+    // Escape dynamic properties to prevent DOM XSS
+    const safeTitle = escapeHtml(project.title);
+    const safeDesc = escapeHtml(project.desc);
+    const safeCategory = escapeHtml(project.category || 'WEB APP');
+    const safeDemoLink = sanitizeUrl(project.demoLink);
+    const safeGithubLink = sanitizeUrl(project.githubLink);
+
     // Tech stack chips
     const techChipsHtml = (project.techStack || [])
       .map(tech => `
         <span class="tech-chip">
           ${getTechIcon(tech)}
-          <span>${tech}</span>
+          <span>${escapeHtml(tech)}</span>
         </span>
       `).join('');
 
-    // Action buttons
+    // Action buttons with rel="noopener noreferrer"
     let actionButtonsHtml = '';
     if (project.demoLink) {
       actionButtonsHtml += `
-        <a href="${project.demoLink}" target="_blank" rel="noopener" class="btn btn-sm btn-project-live">
+        <a href="${safeDemoLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-live">
           <i class='bx bx-link-external'></i>
           <span>Live Preview</span>
         </a>
@@ -57,7 +83,7 @@ function renderProjects(projects) {
     }
     if (project.githubLink) {
       actionButtonsHtml += `
-        <a href="${project.githubLink}" target="_blank" rel="noopener" class="btn btn-sm btn-project-code">
+        <a href="${safeGithubLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-code">
           <i class='bx bxl-github'></i>
           <span>Source Code</span>
         </a>
@@ -86,10 +112,10 @@ function renderProjects(projects) {
         </div>
         <div class="project-content">
           <div class="project-header-meta">
-            <span class="project-category-badge">${project.category || 'WEB APP'}</span>
+            <span class="project-category-badge">${safeCategory}</span>
           </div>
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-desc">${project.desc}</p>
+          <h3 class="project-title">${safeTitle}</h3>
+          <p class="project-desc">${safeDesc}</p>
           <div class="project-tech-stack">
             ${techChipsHtml}
           </div>
