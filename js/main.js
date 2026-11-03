@@ -519,3 +519,26 @@
     }, 2200);
 })();
 
+
+
+/* =============================
+   8. BACK TO TOP BUTTON (Smooth Scroll)
+   ============================= */
+(function initBackToTop() {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (!backToTopBtn) return;
+
+    backToTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window.lenis) {
+            window.lenis.scrollTo(0, { duration: 1.15 });
+        } else {
+            const homeSec = document.getElementById('home');
+            if (homeSec) {
+                homeSec.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    });
+})();
