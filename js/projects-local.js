@@ -50,90 +50,100 @@ function renderProjects(projects) {
 
   projectsGrid.innerHTML = '';
 
-  projects.forEach((project, index) => {
-    const delay = (index % 3) * 100;
-    const imageUrl = project.imageUrl || 'img/placeholder.png';
-    const addressUrl = project.addressUrl || (project.title.toLowerCase().replace(/\s+/g, '') + '.app');
+  // Infinite Loop Architecture:
+  // Render 3 sets of cards: Set 0 (clones before), Set 1 (main visible set), Set 2 (clones after)
+  // This enables seamless infinite sliding in both directions without ever hitting a limit
+  const setsCount = 3;
+  let globalIdx = 0;
 
-    // Escape dynamic properties to prevent DOM XSS
-    const safeTitle = escapeHtml(project.title);
-    const safeDesc = escapeHtml(project.desc);
-    const safeCategory = escapeHtml(project.category || 'WEB APP');
-    const safeDemoLink = sanitizeUrl(project.demoLink);
-    const safeGithubLink = sanitizeUrl(project.githubLink);
+  for (let s = 0; s < setsCount; s++) {
+    const isClone = (s !== 1);
+    projects.forEach((project, originalIdx) => {
+      const delay = (originalIdx % 3) * 100;
+      const imageUrl = project.imageUrl || 'img/placeholder.png';
+      const addressUrl = project.addressUrl || (project.title.toLowerCase().replace(/\s+/g, '') + '.app');
 
-    // Tech stack chips
-    const techChipsHtml = (project.techStack || [])
-      .map(tech => `
-        <span class="tech-chip">
-          ${getTechIcon(tech)}
-          <span>${escapeHtml(tech)}</span>
-        </span>
-      `).join('');
+      // Escape dynamic properties to prevent DOM XSS
+      const safeTitle = escapeHtml(project.title);
+      const safeDesc = escapeHtml(project.desc);
+      const safeCategory = escapeHtml(project.category || 'WEB APP');
+      const safeDemoLink = sanitizeUrl(project.demoLink);
+      const safeGithubLink = sanitizeUrl(project.githubLink);
 
-    // Action buttons with rel="noopener noreferrer"
-    let actionButtonsHtml = '';
-    if (project.demoLink) {
-      actionButtonsHtml += `
-        <a href="${safeDemoLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-live">
-          <i class='bx bx-link-external'></i>
-          <span>Live Preview</span>
-        </a>
-      `;
-    }
-    if (project.githubLink) {
-      actionButtonsHtml += `
-        <a href="${safeGithubLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-code">
-          <i class='bx bxl-github'></i>
-          <span>Source Code</span>
-        </a>
-      `;
-    }
+      // Tech stack chips
+      const techChipsHtml = (project.techStack || [])
+        .map(tech => `
+          <span class="tech-chip">
+            ${getTechIcon(tech)}
+            <span>${escapeHtml(tech)}</span>
+          </span>
+        `).join('');
 
-    const webpUrl = imageUrl.replace(/\.(png|jpe?g)$/i, '.webp');
-    const cardHtml = `
-      <div class="project-card" data-aos="fade-up" data-aos-delay="${delay}">
-        <!-- Browser Frame Mockup -->
-        <div class="project-browser-frame">
-          <div class="browser-header-bar">
-            <div class="browser-dots">
-              <span class="browser-dot dot-red"></span>
-              <span class="browser-dot dot-yellow"></span>
-              <span class="browser-dot dot-green"></span>
+      // Action buttons with rel="noopener noreferrer"
+      let actionButtonsHtml = '';
+      if (project.demoLink) {
+        actionButtonsHtml += `
+          <a href="${safeDemoLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-live">
+            <i class='bx bx-link-external'></i>
+            <span>Live Preview</span>
+          </a>
+        `;
+      }
+      if (project.githubLink) {
+        actionButtonsHtml += `
+          <a href="${safeGithubLink}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-code">
+            <i class='bx bxl-github'></i>
+            <span>Source Code</span>
+          </a>
+        `;
+      }
+
+      const webpUrl = imageUrl.replace(/\.(png|jpe?g)$/i, '.webp');
+      const cardHtml = `
+        <div class="project-card" data-card-index="${globalIdx}" data-project-index="${originalIdx}" data-clone="${isClone}" data-aos="fade-up" data-aos-delay="${delay}">
+          <!-- Browser Frame Mockup -->
+          <div class="project-browser-frame">
+            <div class="browser-header-bar">
+              <div class="browser-dots">
+                <span class="browser-dot dot-red"></span>
+                <span class="browser-dot dot-yellow"></span>
+                <span class="browser-dot dot-green"></span>
+              </div>
+              <span class="browser-address-bar">${addressUrl}</span>
             </div>
-            <span class="browser-address-bar">${addressUrl}</span>
+            <div class="project-image-wrap">
+              <picture>
+                <source srcset="${webpUrl}" type="image/webp" />
+                <img src="${imageUrl}" alt="${project.title} - ${project.desc.slice(0, 75)} web application preview" loading="lazy" decoding="async" width="600" height="380" onerror="this.src='img/placeholder.png'" />
+              </picture>
+            </div>
           </div>
-          <div class="project-image-wrap">
-            <picture>
-              <source srcset="${webpUrl}" type="image/webp" />
-              <img src="${imageUrl}" alt="${project.title} - ${project.desc.slice(0, 75)} web application preview" loading="lazy" decoding="async" width="600" height="380" onerror="this.src='img/placeholder.png'" />
-            </picture>
+          <div class="project-content">
+            <div class="project-header-meta">
+              <span class="project-category-badge">${safeCategory}</span>
+            </div>
+            <h3 class="project-title">${safeTitle}</h3>
+            <p class="project-desc">${safeDesc}</p>
+            <div class="project-tech-stack">
+              ${techChipsHtml}
+            </div>
+            <div class="project-actions">
+              ${actionButtonsHtml}
+            </div>
           </div>
         </div>
-        <div class="project-content">
-          <div class="project-header-meta">
-            <span class="project-category-badge">${safeCategory}</span>
-          </div>
-          <h3 class="project-title">${safeTitle}</h3>
-          <p class="project-desc">${safeDesc}</p>
-          <div class="project-tech-stack">
-            ${techChipsHtml}
-          </div>
-          <div class="project-actions">
-            ${actionButtonsHtml}
-          </div>
-        </div>
-      </div>
-    `;
+      `;
 
-    projectsGrid.insertAdjacentHTML('beforeend', cardHtml);
-  });
+      projectsGrid.insertAdjacentHTML('beforeend', cardHtml);
+      globalIdx++;
+    });
+  }
 
   // Initialize horizontal slider controls & interactions
-  initProjectsSlider();
+  initProjectsSlider(projects);
 }
 
-function initProjectsSlider() {
+function initProjectsSlider(projectsList) {
   const viewport = document.getElementById('projectsSliderViewport');
   const track = document.getElementById('firebase-projects-grid');
   const prevBtn = document.getElementById('projectsSliderPrev');
@@ -142,8 +152,9 @@ function initProjectsSlider() {
 
   if (!viewport || !track) return;
 
-  const cards = Array.from(track.querySelectorAll('.project-card'));
-  if (cards.length === 0) return;
+  const N = (projectsList && projectsList.length) ? projectsList.length : 4;
+  let currentIndex = N; // Starts on the first card of Set 1 (Main Set)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Accurately compute card width to ensure exactly 3 cards on desktop, 2 on tablet, 1 on mobile
   function updateSliderDimensions() {
@@ -167,107 +178,157 @@ function initProjectsSlider() {
 
   updateSliderDimensions();
 
-  // Helper to compute card position relative to viewport left edge
-  function getCardRelativeLeft(card) {
-    const cardRect = card.getBoundingClientRect();
-    const viewportRect = viewport.getBoundingClientRect();
-    return cardRect.left - viewportRect.left;
+  function getStep() {
+    const card = track.querySelector('.project-card');
+    if (!card) return 0;
+    const gap = window.innerWidth <= 640 ? 0 : 24;
+    return card.offsetWidth + gap;
   }
 
-  function scrollToCard(card) {
-    const relLeft = getCardRelativeLeft(card);
-    viewport.scrollBy({ left: relLeft, behavior: 'smooth' });
+  function setPosition(index, smooth = false) {
+    const step = getStep();
+    if (!step) return;
+
+    if (!smooth || prefersReducedMotion) {
+      viewport.style.scrollSnapType = 'none';
+      viewport.scrollTo({ left: index * step, behavior: 'instant' });
+      void viewport.offsetWidth;
+      viewport.style.scrollSnapType = '';
+    } else {
+      viewport.scrollTo({ left: index * step, behavior: 'smooth' });
+    }
   }
 
-  // Generate pagination dots
-  if (dotsContainer) {
-    dotsContainer.innerHTML = '';
-    cards.forEach((card, i) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('role', 'tab');
-      const titleText = card.querySelector('.project-title')?.textContent?.trim() || ('Project ' + (i + 1));
-      dot.setAttribute('aria-label', 'Slide ' + (i + 1) + ' - ' + titleText);
-      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      dot.addEventListener('click', () => {
-        scrollToCard(card);
-      });
-      dotsContainer.appendChild(dot);
-    });
+  // Initial positioning to Main Set (index N)
+  setPosition(currentIndex, false);
+
+  // Normalize position silently when passing beyond middle set
+  function normalizePosition() {
+    const step = getStep();
+    if (!step) return;
+
+    if (currentIndex >= 2 * N) {
+      currentIndex -= N;
+      setPosition(currentIndex, false);
+    } else if (currentIndex < N) {
+      currentIndex += N;
+      setPosition(currentIndex, false);
+    }
+    updateDots();
   }
 
-  // Update arrows and dots based on scroll position
-  let ticking = false;
-  function updateSliderState() {
-    const scrollLeft = viewport.scrollLeft;
-    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+  // Next / Prev actions (Infinite loop, unlimited)
+  function goNext() {
+    const step = getStep();
+    if (!step) return;
 
-    // Toggle arrow disabled state (tolerance of 6px for subpixel calculations)
-    if (prevBtn) {
-      prevBtn.disabled = scrollLeft <= 6;
+    if (currentIndex >= 2 * N) {
+      currentIndex -= N;
+      setPosition(currentIndex, false);
     }
-    if (nextBtn) {
-      nextBtn.disabled = scrollLeft >= maxScroll - 6;
-    }
-
-    // Find closest card to viewport start
-    if (dotsContainer) {
-      let closestIdx = 0;
-      let minDiff = Infinity;
-      cards.forEach((card, idx) => {
-        const diff = Math.abs(getCardRelativeLeft(card));
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestIdx = idx;
-        }
-      });
-
-      const dots = dotsContainer.querySelectorAll('.slider-dot');
-      dots.forEach((dot, idx) => {
-        const isActive = idx === closestIdx;
-        dot.classList.toggle('active', isActive);
-        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-    }
-
-    ticking = false;
+    currentIndex++;
+    setPosition(currentIndex, true);
+    updateDots();
   }
 
-  viewport.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateSliderState);
-      ticking = true;
+  function goPrev() {
+    const step = getStep();
+    if (!step) return;
+
+    if (currentIndex <= 0) {
+      currentIndex += N;
+      setPosition(currentIndex, false);
     }
-  }, { passive: true });
+    currentIndex--;
+    setPosition(currentIndex, true);
+    updateDots();
+  }
 
-  // Initial state check
-  updateSliderState();
-
-  // Prev / Next button navigation
+  // Prev / Next button navigation — ALWAYS ENABLED for infinite looping
   if (prevBtn) {
-    prevBtn.onclick = () => {
-      const prevCard = [...cards].reverse().find(c => getCardRelativeLeft(c) < -12);
-      if (prevCard) {
-        scrollToCard(prevCard);
-      } else {
-        const step = cards[0].offsetWidth + 24;
-        viewport.scrollBy({ left: -step, behavior: 'smooth' });
-      }
+    prevBtn.disabled = false;
+    prevBtn.onclick = (e) => {
+      e.preventDefault();
+      goPrev();
     };
   }
 
   if (nextBtn) {
-    nextBtn.onclick = () => {
-      const nextCard = cards.find(c => getCardRelativeLeft(c) > 12);
-      if (nextCard) {
-        scrollToCard(nextCard);
-      } else {
-        const step = cards[0].offsetWidth + 24;
-        viewport.scrollBy({ left: step, behavior: 'smooth' });
-      }
+    nextBtn.disabled = false;
+    nextBtn.onclick = (e) => {
+      e.preventDefault();
+      goNext();
     };
   }
+
+  // Generate pagination dots (one for each unique project)
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < N; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('role', 'tab');
+      const titleText = (projectsList && projectsList[i]?.title) || ('Project ' + (i + 1));
+      dot.setAttribute('aria-label', `Slide ${i + 1} - ${titleText}`);
+      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        const currentMod = ((currentIndex % N) + N) % N;
+        const diff = i - currentMod;
+        currentIndex += diff;
+        setPosition(currentIndex, true);
+        updateDots();
+      });
+
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    if (!dotsContainer) return;
+    const activeIdx = ((currentIndex % N) + N) % N;
+    const dots = dotsContainer.querySelectorAll('.slider-dot');
+    dots.forEach((dot, idx) => {
+      const isActive = (idx === activeIdx);
+      dot.classList.toggle('active', isActive);
+      dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  updateDots();
+
+  // Handle scroll settling (scrollend + debounce)
+  let scrollTimer = null;
+  function handleScrollEnd() {
+    const step = getStep();
+    if (!step) return;
+
+    const computedIdx = Math.round(viewport.scrollLeft / step);
+    currentIndex = computedIdx;
+    normalizePosition();
+  }
+
+  viewport.addEventListener('scrollend', handleScrollEnd);
+
+  viewport.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(handleScrollEnd, 120);
+
+    // Update active dot in realtime during scroll
+    const step = getStep();
+    if (step > 0 && dotsContainer) {
+      const liveIdx = Math.round(viewport.scrollLeft / step);
+      const activeIdx = ((liveIdx % N) + N) % N;
+      const dots = dotsContainer.querySelectorAll('.slider-dot');
+      dots.forEach((dot, idx) => {
+        const isActive = (idx === activeIdx);
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    }
+  }, { passive: true });
 
   // Mouse Drag to Scroll (Desktop natural drag feel)
   let isDown = false;
@@ -288,6 +349,7 @@ function initProjectsSlider() {
     if (!isDown) return;
     isDown = false;
     viewport.classList.remove('is-dragging');
+    handleScrollEnd();
   });
 
   viewport.addEventListener('mousemove', (e) => {
@@ -314,17 +376,20 @@ function initProjectsSlider() {
   viewport.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
-      prevBtn?.click();
+      goPrev();
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
-      nextBtn?.click();
+      goNext();
     }
   });
 
   // Re-check on window resize
   window.addEventListener('resize', () => {
     updateSliderDimensions();
-    updateSliderState();
+    const step = getStep();
+    if (step) {
+      setPosition(currentIndex, false);
+    }
   }, { passive: true });
 }
 

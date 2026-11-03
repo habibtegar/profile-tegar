@@ -31,7 +31,6 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
