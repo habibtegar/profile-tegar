@@ -1,15 +1,17 @@
 /**
  * animations.js — Habib Tegar Portfolio
- * Advanced Scroll Animation using GSAP 3, ScrollTrigger, and Lenis Smooth Scroll
+ * Advanced Scroll-Reverse & Realtime Scrub Animations using GSAP 3, ScrollTrigger, and Lenis Smooth Scroll
  * 
  * Implements:
  * 1. Synchronized Lenis Smooth Scroll & GSAP ScrollTrigger
- * 2. Preloader-synchronized Hero entrance with staggered character reveal
- * 3. About section entrance: photo reveal, GSAP stats count-up & directory stagger
- * 4. Skills section reveal (preserving continuous CSS infinite logo marquee)
- * 5. Projects section browser frame reveal, metadata stagger & image parallax scrub
- * 6. Contact section heading reveal, info stagger & form controls entrance
- * 7. Prefers-reduced-motion accessibility & responsive mobile optimization
+ * 2. Preloader-synchronized Hero entrance + bidirectional Hero scroll-reverse scrub
+ * 3. Bidirectional Section Headers scrub (Tag -> Title -> Subtitle)
+ * 4. About Section scroll-reverse scrub (Portrait, Stats counter, Lead words, Directory list, Skill pills, CTAs)
+ * 5. Skills Section scroll-reverse scrub (Logo marquees preserved, Matrix columns staggered scrub)
+ * 6. Projects Section scroll-reverse scrub (Browser frames, Metadata, Title, Desc, Chips, Actions, Image Parallax)
+ * 7. Contact Section scroll-reverse scrub (Panel headers, Info items, Social directory, Form controls)
+ * 8. Prefers-reduced-motion accessibility & mobile-responsive optimization
+ * 9. Zero layout shift, no hidden reading elements, and 100% Lenis / preloader integration
  */
 
 (function () {
@@ -55,36 +57,6 @@
         }
 
         return charInners;
-    }
-
-    // Helper: Split paragraph or title into words wrapped in spans
-    function splitToWords(element, wordClass = 'word-inner') {
-        if (!element || element.dataset.splitWordsApplied) return [];
-        element.dataset.splitWordsApplied = 'true';
-
-        const text = element.textContent.trim();
-        const words = text.split(/\s+/);
-        element.textContent = '';
-        const wordInners = [];
-
-        words.forEach((word, index) => {
-            const wrap = document.createElement('span');
-            wrap.className = 'word-wrap';
-
-            const inner = document.createElement('span');
-            inner.className = wordClass;
-            inner.textContent = word;
-
-            wrap.appendChild(inner);
-            element.appendChild(wrap);
-            wordInners.push(inner);
-
-            if (index < words.length - 1) {
-                element.appendChild(document.createTextNode(' '));
-            }
-        });
-
-        return wordInners;
     }
 
     // Helper: Split text in-place into spans (inline for scrub reveal)
@@ -157,7 +129,7 @@
 
     // If reduced motion is requested, reveal all elements immediately and exit
     if (prefersReducedMotion) {
-        document.querySelectorAll('[data-aos]').forEach((el) => {
+        document.querySelectorAll('[data-aos], .matrix-col, .project-card, .section-header, .about-word, .hero-name-line, .info-item, .social-dir-card').forEach((el) => {
             el.style.opacity = '1';
             el.style.transform = 'none';
         });
@@ -169,7 +141,7 @@
         return;
     }
 
-    // 2. HERO SECTION ANIMATION
+    // 2. HERO SECTION ANIMATION & SCROLL-REVERSE SCRUB
     let heroAnimated = false;
     function initHeroAnimation() {
         if (heroAnimated) return;
@@ -191,7 +163,7 @@
         const portraitFrame = document.querySelector('.editorial-portrait-frame');
         const portraitImg = document.querySelector('.editorial-portrait');
 
-        // Master Hero Entrance Timeline
+        // Master Hero Entrance Timeline (Triggered once on preloader exit / portfolio:ready)
         const heroTl = gsap.timeline({
             defaults: { ease: 'power3.out' }
         });
@@ -277,6 +249,26 @@
                 ease: 'power2.out'
             }, '-=0.95');
         }
+
+        // Realtime Scroll-Reverse Scrub for Hero when scrolling down into next sections
+        const heroScrubTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#home',
+                start: 'top top',
+                end: 'bottom 35%',
+                scrub: 0.8,
+                invalidateOnRefresh: true
+            }
+        });
+
+        heroScrubTl
+            .to('.hero-meta-bar', { opacity: 0, y: -20, ease: 'none', duration: 0.25 }, 0)
+            .to('.hero-name-line', { opacity: 0, y: -35, ease: 'none', duration: 0.35 }, 0.04)
+            .to('.hero-role-editorial', { opacity: 0, y: -25, ease: 'none', duration: 0.3 }, 0.08)
+            .to('.hero-desc', { opacity: 0, y: -25, ease: 'none', duration: 0.3 }, 0.1)
+            .to('.hero-actions', { opacity: 0, y: -20, ease: 'none', duration: 0.25 }, 0.12)
+            .to('.hero-social', { opacity: 0, y: -15, ease: 'none', duration: 0.2 }, 0.15)
+            .to('.editorial-portrait-frame', { opacity: 0, y: -30, scale: 0.96, ease: 'none', duration: 0.35 }, 0.08);
     }
 
     // Synchronize Hero Entrance with Preloader completion
@@ -290,62 +282,90 @@
         setTimeout(initHeroAnimation, 4200);
     }
 
-    // 3. SECTION HEADERS REVEAL
+    // 3. UNIVERSAL SECTION HEADERS SCROLL-REVERSE SCRUB
     const sectionHeaders = document.querySelectorAll('.section-header');
     sectionHeaders.forEach((header) => {
         const tag = header.querySelector('.editorial-section-tag');
         const title = header.querySelector('.section-title');
         const subtitle = header.querySelector('.section-subtitle');
 
-        const tl = gsap.timeline({
+        const headerTl = gsap.timeline({
             scrollTrigger: {
                 trigger: header,
-                start: 'top 86%',
-                toggleActions: 'play none none none'
+                start: 'top 95%',
+                end: 'top 70%',
+                scrub: 0.8,
+                invalidateOnRefresh: true
             }
         });
 
-        if (tag) tl.from(tag, { y: 15, opacity: 0, duration: 0.5, ease: 'power2.out' });
-        if (title) tl.from(title, { y: 22, opacity: 0, duration: 0.65, ease: 'power3.out' }, '-=0.35');
-        if (subtitle) tl.from(subtitle, { y: 18, opacity: 0, duration: 0.55, ease: 'power2.out' }, '-=0.4');
+        if (tag) {
+            headerTl.fromTo(tag,
+                { opacity: 0, y: 18 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.25 },
+                0
+            );
+        }
+        if (title) {
+            headerTl.fromTo(title,
+                { opacity: 0, y: 26 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.35 },
+                0.06
+            );
+        }
+        if (subtitle) {
+            headerTl.fromTo(subtitle,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.3 },
+                0.12
+            );
+        }
     });
 
-    // 4. ABOUT SECTION ANIMATION
-    // 4A. Clean Entrance Reveal for About Left Column (Photo & Stats Strip)
-    const aboutLeft = document.querySelector('.about-left-col');
-    if (aboutLeft) {
-        const photo = aboutLeft.querySelector('.about-photo-wrapper');
-        const statsStrip = aboutLeft.querySelector('.editorial-stats-strip');
-
-        const leftTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: aboutLeft,
-                start: 'top 82%',
-                toggleActions: 'play none none none'
+    // 4. ABOUT SECTION SCROLL-REVERSE SCRUB
+    // 4A. Left Column (Portrait & Stats Strip)
+    const aboutPhoto = document.querySelector('.about-photo-wrapper');
+    if (aboutPhoto) {
+        gsap.fromTo(aboutPhoto,
+            { opacity: 0, y: 32, scale: 0.96 },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                ease: 'power1.out',
+                scrollTrigger: {
+                    trigger: aboutPhoto,
+                    start: 'top 93%',
+                    end: 'top 68%',
+                    scrub: 0.8,
+                    invalidateOnRefresh: true
+                }
             }
-        });
-
-        if (photo) {
-            leftTl.from(photo, {
-                y: 32,
-                scale: 0.96,
-                opacity: 0,
-                duration: 0.85,
-                ease: 'power3.out'
-            });
-        }
-
-        if (statsStrip) {
-            leftTl.from(statsStrip, {
-                y: 20,
-                opacity: 0,
-                duration: 0.65,
-                ease: 'power2.out'
-            }, '-=0.45');
-        }
+        );
     }
 
-    // 4B. Subtle Counting Effect on Statistics (Synced with ScrollTrigger)
+    const statsStrip = document.querySelector('.editorial-stats-strip');
+    if (statsStrip) {
+        const statItems = statsStrip.querySelectorAll('.stat-item');
+        gsap.fromTo(statItems.length ? statItems : statsStrip,
+            { opacity: 0, y: 24 },
+            {
+                opacity: 1,
+                y: 0,
+                stagger: 0.08,
+                ease: 'power1.out',
+                scrollTrigger: {
+                    trigger: statsStrip,
+                    start: 'top 94%',
+                    end: 'top 70%',
+                    scrub: 0.8,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
+    }
+
+    // 4B. Subtle Counting Effect on Statistics (Bidirectional ScrollTrigger)
     const statNumbers = document.querySelectorAll('.editorial-stats-strip .stat-number[data-count]');
     if (statNumbers.length) {
         statNumbers.forEach((statEl) => {
@@ -354,12 +374,12 @@
 
             gsap.to(counterObj, {
                 val: targetVal,
-                duration: 1.5,
-                ease: 'power2.out',
+                ease: 'none',
                 scrollTrigger: {
                     trigger: '.editorial-stats-strip',
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
+                    start: 'top 94%',
+                    end: 'top 68%',
+                    scrub: 0.8
                 },
                 onUpdate: () => {
                     statEl.textContent = Math.round(counterObj.val) + '+';
@@ -368,24 +388,44 @@
         });
     }
 
-    // 4C. Word-by-word Scrub Reveal on Lead Paragraph
+    // 4C. About Lead Card & Word-by-word Scrub
+    const aboutLeadCard = document.querySelector('.about-lead-card');
+    if (aboutLeadCard) {
+        gsap.fromTo(aboutLeadCard,
+            { opacity: 0, y: 28 },
+            {
+                opacity: 1,
+                y: 0,
+                ease: 'power1.out',
+                scrollTrigger: {
+                    trigger: aboutLeadCard,
+                    start: 'top 93%',
+                    end: 'top 70%',
+                    scrub: 0.8,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
+    }
+
     const aboutLead = document.querySelector('.about-text-lead');
     if (aboutLead) {
         const wordSpans = splitToInlineWords(aboutLead, 'about-word');
         if (wordSpans.length) {
             gsap.fromTo(
                 wordSpans,
-                { opacity: 0.2, color: 'var(--text-muted)' },
+                { opacity: 0.25, color: 'var(--text-muted)' },
                 {
                     opacity: 1,
                     color: 'var(--text-primary)',
-                    stagger: 0.05,
+                    stagger: 0.04,
                     ease: 'none',
                     scrollTrigger: {
                         trigger: aboutLead,
-                        start: 'top 82%',
+                        start: 'top 88%',
                         end: 'bottom 45%',
-                        scrub: 0.75
+                        scrub: 0.75,
+                        invalidateOnRefresh: true
                     }
                 }
             );
@@ -393,165 +433,220 @@
     }
 
     // 4D. Secondary Biography Text Entrance
-    const aboutText = document.querySelector('.about-lead-card .about-text');
-    if (aboutText) {
-        gsap.from(aboutText, {
-            scrollTrigger: {
-                trigger: aboutText,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
-            y: 20,
-            opacity: 0,
-            duration: 0.65,
-            ease: 'power2.out'
-        });
+    const aboutBioText = document.querySelector('.about-lead-card .about-text');
+    if (aboutBioText) {
+        gsap.fromTo(aboutBioText,
+            { opacity: 0, y: 22 },
+            {
+                opacity: 1,
+                y: 0,
+                ease: 'power1.out',
+                scrollTrigger: {
+                    trigger: aboutBioText,
+                    start: 'top 93%',
+                    end: 'top 70%',
+                    scrub: 0.8,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
     }
 
-    // 4E. About Directory List Stagger Reveal
-    const directoryRows = document.querySelectorAll('.about-directory-list .directory-row');
-    if (directoryRows.length) {
-        gsap.from(directoryRows, {
-            scrollTrigger: {
-                trigger: '.about-directory-list',
-                start: 'top 84%',
-                toggleActions: 'play none none none'
-            },
-            x: 24,
-            opacity: 0,
-            stagger: 0.09,
-            duration: 0.65,
-            ease: 'power2.out',
-            clearProps: 'all'
-        });
+    // 4E. Directory List Stagger Scrub
+    const directoryList = document.querySelector('.about-directory-list');
+    if (directoryList) {
+        const directoryRows = directoryList.querySelectorAll('.directory-row');
+        if (directoryRows.length) {
+            gsap.fromTo(directoryRows,
+                { opacity: 0, x: 26 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    stagger: 0.08,
+                    ease: 'power1.out',
+                    scrollTrigger: {
+                        trigger: directoryList,
+                        start: 'top 92%',
+                        end: 'top 66%',
+                        scrub: 0.8,
+                        invalidateOnRefresh: true
+                    }
+                }
+            );
+        }
     }
 
-    // 4F. About Skill Pills Stagger Pop Reveal
-    const skillPills = document.querySelectorAll('.skills-pills .skill-pill');
-    if (skillPills.length) {
-        gsap.from(skillPills, {
-            scrollTrigger: {
-                trigger: '.skills-pills',
-                start: 'top 86%',
-                toggleActions: 'play none none none'
-            },
-            scale: 0.88,
-            opacity: 0,
-            stagger: 0.035,
-            duration: 0.45,
-            ease: 'back.out(1.5)',
-            clearProps: 'all'
-        });
+    // 4F. Skills Pills Stagger Pop Scrub
+    const skillsPills = document.querySelector('.skills-pills');
+    if (skillsPills) {
+        const pills = skillsPills.querySelectorAll('.skill-pill');
+        if (pills.length) {
+            gsap.fromTo(pills,
+                { opacity: 0, scale: 0.88, y: 15 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    stagger: 0.03,
+                    ease: 'power1.out',
+                    scrollTrigger: {
+                        trigger: skillsPills,
+                        start: 'top 94%',
+                        end: 'top 72%',
+                        scrub: 0.8,
+                        invalidateOnRefresh: true
+                    }
+                }
+            );
+        }
     }
 
-    // 4G. About CTA Buttons Entrance
-    const aboutActions = document.querySelectorAll('.about-actions .btn');
-    if (aboutActions.length) {
-        gsap.from(aboutActions, {
-            scrollTrigger: {
-                trigger: '.about-actions',
-                start: 'top 88%',
-                toggleActions: 'play none none none'
-            },
-            y: 18,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 0.55,
-            ease: 'power2.out',
-            clearProps: 'all'
-        });
+    // 4G. About Action Buttons Scrub
+    const aboutActions = document.querySelector('.about-actions');
+    if (aboutActions) {
+        const actionBtns = aboutActions.querySelectorAll('.btn');
+        if (actionBtns.length) {
+            gsap.fromTo(actionBtns,
+                { opacity: 0, y: 18 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.08,
+                    ease: 'power1.out',
+                    scrollTrigger: {
+                        trigger: aboutActions,
+                        start: 'top 95%',
+                        end: 'top 74%',
+                        scrub: 0.8,
+                        invalidateOnRefresh: true
+                    }
+                }
+            );
+        }
     }
 
-    // 5. SKILLS SECTION ANIMATION
-    // 5A. Entrance reveal for the animated logo marquee wrapper (Continuous CSS marquee is fully preserved)
+    // 5. SKILLS SECTION SCROLL-REVERSE SCRUB
+    // 5A. Continuous logo marquee wrapper scrub (preserves infinite marquee loop)
     const marqueeWrapper = document.querySelector('.skills-marquee-wrapper');
     if (marqueeWrapper) {
-        gsap.from(marqueeWrapper, {
-            scrollTrigger: {
-                trigger: marqueeWrapper,
-                start: 'top 88%',
-                toggleActions: 'play none none none'
-            },
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
+        gsap.fromTo(marqueeWrapper,
+            { opacity: 0, y: 28 },
+            {
+                opacity: 1,
+                y: 0,
+                ease: 'power1.out',
+                scrollTrigger: {
+                    trigger: marqueeWrapper,
+                    start: 'top 94%',
+                    end: 'top 72%',
+                    scrub: 0.8,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
     }
 
-    // 5B. Reveal for Tech Competency Matrix (Unified Entrance guaranteeing 100% flat horizontal alignment)
+    // 5B. Editorial Tech Matrix (Flat Horizontal Alignment + Stagger Scrub)
     const matrixGrid = document.querySelector('.skills-matrix-grid');
     if (matrixGrid) {
-        // Guarantee all columns are reset with zero transform offset or margin displacement
         const matrixCols = matrixGrid.querySelectorAll('.matrix-col');
+        // Ensure all columns start with clean resets
         matrixCols.forEach((col) => {
             col.style.transform = 'none';
             col.style.marginTop = '0';
         });
 
-        // Entrance motion applied exclusively to container so all 3 columns stay 100% flush at all times
-        gsap.from(matrixGrid, {
+        const matrixTl = gsap.timeline({
             scrollTrigger: {
-                trigger: '.skills-matrix-grid',
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
-            y: 30,
-            opacity: 0,
-            duration: 0.75,
-            ease: 'power3.out',
-            clearProps: 'all'
+                trigger: matrixGrid,
+                start: 'top 92%',
+                end: 'top 65%',
+                scrub: 0.8,
+                invalidateOnRefresh: true
+            }
         });
+
+        matrixTl.fromTo(matrixCols,
+            { opacity: 0, y: 32 },
+            {
+                opacity: 1,
+                y: 0,
+                stagger: 0.12,
+                ease: 'power1.out'
+            }
+        );
     }
 
-    // 6. PROJECTS SECTION ANIMATION
+    // 6. PROJECTS SECTION SCROLL-REVERSE SCRUB
     function initProjectsAnimation() {
         const projectCards = document.querySelectorAll('.projects-grid .project-card');
         if (!projectCards.length) return;
 
         projectCards.forEach((card) => {
             const frame = card.querySelector('.project-browser-frame');
+            const meta = card.querySelector('.project-header-meta');
+            const title = card.querySelector('.project-title');
+            const desc = card.querySelector('.project-desc');
+            const techStack = card.querySelector('.project-tech-stack');
+            const actions = card.querySelector('.project-actions');
             const img = card.querySelector('.project-image-wrap img');
-            const contentItems = card.querySelectorAll(
-                '.project-header-meta, .project-title, .project-desc, .project-tech-stack, .project-actions'
-            );
 
-            // Card Entrance Timeline
             const cardTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: card,
-                    start: 'top 84%',
-                    toggleActions: 'play none none none'
+                    start: 'top 92%',
+                    end: 'top 65%',
+                    scrub: 0.8,
+                    invalidateOnRefresh: true
                 }
             });
 
             if (frame) {
-                cardTl.from(frame, {
-                    y: 36,
-                    scale: 0.95,
-                    opacity: 0,
-                    duration: 0.85,
-                    ease: 'power3.out',
-                    clearProps: 'transform,opacity'
-                });
+                cardTl.fromTo(frame,
+                    { opacity: 0, y: 32, scale: 0.96 },
+                    { opacity: 1, y: 0, scale: 1, ease: 'power1.out', duration: 0.4 },
+                    0
+                );
             }
-
-            if (contentItems.length) {
-                cardTl.from(
-                    contentItems,
-                    {
-                        y: 22,
-                        opacity: 0,
-                        stagger: 0.08,
-                        duration: 0.6,
-                        ease: 'power2.out',
-                        clearProps: 'all'
-                    },
-                    frame ? '-=0.5' : 0
+            if (meta) {
+                cardTl.fromTo(meta,
+                    { opacity: 0, y: 16 },
+                    { opacity: 1, y: 0, ease: 'power1.out', duration: 0.25 },
+                    0.06
+                );
+            }
+            if (title) {
+                cardTl.fromTo(title,
+                    { opacity: 0, y: 22 },
+                    { opacity: 1, y: 0, ease: 'power1.out', duration: 0.3 },
+                    0.12
+                );
+            }
+            if (desc) {
+                cardTl.fromTo(desc,
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, ease: 'power1.out', duration: 0.3 },
+                    0.18
+                );
+            }
+            if (techStack) {
+                const chips = techStack.querySelectorAll('.tech-chip');
+                cardTl.fromTo(chips.length ? chips : techStack,
+                    { opacity: 0, y: 15 },
+                    { opacity: 1, y: 0, stagger: 0.03, ease: 'power1.out', duration: 0.25 },
+                    0.24
+                );
+            }
+            if (actions) {
+                const actionBtns = actions.querySelectorAll('.btn');
+                cardTl.fromTo(actionBtns.length ? actionBtns : actions,
+                    { opacity: 0, y: 16 },
+                    { opacity: 1, y: 0, stagger: 0.05, ease: 'power1.out', duration: 0.25 },
+                    0.28
                 );
             }
 
-            // Subtle Parallax Scrub on Preview Image
+            // Parallax scrub on preview image
             if (img) {
                 gsap.fromTo(
                     img,
@@ -573,78 +668,117 @@
 
     initProjectsAnimation();
 
-    // 7. CONTACT SECTION ANIMATION
-    // 7A. Word Reveal on Contact Heading
-    const contactTitle = document.querySelector('.contact-section .section-title');
-    if (contactTitle) {
-        const contactWords = splitToWords(contactTitle, 'word-inner');
-        if (contactWords.length) {
-            gsap.from(contactWords, {
-                scrollTrigger: {
-                    trigger: contactTitle,
-                    start: 'top 86%',
-                    toggleActions: 'play none none none'
-                },
-                yPercent: 110,
-                opacity: 0,
-                stagger: 0.08,
-                duration: 0.75,
-                ease: 'power4.out'
-            });
+    // 7. CONTACT SECTION SCROLL-REVERSE SCRUB
+    // 7A. Left Column (Contact Info & Social Directory)
+    const contactInfoCol = document.querySelector('.contact-info-col');
+    if (contactInfoCol) {
+        const cardTitle = contactInfoCol.querySelector('.contact-card-title');
+        const cardDesc = contactInfoCol.querySelector('.contact-card-desc');
+        const infoItems = contactInfoCol.querySelectorAll('.info-item');
+        const socialHeading = contactInfoCol.querySelector('.social-heading');
+        const socialCards = contactInfoCol.querySelectorAll('.social-dir-card');
+
+        const contactLeftTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: contactInfoCol,
+                start: 'top 92%',
+                end: 'top 65%',
+                scrub: 0.8,
+                invalidateOnRefresh: true
+            }
+        });
+
+        if (cardTitle) {
+            contactLeftTl.fromTo(cardTitle,
+                { opacity: 0, y: 18 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.25 },
+                0
+            );
+        }
+        if (cardDesc) {
+            contactLeftTl.fromTo(cardDesc,
+                { opacity: 0, y: 18 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.3 },
+                0.06
+            );
+        }
+        if (infoItems.length) {
+            contactLeftTl.fromTo(infoItems,
+                { opacity: 0, x: -24 },
+                { opacity: 1, x: 0, stagger: 0.08, ease: 'power1.out', duration: 0.35 },
+                0.12
+            );
+        }
+        if (socialHeading) {
+            contactLeftTl.fromTo(socialHeading,
+                { opacity: 0, y: 16 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.25 },
+                0.22
+            );
+        }
+        if (socialCards.length) {
+            contactLeftTl.fromTo(socialCards,
+                { opacity: 0, y: 20, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, stagger: 0.06, ease: 'power1.out', duration: 0.35 },
+                0.26
+            );
         }
     }
 
-    // 7B. Contact Directory Items Stagger Reveal
-    const contactInfoItems = document.querySelectorAll('.contact-info-col .info-item');
-    if (contactInfoItems.length) {
-        gsap.from(contactInfoItems, {
-            scrollTrigger: {
-                trigger: '.contact-info-col',
-                start: 'top 82%',
-                toggleActions: 'play none none none'
-            },
-            x: -24,
-            opacity: 0,
-            stagger: 0.12,
-            duration: 0.65,
-            ease: 'power2.out',
-            clearProps: 'all'
-        });
-    }
+    // 7B. Right Column (Form Card & Controls)
+    const formCol = document.querySelector('.contact-form-col');
+    if (formCol) {
+        const formCard = formCol.querySelector('.contact-form-card');
+        const formTitle = formCol.querySelector('.form-title');
+        const formGroups = formCol.querySelectorAll('.form-group');
+        const submitBtn = formCol.querySelector('#submitBtn');
+        const formNote = formCol.querySelector('.form-status');
 
-    // 7C. Social Directory Cards Stagger Reveal
-    const socialDirCards = document.querySelectorAll('.social-directory-grid .social-dir-card');
-    if (socialDirCards.length) {
-        gsap.from(socialDirCards, {
+        const formTl = gsap.timeline({
             scrollTrigger: {
-                trigger: '.social-directory-grid',
-                start: 'top 86%',
-                toggleActions: 'play none none none'
-            },
-            y: 20,
-            opacity: 0,
-            stagger: 0.08,
-            duration: 0.55,
-            ease: 'power2.out',
-            clearProps: 'all'
+                trigger: formCol,
+                start: 'top 90%',
+                end: 'top 65%',
+                scrub: 0.8,
+                invalidateOnRefresh: true
+            }
         });
-    }
 
-    // 7D. Contact Form Card Entrance Reveal (Parent tween ensures submit button is never hidden)
-    const formCard = document.querySelector('.contact-form-card');
-    if (formCard) {
-        gsap.from(formCard, {
-            scrollTrigger: {
-                trigger: '.contact-form-col',
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
-            y: 35,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            clearProps: 'transform,opacity'
-        });
+        if (formCard) {
+            formTl.fromTo(formCard,
+                { opacity: 0, y: 32 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.35 },
+                0
+            );
+        }
+        if (formTitle) {
+            formTl.fromTo(formTitle,
+                { opacity: 0, y: 18 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.25 },
+                0.06
+            );
+        }
+        if (formGroups.length) {
+            formTl.fromTo(formGroups,
+                { opacity: 0, y: 18 },
+                { opacity: 1, y: 0, stagger: 0.08, ease: 'power1.out', duration: 0.35 },
+                0.12
+            );
+        }
+        if (submitBtn) {
+            formTl.fromTo(submitBtn,
+                { opacity: 0, y: 16 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.25 },
+                0.26
+            );
+        }
+        if (formNote) {
+            formTl.fromTo(formNote,
+                { opacity: 0, y: 14 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.2 },
+                0.3
+            );
+        }
     }
 
     // 8. RESIZE & REFRESH HANDLER
