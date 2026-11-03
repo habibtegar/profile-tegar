@@ -145,6 +145,28 @@ function initProjectsSlider() {
   const cards = Array.from(track.querySelectorAll('.project-card'));
   if (cards.length === 0) return;
 
+  // Accurately compute card width to ensure exactly 3 cards on desktop, 2 on tablet, 1 on mobile
+  function updateSliderDimensions() {
+    if (!viewport) return;
+    const vw = viewport.clientWidth;
+    if (vw <= 0) return;
+
+    let cardsPerView = 3;
+    let gap = 24; // 1.5rem = 24px
+    if (window.innerWidth <= 640) {
+      cardsPerView = 1;
+      gap = 0;
+    } else if (window.innerWidth <= 1024) {
+      cardsPerView = 2;
+      gap = 24;
+    }
+
+    const cardWidth = Math.floor((vw - (cardsPerView - 1) * gap) / cardsPerView);
+    viewport.style.setProperty('--card-w', cardWidth + 'px');
+  }
+
+  updateSliderDimensions();
+
   // Helper to compute card position relative to viewport left edge
   function getCardRelativeLeft(card) {
     const cardRect = card.getBoundingClientRect();
@@ -301,6 +323,7 @@ function initProjectsSlider() {
 
   // Re-check on window resize
   window.addEventListener('resize', () => {
+    updateSliderDimensions();
     updateSliderState();
   }, { passive: true });
 }

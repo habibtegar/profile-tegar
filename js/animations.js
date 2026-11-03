@@ -173,7 +173,8 @@
             heroTl.from(metaBar, {
                 y: -18,
                 opacity: 0,
-                duration: 0.65
+                duration: 0.65,
+                clearProps: 'opacity,transform'
             });
         }
 
@@ -194,7 +195,8 @@
             heroTl.from(roleEditorial, {
                 y: 18,
                 opacity: 0,
-                duration: 0.55
+                duration: 0.55,
+                clearProps: 'opacity,transform'
             }, '-=0.55');
         }
 
@@ -203,7 +205,8 @@
             heroTl.from(heroDesc, {
                 y: 20,
                 opacity: 0,
-                duration: 0.65
+                duration: 0.65,
+                clearProps: 'opacity,transform'
             }, '-=0.4');
         }
 

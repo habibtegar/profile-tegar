@@ -19,11 +19,15 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
+    gap: 0.75rem;
     margin-top: clamp(2rem, 3.5vw, 3rem);
 }
 
 .projects-slider-viewport {
+    flex: 1 1 0%;
+    min-width: 0;
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
@@ -34,6 +38,8 @@
     padding: 0.75rem 0.25rem 1.25rem 0.25rem;
     cursor: grab;
     user-select: none;
+    container-type: inline-size;
+    container-name: projects-slider;
 }
 
 .projects-slider-viewport.is-dragging {
@@ -58,8 +64,11 @@
 
 /* ===== REFINED VERTICAL PROJECT CARD (MATCHING SLIDER REFERENCE) ===== */
 .project-card {
-    flex: 0 0 calc((100% - 2 * 1.5rem) / 3);
-    max-width: calc((100% - 2 * 1.5rem) / 3);
+    /* Exactly 3 cards visible on desktop, 2 on tablet, 1 on mobile */
+    flex: 0 0 var(--card-w, calc((100cqi - 2 * 1.5rem) / 3));
+    width: var(--card-w, calc((100cqi - 2 * 1.5rem) / 3));
+    max-width: var(--card-w, calc((100cqi - 2 * 1.5rem) / 3));
+    min-width: var(--card-w, calc((100cqi - 2 * 1.5rem) / 3));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -414,8 +423,10 @@
 /* ===== RESPONSIVE MEDIA QUERIES ===== */
 @media (max-width: 1024px) {
     .project-card {
-        flex: 0 0 calc((100% - 1.5rem) / 2);
-        max-width: calc((100% - 1.5rem) / 2);
+        flex: 0 0 var(--card-w, calc((100cqi - 1.5rem) / 2));
+        width: var(--card-w, calc((100cqi - 1.5rem) / 2));
+        max-width: var(--card-w, calc((100cqi - 1.5rem) / 2));
+        min-width: var(--card-w, calc((100cqi - 1.5rem) / 2));
     }
 }
 
@@ -425,8 +436,10 @@
     }
 
     .project-card {
-        flex: 0 0 100%;
-        max-width: 100%;
+        flex: 0 0 var(--card-w, 100cqi);
+        width: var(--card-w, 100cqi);
+        max-width: var(--card-w, 100cqi);
+        min-width: var(--card-w, 100cqi);
         padding: 1.15rem;
     }
 

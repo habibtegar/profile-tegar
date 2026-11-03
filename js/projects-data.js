@@ -13,7 +13,7 @@ const projectsData = [
     demoLink: "https://simas-smkn1ciomas.vercel.app/",
     githubLink: "https://github.com/habibtegar/simas-react",
     imageUrl: "img/simas.app.png",
-    addressUrl: "simas-smkn1ciomas.vercel.app",
+    addressUrl: "simas-smkn1ciomas.app",
     featured: true,
     order: 1
   },
@@ -26,14 +26,14 @@ const projectsData = [
     demoLink: "https://cineva-movie.vercel.app/",
     githubLink: "https://github.com/habibtegar/Cineva",
     imageUrl: "img/cinevanew.png",
-    addressUrl: "cineva-movie.vercel.app",
+    addressUrl: "cineva-movie.app",
     featured: true,
     order: 2
   },
   {
     id: "smart-school",
     title: "Smart School",
-    category: "FULL STACK",
+    category: "WEB APP",
     desc: "An institutional web portal and school profile system designed for SD Negeri Laladon 3 to publish academic information and news.",
     techStack: ["PHP", "Bootstrap", "MySQL"],
     demoLink: "https://sdnlaladon3.biz.id/",
