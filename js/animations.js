@@ -129,7 +129,7 @@
 
     // If reduced motion is requested, reveal all elements immediately and exit
     if (prefersReducedMotion) {
-        document.querySelectorAll('[data-aos], .matrix-col, .project-card, .section-header, .about-word, .hero-name-line, .info-item, .social-dir-card').forEach((el) => {
+        document.querySelectorAll('[data-aos], .matrix-col, .project-card, .projects-slider-container, .section-header, .about-word, .hero-name-line, .info-item, .social-dir-card').forEach((el) => {
             el.style.opacity = '1';
             el.style.transform = 'none';
         });
@@ -557,93 +557,55 @@
         );
     }
 
-    // 6. PROJECTS SECTION SCROLL-REVERSE SCRUB
+    // 6. PROJECTS SECTION SCROLL-REVERSE SCRUB (Horizontal Slider Container Integration)
     function initProjectsAnimation() {
-        const projectCards = document.querySelectorAll('.projects-grid .project-card');
-        if (!projectCards.length) return;
+        const sliderContainer = document.querySelector('.projects-slider-container') || document.querySelector('.projects-grid');
+        if (!sliderContainer) return;
 
-        projectCards.forEach((card) => {
-            const frame = card.querySelector('.project-browser-frame');
-            const meta = card.querySelector('.project-header-meta');
-            const title = card.querySelector('.project-title');
-            const desc = card.querySelector('.project-desc');
-            const techStack = card.querySelector('.project-tech-stack');
-            const actions = card.querySelector('.project-actions');
-            const img = card.querySelector('.project-image-wrap img');
+        const cards = sliderContainer.querySelectorAll('.project-card');
+        const prevBtn = sliderContainer.querySelector('.slider-arrow-prev');
+        const nextBtn = sliderContainer.querySelector('.slider-arrow-next');
+        const dots = document.getElementById('projectsSliderDots');
 
-            const cardTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 92%',
-                    end: 'top 65%',
-                    scrub: 0.8,
-                    invalidateOnRefresh: true
-                }
-            });
-
-            if (frame) {
-                cardTl.fromTo(frame,
-                    { opacity: 0, y: 32, scale: 0.96 },
-                    { opacity: 1, y: 0, scale: 1, ease: 'power1.out', duration: 0.4 },
-                    0
-                );
-            }
-            if (meta) {
-                cardTl.fromTo(meta,
-                    { opacity: 0, y: 16 },
-                    { opacity: 1, y: 0, ease: 'power1.out', duration: 0.25 },
-                    0.06
-                );
-            }
-            if (title) {
-                cardTl.fromTo(title,
-                    { opacity: 0, y: 22 },
-                    { opacity: 1, y: 0, ease: 'power1.out', duration: 0.3 },
-                    0.12
-                );
-            }
-            if (desc) {
-                cardTl.fromTo(desc,
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, ease: 'power1.out', duration: 0.3 },
-                    0.18
-                );
-            }
-            if (techStack) {
-                const chips = techStack.querySelectorAll('.tech-chip');
-                cardTl.fromTo(chips.length ? chips : techStack,
-                    { opacity: 0, y: 15 },
-                    { opacity: 1, y: 0, stagger: 0.03, ease: 'power1.out', duration: 0.25 },
-                    0.24
-                );
-            }
-            if (actions) {
-                const actionBtns = actions.querySelectorAll('.btn');
-                cardTl.fromTo(actionBtns.length ? actionBtns : actions,
-                    { opacity: 0, y: 16 },
-                    { opacity: 1, y: 0, stagger: 0.05, ease: 'power1.out', duration: 0.25 },
-                    0.28
-                );
-            }
-
-            // Parallax scrub on preview image
-            if (img) {
-                gsap.fromTo(
-                    img,
-                    { yPercent: -6 },
-                    {
-                        yPercent: 6,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 0.6
-                        }
-                    }
-                );
+        const projectsTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sliderContainer,
+                start: 'top 92%',
+                end: 'top 65%',
+                scrub: 0.8,
+                invalidateOnRefresh: true
             }
         });
+
+        projectsTl.fromTo(sliderContainer,
+            { opacity: 0, y: 32 },
+            { opacity: 1, y: 0, ease: 'power1.out', duration: 0.5 },
+            0
+        );
+
+        if (cards.length) {
+            projectsTl.fromTo(cards,
+                { opacity: 0, y: 22 },
+                { opacity: 1, y: 0, stagger: 0.06, ease: 'power1.out', duration: 0.4 },
+                0.08
+            );
+        }
+
+        if (prevBtn && nextBtn) {
+            projectsTl.fromTo([prevBtn, nextBtn],
+                { opacity: 0, scale: 0.85 },
+                { opacity: 1, scale: 1, stagger: 0.04, ease: 'power1.out', duration: 0.3 },
+                0.15
+            );
+        }
+
+        if (dots) {
+            projectsTl.fromTo(dots,
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, ease: 'power1.out', duration: 0.3 },
+                0.2
+            );
+        }
     }
 
     initProjectsAnimation();

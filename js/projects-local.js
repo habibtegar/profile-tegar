@@ -128,6 +128,181 @@ function renderProjects(projects) {
 
     projectsGrid.insertAdjacentHTML('beforeend', cardHtml);
   });
+
+  // Initialize horizontal slider controls & interactions
+  initProjectsSlider();
+}
+
+function initProjectsSlider() {
+  const viewport = document.getElementById('projectsSliderViewport');
+  const track = document.getElementById('firebase-projects-grid');
+  const prevBtn = document.getElementById('projectsSliderPrev');
+  const nextBtn = document.getElementById('projectsSliderNext');
+  const dotsContainer = document.getElementById('projectsSliderDots');
+
+  if (!viewport || !track) return;
+
+  const cards = Array.from(track.querySelectorAll('.project-card'));
+  if (cards.length === 0) return;
+
+  // Helper to compute card position relative to viewport left edge
+  function getCardRelativeLeft(card) {
+    const cardRect = card.getBoundingClientRect();
+    const viewportRect = viewport.getBoundingClientRect();
+    return cardRect.left - viewportRect.left;
+  }
+
+  function scrollToCard(card) {
+    const relLeft = getCardRelativeLeft(card);
+    viewport.scrollBy({ left: relLeft, behavior: 'smooth' });
+  }
+
+  // Generate pagination dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    cards.forEach((card, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('role', 'tab');
+      const titleText = card.querySelector('.project-title')?.textContent?.trim() || ('Project ' + (i + 1));
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1) + ' - ' + titleText);
+      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      dot.addEventListener('click', () => {
+        scrollToCard(card);
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  // Update arrows and dots based on scroll position
+  let ticking = false;
+  function updateSliderState() {
+    const scrollLeft = viewport.scrollLeft;
+    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+
+    // Toggle arrow disabled state (tolerance of 6px for subpixel calculations)
+    if (prevBtn) {
+      prevBtn.disabled = scrollLeft <= 6;
+    }
+    if (nextBtn) {
+      nextBtn.disabled = scrollLeft >= maxScroll - 6;
+    }
+
+    // Find closest card to viewport start
+    if (dotsContainer) {
+      let closestIdx = 0;
+      let minDiff = Infinity;
+      cards.forEach((card, idx) => {
+        const diff = Math.abs(getCardRelativeLeft(card));
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+
+      const dots = dotsContainer.querySelectorAll('.slider-dot');
+      dots.forEach((dot, idx) => {
+        const isActive = idx === closestIdx;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    }
+
+    ticking = false;
+  }
+
+  viewport.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateSliderState);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Initial state check
+  updateSliderState();
+
+  // Prev / Next button navigation
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      const prevCard = [...cards].reverse().find(c => getCardRelativeLeft(c) < -12);
+      if (prevCard) {
+        scrollToCard(prevCard);
+      } else {
+        const step = cards[0].offsetWidth + 24;
+        viewport.scrollBy({ left: -step, behavior: 'smooth' });
+      }
+    };
+  }
+
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      const nextCard = cards.find(c => getCardRelativeLeft(c) > 12);
+      if (nextCard) {
+        scrollToCard(nextCard);
+      } else {
+        const step = cards[0].offsetWidth + 24;
+        viewport.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    };
+  }
+
+  // Mouse Drag to Scroll (Desktop natural drag feel)
+  let isDown = false;
+  let startX = 0;
+  let scrollLeftStart = 0;
+  let hasMoved = false;
+
+  viewport.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return; // Only primary button
+    isDown = true;
+    hasMoved = false;
+    viewport.classList.add('is-dragging');
+    startX = e.pageX - viewport.offsetLeft;
+    scrollLeftStart = viewport.scrollLeft;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    viewport.classList.remove('is-dragging');
+  });
+
+  viewport.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - viewport.offsetLeft;
+    const walk = (x - startX);
+    if (Math.abs(walk) > 5) {
+      hasMoved = true;
+    }
+    viewport.scrollLeft = scrollLeftStart - walk;
+  });
+
+  // Prevent link click when dragging
+  viewport.addEventListener('click', (e) => {
+    if (hasMoved) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasMoved = false;
+    }
+  }, true);
+
+  // Keyboard navigation
+  viewport.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevBtn?.click();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      nextBtn?.click();
+    }
+  });
+
+  // Re-check on window resize
+  window.addEventListener('resize', () => {
+    updateSliderState();
+  }, { passive: true });
 }
 
 // Only render if grid is present and empty (or initial page load)

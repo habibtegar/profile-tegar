@@ -42,5 +42,18 @@ const projectsData = [
     addressUrl: "sdnlaladon3.biz.id",
     featured: true,
     order: 3
+  },
+  {
+    id: "kopisenja",
+    title: "Kopi Senja",
+    category: "LANDING PAGE",
+    desc: "A warm and aesthetic coffee shop digital web experience featuring interactive product highlights, pricing, and modern responsive branding.",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    demoLink: "https://habibtegar.github.io/kopisenja/",
+    githubLink: "https://github.com/habibtegar/kopisenja",
+    imageUrl: "img/kopisenja.png",
+    addressUrl: "kopisenja.app",
+    featured: true,
+    order: 4
   }
 ];

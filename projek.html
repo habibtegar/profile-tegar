@@ -151,8 +151,14 @@
             </div>
 
             <!-- 3 Symmetrical Featured Project Cards in 1 Row -->
-            <div class="projects-grid" id="firebase-projects-grid">
-                <!-- Project 1: Simas -->
+            <!-- Horizontal Projects Slider Container (Hydrated by js/projects-local.js) -->
+            <div class="projects-slider-container" data-aos="fade-up">
+                <button type="button" class="slider-arrow slider-arrow-prev" id="projectsSliderPrev" aria-label="Previous Projects" title="Previous Projects" disabled>
+                    <i class='bx bx-chevron-left'></i>
+                </button>
+                <div class="projects-slider-viewport" id="projectsSliderViewport" data-lenis-prevent tabindex="0" role="region" aria-label="Projects Showcase Carousel">
+                    <div class="projects-grid projects-slider-track" id="firebase-projects-grid">
+                        <!-- Project 1: Simas -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="0">
                     <div class="project-browser-frame">
                         <div class="browser-header-bar">
@@ -279,7 +285,55 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Project 4: Kopi Senja -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-browser-frame">
+                        <div class="browser-header-bar">
+                            <div class="browser-dots">
+                                <span class="browser-dot dot-red"></span>
+                                <span class="browser-dot dot-yellow"></span>
+                                <span class="browser-dot dot-green"></span>
+                            </div>
+                            <span class="browser-address-bar">kopisenja.app</span>
+                        </div>
+                        <div class="project-image-wrap">
+                            <picture>
+                                <source srcset="img/kopisenja.webp" type="image/webp" />
+                                <img src="img/kopisenja.png" alt="Kopi Senja - Coffee Shop Digital Web Experience preview" loading="lazy" decoding="async" width="600" height="380" onerror="this.src='img/placeholder.png'" />
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header-meta">
+                            <span class="project-category-badge">[ LANDING PAGE ]</span>
+                        </div>
+                        <h3 class="project-title">Kopi Senja</h3>
+                        <p class="project-desc">A warm and aesthetic coffee shop digital web experience featuring interactive product highlights, pricing, and modern responsive branding.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-chip"><i class='bx bxl-html5'></i> <span>HTML5</span></span>
+                            <span class="tech-chip"><i class='bx bxl-css3'></i> <span>CSS3</span></span>
+                            <span class="tech-chip"><i class='bx bxl-javascript'></i> <span>JavaScript</span></span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://habibtegar.github.io/kopisenja/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-live">
+                                <i class='bx bx-link-external'></i>
+                                <span>Live Preview</span>
+                            </a>
+                            <a href="https://github.com/habibtegar/kopisenja" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-project-code">
+                                <i class='bx bxl-github'></i>
+                                <span>Source Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <button type="button" class="slider-arrow slider-arrow-next" id="projectsSliderNext" aria-label="Next Projects" title="Next Projects">
+                    <i class='bx bx-chevron-right'></i>
+                </button>
             </div>
+            <div class="projects-slider-dots" id="projectsSliderDots" role="tablist" aria-label="Projects Pagination"></div>
 
             <!-- Call-to-Action: See More on GitHub -->
             <div class="projects-cta-wrap" data-aos="fade-up">
