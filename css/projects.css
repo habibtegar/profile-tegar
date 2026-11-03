@@ -34,7 +34,6 @@
     padding: 0.75rem 0.25rem 1.25rem 0.25rem;
     cursor: grab;
     user-select: none;
-    container-type: inline-size;
 }
 
 .projects-slider-viewport.is-dragging {
@@ -59,10 +58,8 @@
 
 /* ===== REFINED VERTICAL PROJECT CARD (MATCHING SLIDER REFERENCE) ===== */
 .project-card {
-    flex: 0 0 calc((100cqi - 2 * 1.5rem) / 3);
-    width: calc((100cqi - 2 * 1.5rem) / 3);
-    max-width: calc((100cqi - 2 * 1.5rem) / 3);
-    min-width: calc((100cqi - 2 * 1.5rem) / 3);
+    flex: 0 0 calc((100% - 2 * 1.5rem) / 3);
+    max-width: calc((100% - 2 * 1.5rem) / 3);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -414,31 +411,11 @@
     font-size: 1.25rem;
 }
 
-/* ===== RESPONSIVE MEDIA & CONTAINER QUERIES ===== */
-@container (max-width: 1024px) {
-    .project-card {
-        flex: 0 0 calc((100cqi - 1.5rem) / 2);
-        width: calc((100cqi - 1.5rem) / 2);
-        max-width: calc((100cqi - 1.5rem) / 2);
-        min-width: calc((100cqi - 1.5rem) / 2);
-    }
-}
-
-@container (max-width: 640px) {
-    .project-card {
-        flex: 0 0 100cqi;
-        width: 100cqi;
-        max-width: 100cqi;
-        min-width: 100cqi;
-    }
-}
-
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
 @media (max-width: 1024px) {
     .project-card {
-        flex: 0 0 calc((100cqi - 1.5rem) / 2);
-        width: calc((100cqi - 1.5rem) / 2);
-        max-width: calc((100cqi - 1.5rem) / 2);
-        min-width: calc((100cqi - 1.5rem) / 2);
+        flex: 0 0 calc((100% - 1.5rem) / 2);
+        max-width: calc((100% - 1.5rem) / 2);
     }
 }
 
@@ -448,10 +425,8 @@
     }
 
     .project-card {
-        flex: 0 0 100cqi;
-        width: 100cqi;
-        max-width: 100cqi;
-        min-width: 100cqi;
+        flex: 0 0 100%;
+        max-width: 100%;
         padding: 1.15rem;
     }
 
@@ -467,11 +442,11 @@
     }
 
     .slider-arrow-prev {
-        left: 6px;
+        left: -8px;
     }
 
     .slider-arrow-next {
-        right: 6px;
+        right: -8px;
     }
 
     .slider-arrow:hover:not(:disabled) {
