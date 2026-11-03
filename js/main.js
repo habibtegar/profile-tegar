@@ -522,13 +522,34 @@
 
 
 /* =============================
-   8. BACK TO TOP BUTTON (Smooth Scroll)
+   8. FLOATING BACK TO TOP BUTTON (Smooth Scroll & Auto Visibility)
    ============================= */
-(function initBackToTop() {
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    if (!backToTopBtn) return;
+(function initFloatingBackToTop() {
+    const bttBtn = document.getElementById('floatingBackToTop') || document.getElementById('backToTopBtn');
+    if (!bttBtn) return;
 
-    backToTopBtn.addEventListener('click', (e) => {
+    let isVisible = false;
+    function checkVisibility() {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const shouldShow = scrollY > 250;
+
+        if (shouldShow !== isVisible) {
+            isVisible = shouldShow;
+            bttBtn.classList.toggle('is-visible', isVisible);
+        }
+    }
+
+    // Scroll listener for auto visibility
+    window.addEventListener('scroll', checkVisibility, { passive: true });
+    if (window.lenis) {
+        window.lenis.on('scroll', checkVisibility);
+    }
+
+    // Initial check
+    checkVisibility();
+
+    // Click handler for smooth scrolling to top / Home
+    bttBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (window.lenis) {
             window.lenis.scrollTo(0, { duration: 1.15 });

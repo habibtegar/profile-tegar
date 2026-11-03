@@ -667,19 +667,13 @@ h1, h2, h3, h4, h5, h6 {
     gap: clamp(2rem, 3.5vw, 2.75rem);
 }
 
-/* --- Tier 1: Main Top Row (Brand + Social on Left, Back to Top on Right) --- */
+/* --- Tier 1: Main Top Row (Brand & Social on Left, Editorial Tag on Right) --- */
 .footer-top-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
-}
-
-.footer-left-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
+    flex-wrap: wrap;
 }
 
 /* Brand & Social Media Alignment */
@@ -766,53 +760,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-/* Right Action Column: Back To Top (Icon Only ↑ at Top Right) */
-.footer-action-col {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-shrink: 0;
-}
-
-.btn-back-to-top {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
-    color: var(--text-primary);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-back-to-top .back-to-top-icon {
-    font-size: 1.45rem;
-    color: var(--cyan);
-    transition: transform 0.25s ease;
-}
-
-.btn-back-to-top:hover {
-    background: var(--surface-hover);
-    border-color: var(--cyan);
-    color: var(--cyan);
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0, 240, 255, 0.28);
-}
-
-.btn-back-to-top:hover .back-to-top-icon {
-    transform: translateY(-2px);
-}
-
-.btn-back-to-top:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 3px;
-}
-
 /* --- Tier 2: Bottom Meta Divider & Copyright --- */
 .footer-bottom-row {
     display: flex;
@@ -855,6 +802,77 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
 }
 
+/* ===== FLOATING BACK TO TOP BUTTON (Symmetrical with Music Player) ===== */
+.floating-btt {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 995;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: var(--cyan);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.45rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(14px) scale(0.9);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color var(--transition),
+                border-color var(--transition),
+                box-shadow var(--transition),
+                color var(--transition);
+    user-select: none;
+    outline: none;
+}
+
+[data-theme="light"] .floating-btt {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.floating-btt.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.floating-btt:hover {
+    transform: translateY(-3px) scale(1.08);
+    border-color: var(--cyan);
+    background: var(--surface-hover);
+    color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.35), 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+.floating-btt:hover i {
+    transform: translateY(-2px);
+}
+
+.floating-btt i {
+    transition: transform 0.25s ease;
+}
+
+.floating-btt:active {
+    transform: translateY(0) scale(0.96);
+}
+
+.floating-btt:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+}
+
 /* ===== FOOTER RESPONSIVE BREAKPOINTS ===== */
 @media (max-width: 640px) {
     .site-footer {
@@ -866,17 +884,9 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .footer-top-row {
-        display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.25rem;
-        position: relative;
-    }
-
-    .footer-action-col {
-        position: absolute;
-        top: 0;
-        right: 0;
+        gap: 1rem;
     }
 
     .footer-brand-wrap {
@@ -897,6 +907,14 @@ h1, h2, h3, h4, h5, h6 {
         align-items: flex-start;
         gap: 0.75rem;
         padding-top: 1.25rem;
+    }
+
+    .floating-btt {
+        bottom: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
+        font-size: 1.35rem;
     }
 }
 
