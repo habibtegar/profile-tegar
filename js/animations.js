@@ -249,26 +249,6 @@
                 ease: 'power2.out'
             }, '-=0.95');
         }
-
-        // Realtime Scroll-Reverse Scrub for Hero when scrolling down into next sections
-        const heroScrubTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: '#home',
-                start: 'top top',
-                end: 'bottom 35%',
-                scrub: 0.8,
-                invalidateOnRefresh: true
-            }
-        });
-
-        heroScrubTl
-            .to('.hero-meta-bar', { opacity: 0, y: -20, ease: 'none', duration: 0.25 }, 0)
-            .to('.hero-name-line', { opacity: 0, y: -35, ease: 'none', duration: 0.35 }, 0.04)
-            .to('.hero-role-editorial', { opacity: 0, y: -25, ease: 'none', duration: 0.3 }, 0.08)
-            .to('.hero-desc', { opacity: 0, y: -25, ease: 'none', duration: 0.3 }, 0.1)
-            .to('.hero-actions', { opacity: 0, y: -20, ease: 'none', duration: 0.25 }, 0.12)
-            .to('.hero-social', { opacity: 0, y: -15, ease: 'none', duration: 0.2 }, 0.15)
-            .to('.editorial-portrait-frame', { opacity: 0, y: -30, scale: 0.96, ease: 'none', duration: 0.35 }, 0.08);
     }
 
     // Synchronize Hero Entrance with Preloader completion
